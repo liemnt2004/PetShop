@@ -4,17 +4,28 @@ package com.app.utils;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author NT Thân
- */
 public class XImage {
+=======
+
+package com.app.utils;
+
+import java.awt.Component;
+import java.awt.Image;
+import java.io.File;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import javax.swing.ImageIcon;
+
+
+public class XImage {
+
+   
+
+
     public static ImageIcon insertIcon(int width, int height, String link) {
         try {
             ImageIcon ico = new ImageIcon(link);
@@ -26,4 +37,62 @@ public class XImage {
         }
 
     }
+
+
+    public static boolean save(File src) {
+        File dst = new File("image", src.getName());
+        if (!dst.getParentFile().exists()) {
+            dst.getParentFile().mkdirs();
+        }
+        try {
+            Path from = Paths.get(src.getAbsolutePath());
+            Path to = Paths.get(dst.getAbsolutePath());
+            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public static ImageIcon read(String fileName) {
+        File path = new File("image", fileName);
+        return new ImageIcon(path.getAbsolutePath());
+
+    }
+
+  
+        public static File saveExel(File src){
+        File dst = new File("Excel", src.getName());
+        if(!dst.getParentFile().exists()){
+            dst.getParentFile().mkdirs();
+        }
+        try {
+            Path from = Paths.get(src.getAbsolutePath());
+            Path to = Paths.get(dst.getAbsolutePath());
+            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+            return dst;
+        } 
+        catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+        
+         public static File saveQR(File src){
+        File dst = new File("QR", src.getName());
+        if(!dst.getParentFile().exists()){
+            dst.getParentFile().mkdirs();
+        }
+        try {
+            Path from = Paths.get(src.getAbsolutePath());
+            Path to = Paths.get(dst.getAbsolutePath());
+            Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
+            return dst;
+        } 
+        catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+
 }
