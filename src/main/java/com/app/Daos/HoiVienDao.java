@@ -1,6 +1,6 @@
 package com.app.Daos;
 
-import com.app.Entitys.HoiVienEntity;
+import com.app.Entitys.HoiVien;
 import com.app.utils.JdbcHelper;
 
 import java.sql.ResultSet;
@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
+public class HoiVienDao implements DaoMain<HoiVien, String> {
 
     @Override
-    public void insert(HoiVienEntity entity) {
+    public void insert(HoiVien entity) {
         String sql = "INSERT INTO HoiVien (MaHV, TenKhachHang, Gioi_Tinh, Email, SDT, Tich_diem, CCCD) VALUES (?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaHoiVien(),
@@ -20,11 +20,11 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
                 entity.getEmail(),
                 entity.getSoDienThoai(),
                 entity.getTichDiem(),
-                entity.getCanCuocCongDan());
+                entity.getCccd());
     }
 
     @Override
-    public void update(HoiVienEntity entity) {
+    public void update(HoiVien entity) {
         String sql = "UPDATE HoiVien SET TenKhachHang=?, Gioi_Tinh=?, Email=?, SDT=?, Tich_diem=?, CCCD=? WHERE MaHV=?";
         JdbcHelper.executeUpdate(sql,
                 entity.getTenKhachHang(),
@@ -32,7 +32,7 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
                 entity.getEmail(),
                 entity.getSoDienThoai(),
                 entity.getTichDiem(),
-                entity.getCanCuocCongDan(),
+                entity.getCccd(),
                 entity.getMaHoiVien());
     }
 
@@ -43,27 +43,27 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
     }
 
     @Override
-    public List<HoiVienEntity> selectAll() {
+    public List<HoiVien> selectAll() {
         String sql = "SELECT * FROM HoiVien";
         return selectBySql(sql);
     }
 
     @Override
-    public HoiVienEntity selectById(String key) {
+    public HoiVien selectById(String key) {
         String sql = "SELECT * FROM HoiVien WHERE MaHV=?";
-        List<HoiVienEntity> list = selectBySql(sql, key);
+        List<HoiVien> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
-    public List<HoiVienEntity> selectBySql(String sql, Object... args) {
-        List<HoiVienEntity> list = new ArrayList<>();
+    public List<HoiVien> selectBySql(String sql, Object... args) {
+        List<HoiVien> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    HoiVienEntity entity = readFromResultSet(rs);
+                    HoiVien entity = readFromResultSet(rs);
                     list.add(entity);
                 }
             } finally {
@@ -77,15 +77,15 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
         return list;
     }
 
-    private HoiVienEntity readFromResultSet(ResultSet rs) throws SQLException {
-        HoiVienEntity entity = new HoiVienEntity();
+    private HoiVien readFromResultSet(ResultSet rs) throws SQLException {
+        HoiVien entity = new HoiVien();
         entity.setMaHoiVien(rs.getString("MaHV"));
         entity.setTenKhachHang(rs.getString("TenKhachHang"));
         entity.setGioiTinh(rs.getString("Gioi_Tinh"));
         entity.setEmail(rs.getString("Email"));
         entity.setSoDienThoai(rs.getString("SDT"));
         entity.setTichDiem(rs.getInt("Tich_diem"));
-        entity.setCanCuocCongDan(rs.getString("CCCD"));
+        entity.setCccd(rs.getString("CCCD"));
         return entity;
     }
 }
