@@ -11,6 +11,8 @@ public class JdbcHelper {
     private static String hostname = "localhost";
     private static String sqlInstanceName = "DESKTOP-0S54VS3\\SQLEXPRESS";
     private static String sqlDatabase = "petshop";
+
+
     private static String sqlUser = "sa";
     private static String sqlPassword = "12345";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
