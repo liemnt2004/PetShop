@@ -1,22 +1,16 @@
-package com.app.Utils;
+package com.app.utils;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class JdbcHelper {
-
     private static String hostname = "localhost";
-    private static String sqlInstanceName = "DESKTOP-0S54VS3\\SQLEXPRESS";
+    private static String sqlInstanceName = "DESKTOP-0S54VS3\\SQLEXPRESS";  // Thay đổi lại thành "LAPTOP-9A476JQ5\\SQLEXPRESS"
     private static String sqlDatabase = "petshop";
-
-
     private static String sqlUser = "sa";
     private static String sqlPassword = "12345";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     private static String dburl = "jdbc:sqlserver://" + hostname + ":1433;instanceName=" + sqlInstanceName + ";databaseName=" + sqlDatabase + ";encrypt=true;trustServerCertificate=true";
+
     static {
         try {
             Class.forName(driver);
@@ -38,7 +32,6 @@ public class JdbcHelper {
         }
         return pstmt;
     }
-// câu lệnh  SQL thao tác (INSERT, UPDATE, DELETE) 
 
     public static void executeUpdate(String sql, Object... args) {
         try {
@@ -52,7 +45,6 @@ public class JdbcHelper {
             e.printStackTrace();
         }
     }
-//câu lệnh SQL truy vấn (SELECT) hoặc thủ tục lưu truy vấn dữ liệu
 
     public static ResultSet executeQuery(String sql, Object... args) {
         try {
@@ -67,7 +59,7 @@ public class JdbcHelper {
         try {
             ResultSet rs = JdbcHelper.executeQuery(sql, args);
             if (rs.next()) {
-                return rs.getObject(0);
+                return rs.getObject(1);  // Thay đổi từ 0 thành 1 vì chỉ số cột bắt đầu từ 1
             }
             rs.getStatement().getConnection().close();
             return null;
@@ -75,5 +67,4 @@ public class JdbcHelper {
             throw new RuntimeException(e);
         }
     }
-
 }
