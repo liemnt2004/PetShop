@@ -18,7 +18,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     public DangNhapJFrame() {
         initComponents();
         setLocationRelativeTo(null); 
-//        lblHinhLogo.setIcon(XImage.insertIcon(70, 70, "D:\\New folder (2)\\ShopPet\\src\\com\\app\\img\\logo.png"));
+        lblHinhLogo.setIcon(XImage.insertIcon(70, 70, "..\\ShopPet\\src\\com\\app\\img\\logo.png"));
     }
 
     /**
@@ -61,8 +61,6 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("Đăng nhập");
         btnDangNhap.setFocusPainted(false);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/app/ui/nguoidung_meo6.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -109,12 +107,10 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(373, 373, 373)
-                        .addComponent(jLabel4))
-                    .addComponent(lblHinhLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblHinhLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel4)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
