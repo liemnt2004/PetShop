@@ -2,15 +2,15 @@ package com.app.Entitys;
 
 import java.io.Serializable;
 
-public class LoaiVatEntity implements Serializable {
+public class LoaiVat implements Serializable {
 
     private String maLoai;
     private String tenLoai;
 
-    public LoaiVatEntity() {
+    public LoaiVat() {
     }
 
-    public LoaiVatEntity(String maLoai, String tenLoai) {
+    public LoaiVat(String maLoai, String tenLoai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;
     }

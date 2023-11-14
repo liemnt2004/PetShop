@@ -1,16 +1,16 @@
 package com.app.Daos;
 
-import com.app.Entitys.GiongEntity;
+import com.app.Entitys.Giong;
 import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GiongDao implements DaoMain<GiongEntity, String> {
+public class GiongDao implements DaoMain<Giong, String> {
 
     @Override
-    public void insert(GiongEntity entity) {
+    public void insert(Giong entity) {
         String sql = "INSERT INTO Giong (Magiong, TenGiong, Maloai) VALUES(?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaGiong(),
@@ -19,7 +19,7 @@ public class GiongDao implements DaoMain<GiongEntity, String> {
     }
 
     @Override
-    public void update(GiongEntity entity) {
+    public void update(Giong entity) {
         String sql = "INSERT INTO Giong (Magiong, TenGiong, Maloai) VALUES(?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaGiong(),
@@ -34,27 +34,27 @@ public class GiongDao implements DaoMain<GiongEntity, String> {
     }
 
     @Override
-    public List<GiongEntity> selectAll() {
+    public List<Giong> selectAll() {
         String sql = "SELECT * FROM Giong";
         return selectBySql(sql);
     }
 
     @Override
-    public GiongEntity selectById(String key) {
+    public Giong selectById(String key) {
         String sql = "SELECT * FROM Giong WHERE MaGiong=?";
-        List<GiongEntity> list = selectBySql(sql, key);
+        List<Giong> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
-    public List<GiongEntity> selectBySql(String sql, Object... args) {
-        List<GiongEntity> list = new ArrayList<>();
+    public List<Giong> selectBySql(String sql, Object... args) {
+        List<Giong> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    GiongEntity model = readFromResultSet(rs);
+                    Giong model = readFromResultSet(rs);
                     list.add(model);
                 }
             } finally {
@@ -66,8 +66,8 @@ public class GiongDao implements DaoMain<GiongEntity, String> {
         return list;
     }
 
-    private GiongEntity readFromResultSet(ResultSet rs) throws SQLException {
-        GiongEntity entity = new GiongEntity();
+    private Giong readFromResultSet(ResultSet rs) throws SQLException {
+        Giong entity = new Giong();
         entity.setMaGiong(rs.getString("MaGiong"));
         entity.setTenGiong(rs.getString("TenGiong"));
         entity.setMaLoai(rs.getString("MaLoai"));

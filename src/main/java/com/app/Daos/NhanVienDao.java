@@ -1,17 +1,17 @@
 package com.app.Daos;
 
 import com.app.Daos.DaoMain;
-import com.app.Entitys.NhanvienEntity;
+import com.app.Entitys.Nhanvien;
 import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NhanVienDao implements DaoMain<NhanvienEntity, String> {
+public class NhanVienDao implements DaoMain<Nhanvien, String> {
 
     @Override
-    public void insert(NhanvienEntity entity) {
+    public void insert(Nhanvien entity) {
         String sql = "INSERT INTO NhanVien (MaNV, Ho_Ten, Gioi_Tinh, Ngay_Sinh, Sdt, Email, Trang_Thai, Hinh, MaVT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaNhanvien(),
@@ -27,7 +27,7 @@ public class NhanVienDao implements DaoMain<NhanvienEntity, String> {
     }
 
     @Override
-    public void update(NhanvienEntity entity) {
+    public void update(Nhanvien entity) {
         String sql = "UPDATE INTO NhanVien (MaNV, Ho_Ten, Gioi_Tinh, Ngay_Sinh, Sdt, Email, Trang_Thai, Hinh, MaVT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaNhanvien(),
@@ -48,27 +48,27 @@ public class NhanVienDao implements DaoMain<NhanvienEntity, String> {
     }
 
     @Override
-    public List<NhanvienEntity> selectAll() {
+    public List<Nhanvien> selectAll() {
         String sql = "SELECT * FROM NhanVien";
         return selectBySql(sql);
     }
 
     @Override
-    public NhanvienEntity selectById(String key) {
+    public Nhanvien selectById(String key) {
         String sql = "SELECT * FROM Giong WHERE MaNV=?";
-        List<NhanvienEntity> list = selectBySql(sql, key);
+        List<Nhanvien> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
-    public List<NhanvienEntity> selectBySql(String sql, Object... args) {
-        List<NhanvienEntity> list = new ArrayList<>();
+    public List<Nhanvien> selectBySql(String sql, Object... args) {
+        List<Nhanvien> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    NhanvienEntity model = readFromResultSet(rs);
+                    Nhanvien model = readFromResultSet(rs);
                     list.add(model);
                 }
             } finally {
@@ -80,8 +80,8 @@ public class NhanVienDao implements DaoMain<NhanvienEntity, String> {
         return list;
     }
 
-    private NhanvienEntity readFromResultSet(ResultSet rs) throws SQLException {
-        NhanvienEntity entity = new NhanvienEntity();
+    private Nhanvien readFromResultSet(ResultSet rs) throws SQLException {
+        Nhanvien entity = new Nhanvien();
         entity.setMaNhanvien(rs.getString("MaNV"));
         entity.setHoTen(rs.getString("Ho_Ten"));
         entity.setGioiTinh(rs.getString("Gioi_Tinh"));

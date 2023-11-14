@@ -1,16 +1,16 @@
 package com.app.Daos;
 
-import com.app.Entitys.ThuCungEntity;
+import com.app.Entitys.ThuCung;
 import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThuCungDao implements DaoMain<ThuCungEntity, String> {
+public class ThuCungDao implements DaoMain<ThuCung, String> {
 
     @Override
-    public void insert(ThuCungEntity entity) {
+    public void insert(ThuCung entity) {
         String sql = "INSERT INTO ThuCung (MaTC, MoTa, Gia_Tien, Tuoi, Can_Nang, Magiong, GioiTinh, Thuoc, MaChuong) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaThuCung(),
@@ -25,7 +25,7 @@ public class ThuCungDao implements DaoMain<ThuCungEntity, String> {
     }
 
     @Override
-    public void update(ThuCungEntity entity) {
+    public void update(ThuCung entity) {
         String sql = "UPDATE INTO ThuCung (MaTC, MoTa, Gia_Tien, Tuoi, Can_Nang, Magiong, GioiTinh, Thuoc, MaChuong) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaThuCung(),
@@ -45,8 +45,8 @@ public class ThuCungDao implements DaoMain<ThuCungEntity, String> {
         JdbcHelper.executeUpdate(sql, MaTC);
     }
 
-    private ThuCungEntity readFromResultSet(ResultSet rs) throws SQLException {
-        ThuCungEntity entity = new ThuCungEntity();
+    private ThuCung readFromResultSet(ResultSet rs) throws SQLException {
+        ThuCung entity = new ThuCung();
         entity.setMaThuCung(rs.getString("MaTC"));
         entity.setMoTa(rs.getString("MoTa"));
         entity.setGiaTien(rs.getDouble("Gia_tien"));
@@ -60,27 +60,27 @@ public class ThuCungDao implements DaoMain<ThuCungEntity, String> {
     }
 
     @Override
-    public List<ThuCungEntity> selectAll() {
+    public List<ThuCung> selectAll() {
         String sql = "SELECT * FROM ThuCung";
         return selectBySql(sql);
     }
 
     @Override
-    public ThuCungEntity selectById(String key) {
+    public ThuCung selectById(String key) {
         String sql = "SELECT * FROM Giong WHERE MaTC=?";
-        List<ThuCungEntity> list = selectBySql(sql, key);
+        List<ThuCung> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
-    public List<ThuCungEntity> selectBySql(String sql, Object... args) {
-        List<ThuCungEntity> list = new ArrayList<>();
+    public List<ThuCung> selectBySql(String sql, Object... args) {
+        List<ThuCung> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    ThuCungEntity model = readFromResultSet(rs);
+                    ThuCung model = readFromResultSet(rs);
                     list.add(model);
                 }
             } finally {

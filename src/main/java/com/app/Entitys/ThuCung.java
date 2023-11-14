@@ -1,6 +1,6 @@
 package com.app.Entitys;
 
-public class ThuCungEntity {
+public class ThuCung {
 
     private String maThuCung;
     private String moTa;
@@ -12,10 +12,10 @@ public class ThuCungEntity {
     private String Thuoc;
     private String maChuong;
 
-    public ThuCungEntity() {
+    public ThuCung() {
     }
 
-    public ThuCungEntity(String maThuCung, String moTa, Double giaTien, Integer Tuoi, Float canNang, String maGiong, String gioiTinh, String Thuoc, String maChuong) {
+    public ThuCung(String maThuCung, String moTa, Double giaTien, Integer Tuoi, Float canNang, String maGiong, String gioiTinh, String Thuoc, String maChuong) {
         this.maThuCung = maThuCung;
         this.moTa = moTa;
         this.giaTien = giaTien;

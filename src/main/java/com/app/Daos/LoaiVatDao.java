@@ -1,16 +1,16 @@
 package com.app.Daos;
 
-import com.app.Entitys.LoaiVatEntity;
+import com.app.Entitys.LoaiVat;
 import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LoaiVatDao implements DaoMain<LoaiVatEntity, String> {
+public class LoaiVatDao implements DaoMain<LoaiVat, String> {
 
     @Override
-    public void insert(LoaiVatEntity entity) {
+    public void insert(LoaiVat entity) {
         String sql = "INSERT INTO LoaiVat (Maloai, Tenloai) VALUES(?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaLoai(),
@@ -18,7 +18,7 @@ public class LoaiVatDao implements DaoMain<LoaiVatEntity, String> {
     }
 
     @Override
-    public void update(LoaiVatEntity entity) {
+    public void update(LoaiVat entity) {
         String sql = "UPDATE INTO LoaiVat (Maloai, Tenloai) VALUES(?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaLoai(),
@@ -32,29 +32,29 @@ public class LoaiVatDao implements DaoMain<LoaiVatEntity, String> {
     }
 
     @Override
-    public List<LoaiVatEntity> selectAll() {
+    public List<LoaiVat> selectAll() {
         String sql = "SELECT * FROM LoaiVat";
         return selectBySql(sql);
 
     }
 
     @Override
-    public LoaiVatEntity selectById(String key) {
+    public LoaiVat selectById(String key) {
         String sql = "SELECT * FROM LoaiVat WHERE MaLoai=?";
-        List<LoaiVatEntity> list = selectBySql(sql, key);
+        List<LoaiVat> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
-    public List<LoaiVatEntity> selectBySql(String sql, Object... args) {
+    public List<LoaiVat> selectBySql(String sql, Object... args) {
 
-        List<LoaiVatEntity> list = new ArrayList<>();
+        List<LoaiVat> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    LoaiVatEntity model = readFromResultSet(rs);
+                    LoaiVat model = readFromResultSet(rs);
                     list.add(model);
                 }
             } finally {
@@ -66,8 +66,8 @@ public class LoaiVatDao implements DaoMain<LoaiVatEntity, String> {
         return list;
     }
 
-    private LoaiVatEntity readFromResultSet(ResultSet rs) throws SQLException {
-        LoaiVatEntity entity = new LoaiVatEntity();
+    private LoaiVat readFromResultSet(ResultSet rs) throws SQLException {
+        LoaiVat entity = new LoaiVat();
         entity.setMaLoai(rs.getString("Maloai"));
         entity.setTenLoai(rs.getString("Tenloai"));
         return entity;

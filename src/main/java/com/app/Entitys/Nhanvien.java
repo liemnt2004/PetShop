@@ -3,7 +3,7 @@ package com.app.Entitys;
 import java.io.Serializable;
 import java.util.Date;
 
-public class NhanvienEntity implements Serializable {
+public class Nhanvien implements Serializable {
 
     private String maNhanVien;
     private String hoTen;
@@ -15,10 +15,10 @@ public class NhanvienEntity implements Serializable {
     private String Hinh;
     private boolean maVaiTro = false;
 
-    public NhanvienEntity() {
+    public Nhanvien() {
     }
 
-    public NhanvienEntity(String maNhanVien, String hoTen, String gioiTinh, Date ngaySinh, String soDienThoai, String Emai, String trangThai, String Hinh) {
+    public Nhanvien(String maNhanVien, String hoTen, String gioiTinh, Date ngaySinh, String soDienThoai, String Emai, String trangThai, String Hinh) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;

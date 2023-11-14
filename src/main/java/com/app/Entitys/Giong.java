@@ -1,14 +1,14 @@
 package com.app.Entitys;
 
-public class GiongEntity {
+public class Giong {
 
     private String maGiong;
     private String tenGiong;
     private String maLoai;
 
-    public GiongEntity() {
+    public Giong() {
     }
-    public GiongEntity(String maGiong, String tenGiong, String maLoai) {
+    public Giong(String maGiong, String tenGiong, String maLoai) {
         this.maGiong = maGiong;
         this.tenGiong = tenGiong;
         this.maLoai = maLoai;
