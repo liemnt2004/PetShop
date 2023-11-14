@@ -1,9 +1,8 @@
 package com.app.Daos;
 
-import com.app.Daos.DaoMain;
 import com.app.Entitys.HoiVienEntity;
 import com.app.Utils.JdbcHelper;
-import com.sun.org.apache.xml.internal.resolver.Catalog;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
 
     @Override
     public void insert(HoiVienEntity entity) {
-        String sql = "INSERT INTO HoiVien (MaHV, TenKhachHang, Gioi_Tinh, Email, SDT, Tich_diem, CCCD) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO HoiVien (MaHV, TenKhachHang, Gioi_Tinh, Email, SDT, Tich_diem, CCCD) VALUES (?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaHoiVien(),
                 entity.getTenKhachHang(),
@@ -26,20 +25,20 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
 
     @Override
     public void update(HoiVienEntity entity) {
-        String sql = "UPDATE INTO HoiVien (MaHV, TenKhachHang, Gioi_Tinh, Email, SDT, Tich_diem, CCCD) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String sql = "UPDATE HoiVien SET TenKhachHang=?, Gioi_Tinh=?, Email=?, SDT=?, Tich_diem=?, CCCD=? WHERE MaHV=?";
         JdbcHelper.executeUpdate(sql,
-                entity.getMaHoiVien(),
                 entity.getTenKhachHang(),
                 entity.getGioiTinh(),
                 entity.getEmail(),
                 entity.getSoDienThoai(),
                 entity.getTichDiem(),
-                entity.getCanCuocCongDan());
+                entity.getCanCuocCongDan(),
+                entity.getMaHoiVien());
     }
 
     @Override
     public void delete(String MaHV) {
-        String sql = "DELETE FROM MaHV WHERE MaHV=?";
+        String sql = "DELETE FROM HoiVien WHERE MaHV=?";
         JdbcHelper.executeUpdate(sql, MaHV);
     }
 
@@ -64,11 +63,13 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    HoiVienEntity model = readFromResultSet(rs);
-                    list.add(model);
+                    HoiVienEntity entity = readFromResultSet(rs);
+                    list.add(entity);
                 }
             } finally {
-                rs.getStatement().getConnection().close();
+                if (rs != null) {
+                    rs.close();
+                }
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
@@ -82,7 +83,7 @@ public class HoiVienDao implements DaoMain<HoiVienEntity, String> {
         entity.setTenKhachHang(rs.getString("TenKhachHang"));
         entity.setGioiTinh(rs.getString("Gioi_Tinh"));
         entity.setEmail(rs.getString("Email"));
-        entity.setSoDienThoai(rs.getString("Sdt"));
+        entity.setSoDienThoai(rs.getString("SDT"));
         entity.setTichDiem(rs.getInt("Tich_diem"));
         entity.setCanCuocCongDan(rs.getString("CCCD"));
         return entity;
