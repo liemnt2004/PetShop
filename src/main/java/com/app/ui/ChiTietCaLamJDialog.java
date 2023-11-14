@@ -18,6 +18,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -207,7 +208,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
 
         btnThemChiTietCaLam.setBackground(new java.awt.Color(0, 51, 51));
         btnThemChiTietCaLam.setForeground(new java.awt.Color(255, 255, 255));
-        btnThemChiTietCaLam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/app/img/add (1).png"))); // NOI18N
+        btnThemChiTietCaLam.setText("Thêm");
         btnThemChiTietCaLam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnThemChiTietCaLamActionPerformed(evt);
@@ -216,7 +217,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
 
         btnXoaChiTietCaLam.setBackground(new java.awt.Color(0, 51, 51));
         btnXoaChiTietCaLam.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoaChiTietCaLam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/app/img/trash (1).png"))); // NOI18N
+        btnXoaChiTietCaLam.setText("Xóa");
         btnXoaChiTietCaLam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaChiTietCaLamActionPerformed(evt);
@@ -225,7 +226,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
 
         btnLamMoiChiTietCaLam.setBackground(new java.awt.Color(0, 51, 51));
         btnLamMoiChiTietCaLam.setForeground(new java.awt.Color(255, 255, 255));
-        btnLamMoiChiTietCaLam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/app/img/new-project.png"))); // NOI18N
+        btnLamMoiChiTietCaLam.setText("Mới");
         btnLamMoiChiTietCaLam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiChiTietCaLamActionPerformed(evt);
@@ -234,7 +235,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
 
         btnCapNhatChiTietCaLam.setBackground(new java.awt.Color(0, 51, 51));
         btnCapNhatChiTietCaLam.setForeground(new java.awt.Color(255, 255, 255));
-        btnCapNhatChiTietCaLam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/app/img/file.png"))); // NOI18N
+        btnCapNhatChiTietCaLam.setText("Cập Nhật");
         btnCapNhatChiTietCaLam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCapNhatChiTietCaLamActionPerformed(evt);
@@ -249,7 +250,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
 
         jLabel2.setText("Mã Ca Làm");
 
-        jLabel3.setText("Tên Nhân v\\Viên");
+        jLabel3.setText("Tên Nhân Viên");
 
         txtTenNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -272,7 +273,7 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThemChiTietCaLam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnXoaChiTietCaLam, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -286,19 +287,21 @@ public class ChiTietCaLamJDialog extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnThemChiTietCaLam)
+                        .addComponent(btnCapNhatChiTietCaLam))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtMaCaLAm, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
-                    .addComponent(btnThemChiTietCaLam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCapNhatChiTietCaLam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnXoaChiTietCaLam)
+                        .addComponent(btnLamMoiChiTietCaLam))
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnXoaChiTietCaLam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLamMoiChiTietCaLam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 

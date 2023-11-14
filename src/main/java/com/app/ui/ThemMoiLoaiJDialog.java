@@ -17,6 +17,8 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
     public ThemMoiLoaiJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+                setLocationRelativeTo(null);
+
     }
 
     /**
@@ -101,8 +103,8 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("THÊM MỚI SẢN PHẨM");
+        jLabel1.setFont(new java.awt.Font("Source Sans Pro Black", 0, 24)); // NOI18N
+        jLabel1.setText("THÊM LOẠI SẢN PHẨM");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,7 +167,7 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Mã Sản Phẩm");
+        jLabel2.setText("Mã loài vật");
 
         jLabel3.setText("Tên loài vật");
 
