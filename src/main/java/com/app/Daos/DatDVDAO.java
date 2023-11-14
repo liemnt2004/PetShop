@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class DatDVDAO extends DAOMain<DatDV, String> {
+public class DatDVDAO implements DaoMain<DatDV, String> {
     
 
     @Override

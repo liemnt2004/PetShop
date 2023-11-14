@@ -5,14 +5,14 @@
 package com.app.Daos;
 
 import com.app.Entitys.VaiTro;
-import com.app.Utils.JdbcHelper;
+import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class VaiTroDao implements DAOMain<VaiTro, String> {
+public class VaiTroDao implements DaoMain<VaiTro, String> {
     public void insert(VaiTro model){
         String sql="INSERT INTO vaitro (MaVT,TenVaiTro) VALUES (?,?)";
         JdbcHelper.executeUpdate(sql,

@@ -1,18 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.Daos;
 
 import com.app.Entitys.PhieuGiamGia;
-import com.app.Utils.JdbcHelper;
+import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class PhieuGiamGiaDao implements DAOMain<PhieuGiamGia, String>{
+public class PhieuGiamGiaDao implements DaoMain<PhieuGiamGia, String>{
      public void insert(PhieuGiamGia model){
         String sql="INSERT INTO PhieuGiamGia (MA_PhieuGiamGia,Phan_Tram_Giam_Gia,dateStart,dateEnd) VALUES (?,?,?,?)";
         JdbcHelper.executeUpdate(sql,

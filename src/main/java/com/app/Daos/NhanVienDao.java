@@ -2,8 +2,7 @@ package com.app.Daos;
 
 import com.app.Daos.DaoMain;
 import com.app.Entitys.NhanvienEntity;
-import com.app.Utils.JdbcHelper;
-import com.sun.org.apache.xml.internal.resolver.Catalog;
+import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

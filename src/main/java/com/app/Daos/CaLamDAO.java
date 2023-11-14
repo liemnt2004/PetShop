@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CaLamDAO extends DAOMain<CaLam, String> {
+public class CaLamDAO implements DaoMain<CaLam, String> {
 
     @Override
     public void insert(CaLam entity) {

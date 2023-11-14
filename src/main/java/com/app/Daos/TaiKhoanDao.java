@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.Daos;
 
 
 import com.app.Entitys.TaiKhoan;;
-import com.app.Utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import com.app.utils.JdbcHelper;
 
 
 
-
-public class TaiKhoanDao implements DAOMain<TaiKhoan, String>  {
+public class TaiKhoanDao implements DaoMain<TaiKhoan, String>  {
      public void insert(TaiKhoan model){
         String sql="INSERT INTO TaiKhoan (Tai_Khoan,Mat_Khau,MaNV) VALUES (?,?,?)";
         JdbcHelper.executeUpdate(sql,

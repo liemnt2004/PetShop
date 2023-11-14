@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ChuongDAO extends DAOMain<Chuong, String>{
+public class ChuongDAO implements DaoMain<Chuong, String>{
     
 
     @Override

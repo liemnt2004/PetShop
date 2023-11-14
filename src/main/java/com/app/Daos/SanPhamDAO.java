@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SanPhamDAO extends DAOMain<SanPham, String> {
+public class SanPhamDAO implements DaoMain<SanPham, String> {
 
     @Override
     public void insert(SanPham entity) {

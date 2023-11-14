@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HoaDonDAO extends DAOMain<HoaDon, String> {
+public class HoaDonDAO implements DaoMain<HoaDon, String> {
         
     @Override
     public void insert(HoaDon entity) {
