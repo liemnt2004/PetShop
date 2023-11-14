@@ -17,6 +17,7 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
     public ThemMoiLoaiJVatDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -44,25 +45,26 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        btnMoThemGiong = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        btnThem = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
-        btnMoi = new javax.swing.JButton();
-        btnCapNhat = new javax.swing.JButton();
+        btnThemLoai = new javax.swing.JButton();
+        btnXoaLoai = new javax.swing.JButton();
+        btnLamMoiLoai = new javax.swing.JButton();
+        btnSuaLoai = new javax.swing.JButton();
         txtMaLoaiVat = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTenLoaiVat = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblDanhSachLoai = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
-        txtTimKiem = new javax.swing.JTextField();
-        btnTimKiem = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        txtTimKiemLoai = new javax.swing.JTextField();
+        btnDauTienLoai = new javax.swing.JButton();
+        btnTruocLoai = new javax.swing.JButton();
+        btnSauLoai = new javax.swing.JButton();
+        btnCuoiCungLoai = new javax.swing.JButton();
+        btnTimKiemLoai = new javax.swing.JButton();
 
         jButton10.setText("Cập nhật");
 
@@ -101,8 +103,17 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("THÊM MỚI SẢN PHẨM");
+        jLabel1.setFont(new java.awt.Font("Source Sans Pro Black", 0, 24)); // NOI18N
+        jLabel1.setText("THÊM LOÀI");
+
+        btnMoThemGiong.setBackground(new java.awt.Color(0, 51, 51));
+        btnMoThemGiong.setForeground(new java.awt.Color(255, 255, 255));
+        btnMoThemGiong.setText("Thêm Giống");
+        btnMoThemGiong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMoThemGiongActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,51 +122,55 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(484, 484, 484)
+                .addComponent(btnMoThemGiong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(25, 25, 25))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnMoThemGiong))
                 .addGap(14, 14, 14))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnThem.setBackground(new java.awt.Color(0, 51, 51));
-        btnThem.setForeground(new java.awt.Color(255, 255, 255));
-        btnThem.setText("Thêm");
-        btnThem.addActionListener(new java.awt.event.ActionListener() {
+        btnThemLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnThemLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnThemLoai.setText("Thêm");
+        btnThemLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThemActionPerformed(evt);
+                btnThemLoaiActionPerformed(evt);
             }
         });
 
-        btnXoa.setBackground(new java.awt.Color(0, 51, 51));
-        btnXoa.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoa.setText("Xóa");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+        btnXoaLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnXoaLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnXoaLoai.setText("Xóa");
+        btnXoaLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
+                btnXoaLoaiActionPerformed(evt);
             }
         });
 
-        btnMoi.setBackground(new java.awt.Color(0, 51, 51));
-        btnMoi.setForeground(new java.awt.Color(255, 255, 255));
-        btnMoi.setText("Mới");
-        btnMoi.addActionListener(new java.awt.event.ActionListener() {
+        btnLamMoiLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnLamMoiLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnLamMoiLoai.setText("Mới");
+        btnLamMoiLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMoiActionPerformed(evt);
+                btnLamMoiLoaiActionPerformed(evt);
             }
         });
 
-        btnCapNhat.setBackground(new java.awt.Color(0, 51, 51));
-        btnCapNhat.setForeground(new java.awt.Color(255, 255, 255));
-        btnCapNhat.setText("Cập nhật");
-        btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
+        btnSuaLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnSuaLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnSuaLoai.setText("Cập nhật");
+        btnSuaLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCapNhatActionPerformed(evt);
+                btnSuaLoaiActionPerformed(evt);
             }
         });
 
@@ -192,12 +207,12 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
                         .addComponent(txtTenLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnThemLoai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnXoaLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSuaLoai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLamMoiLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50))
         );
         jPanel4Layout.setVerticalGroup(
@@ -207,20 +222,20 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
-                    .addComponent(btnThem)
-                    .addComponent(btnCapNhat))
+                    .addComponent(btnThemLoai)
+                    .addComponent(btnSuaLoai))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtTenLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoa)
-                    .addComponent(btnMoi))
+                    .addComponent(btnXoaLoai)
+                    .addComponent(btnLamMoiLoai))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblDanhSachLoai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -231,43 +246,45 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(tblDanhSachLoai);
 
         jLabel6.setText("Tìm kiếm");
 
-        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+        txtTimKiemLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTimKiemActionPerformed(evt);
+                txtTimKiemLoaiActionPerformed(evt);
             }
         });
 
-        btnTimKiem.setText("Tìm");
+        btnDauTienLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnDauTienLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnDauTienLoai.setText("<--");
 
-        jButton6.setBackground(new java.awt.Color(0, 51, 51));
-        jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setText("<--");
-
-        jButton7.setBackground(new java.awt.Color(0, 51, 51));
-        jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("<");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
+        btnTruocLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnTruocLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnTruocLoai.setText("<");
+        btnTruocLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
+                btnTruocLoaiActionPerformed(evt);
             }
         });
 
-        jButton8.setBackground(new java.awt.Color(0, 51, 51));
-        jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setText(">");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnSauLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnSauLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnSauLoai.setText(">");
+        btnSauLoai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnSauLoaiActionPerformed(evt);
             }
         });
 
-        jButton9.setBackground(new java.awt.Color(0, 51, 51));
-        jButton9.setForeground(new java.awt.Color(255, 255, 255));
-        jButton9.setText("-->");
+        btnCuoiCungLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnCuoiCungLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnCuoiCungLoai.setText("-->");
+
+        btnTimKiemLoai.setBackground(new java.awt.Color(0, 51, 51));
+        btnTimKiemLoai.setForeground(new java.awt.Color(255, 255, 255));
+        btnTimKiemLoai.setText("Tìm");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -282,17 +299,17 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTimKiem)
+                        .addComponent(txtTimKiemLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTimKiemLoai)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton9)
+                        .addComponent(btnDauTienLoai)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnTruocLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSauLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCuoiCungLoai)
                         .addGap(58, 58, 58))))
         );
         jPanel3Layout.setVerticalGroup(
@@ -301,12 +318,12 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(txtTimKiemLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDauTienLoai)
+                    .addComponent(btnTruocLoai)
+                    .addComponent(btnSauLoai)
+                    .addComponent(btnCuoiCungLoai)
+                    .addComponent(btnTimKiemLoai))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
@@ -344,21 +361,21 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+    private void btnThemLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnThemActionPerformed
+    }//GEN-LAST:event_btnThemLoaiActionPerformed
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+    private void btnXoaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnXoaActionPerformed
+    }//GEN-LAST:event_btnXoaLoaiActionPerformed
 
-    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
+    private void btnLamMoiLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMoiActionPerformed
+    }//GEN-LAST:event_btnLamMoiLoaiActionPerformed
 
-    private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
+    private void btnSuaLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCapNhatActionPerformed
+    }//GEN-LAST:event_btnSuaLoaiActionPerformed
 
     private void txtMaLoaiVatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaLoaiVatActionPerformed
         // TODO add your handling code here:
@@ -368,17 +385,22 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenLoaiVatActionPerformed
 
-    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+    private void txtTimKiemLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTimKiemActionPerformed
+    }//GEN-LAST:event_txtTimKiemLoaiActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void btnTruocLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTruocLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }//GEN-LAST:event_btnTruocLoaiActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnSauLoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSauLoaiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnSauLoaiActionPerformed
+
+    private void btnMoThemGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoThemGiongActionPerformed
+        // TODO add your handling code here:
+        new ThemMoiGiongDialog(null, true).setVisible(true);
+    }//GEN-LAST:event_btnMoThemGiongActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,11 +446,16 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCapNhat;
-    private javax.swing.JButton btnMoi;
-    private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnTimKiem;
-    private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnCuoiCungLoai;
+    private javax.swing.JButton btnDauTienLoai;
+    private javax.swing.JButton btnLamMoiLoai;
+    private javax.swing.JButton btnMoThemGiong;
+    private javax.swing.JButton btnSauLoai;
+    private javax.swing.JButton btnSuaLoai;
+    private javax.swing.JButton btnThemLoai;
+    private javax.swing.JButton btnTimKiemLoai;
+    private javax.swing.JButton btnTruocLoai;
+    private javax.swing.JButton btnXoaLoai;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -438,10 +465,6 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -454,10 +477,10 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable tblDanhSachLoai;
     private javax.swing.JTextField txtMaLoaiVat;
     private javax.swing.JTextField txtTenLoaiVat;
-    private javax.swing.JTextField txtTimKiem;
+    private javax.swing.JTextField txtTimKiemLoai;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,8 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
     public ThongTinTaiKhoanJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**

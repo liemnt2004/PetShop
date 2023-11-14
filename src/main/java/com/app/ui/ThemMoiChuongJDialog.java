@@ -17,6 +17,8 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
     public ThemMoiChuongJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -49,11 +51,11 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
         jTable2 = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
-        btnTimKiem = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 32767));
 
         jScrollPane1.setViewportView(jTextPane1);
@@ -159,7 +161,7 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtMoTa, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -214,8 +216,6 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
             }
         });
 
-        btnTimKiem.setText("Tìm");
-
         jButton6.setBackground(new java.awt.Color(0, 51, 51));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("<--");
@@ -242,6 +242,10 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("-->");
 
+        jButton10.setBackground(new java.awt.Color(0, 51, 51));
+        jButton10.setForeground(new java.awt.Color(255, 255, 255));
+        jButton10.setText("<--");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -257,7 +261,7 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnTimKiem)
+                        .addComponent(jButton10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -275,11 +279,11 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiem)
                     .addComponent(jButton6)
                     .addComponent(jButton7)
                     .addComponent(jButton8)
-                    .addComponent(jButton9))
+                    .addComponent(jButton9)
+                    .addComponent(jButton10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
@@ -405,10 +409,10 @@ public class ThemMoiChuongJDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnThem;
-    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JComboBox<String> cboTrangThai;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;

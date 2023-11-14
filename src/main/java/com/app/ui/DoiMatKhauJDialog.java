@@ -17,6 +17,7 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     public DoiMatKhauJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -37,7 +38,7 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         txtXacNhanMatKhau = new javax.swing.JTextField();
         btnXacNhan = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lblHinhDaiDienMeo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -86,8 +87,7 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/app/ui/nguoidung_meo6.png"))); // NOI18N
+        lblHinhDaiDienMeo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("ĐỔI MẬT KHẨU");
@@ -126,14 +126,14 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel5)))))
+                                .addComponent(lblHinhDaiDienMeo)))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5)
+                .addComponent(lblHinhDaiDienMeo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addGap(16, 16, 16)
@@ -240,8 +240,8 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblHinhDaiDienMeo;
     private javax.swing.JTextField txtMatKhauHienTai;
     private javax.swing.JTextField txtMatKhauMoi;
     private javax.swing.JTextField txtXacNhanMatKhau;
