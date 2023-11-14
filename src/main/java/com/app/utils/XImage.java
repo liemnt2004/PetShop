@@ -1,16 +1,5 @@
 package com.app.utils;
 
-
-import java.awt.Image;
-import javax.swing.ImageIcon;
-
-
-public class XImage {
-=======
-
-package com.app.utils;
-
-import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.net.URL;
@@ -20,11 +9,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import javax.swing.ImageIcon;
 
-
 public class XImage {
-
-   
-
 
     public static ImageIcon insertIcon(int width, int height, String link) {
         try {
@@ -35,9 +20,7 @@ public class XImage {
         } catch (Exception e) {
             return null;
         }
-
     }
-
 
     public static boolean save(File src) {
         File dst = new File("image", src.getName());
@@ -58,13 +41,11 @@ public class XImage {
     public static ImageIcon read(String fileName) {
         File path = new File("image", fileName);
         return new ImageIcon(path.getAbsolutePath());
-
     }
 
-  
-        public static File saveExel(File src){
+    public static File saveExel(File src) {
         File dst = new File("Excel", src.getName());
-        if(!dst.getParentFile().exists()){
+        if (!dst.getParentFile().exists()) {
             dst.getParentFile().mkdirs();
         }
         try {
@@ -72,15 +53,14 @@ public class XImage {
             Path to = Paths.get(dst.getAbsolutePath());
             Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
             return dst;
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
-        
-         public static File saveQR(File src){
+
+    public static File saveQR(File src) {
         File dst = new File("QR", src.getName());
-        if(!dst.getParentFile().exists()){
+        if (!dst.getParentFile().exists()) {
             dst.getParentFile().mkdirs();
         }
         try {
@@ -88,11 +68,8 @@ public class XImage {
             Path to = Paths.get(dst.getAbsolutePath());
             Files.copy(from, to, StandardCopyOption.REPLACE_EXISTING);
             return dst;
-        } 
-        catch (Exception ex) {
+        } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
     }
-
-
 }

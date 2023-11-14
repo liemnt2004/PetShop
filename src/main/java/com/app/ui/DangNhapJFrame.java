@@ -18,7 +18,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
     public DangNhapJFrame() {
         initComponents();
         setLocationRelativeTo(null); 
-        lblHinhLogo.setIcon(XImage.insertIcon(70, 70, "..\\ShopPet\\src\\com\\app\\img\\logo.png"));
+//        lblHinhLogo.setIcon(XImage.insertIcon(70, 70, "..\\ShopPet\\src\\com\\app\\img\\logo.png"));
     }
 
     /**

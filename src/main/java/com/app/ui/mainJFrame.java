@@ -2447,15 +2447,16 @@ public class mainJFrame extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThemDichVu)
-                    .addComponent(btnXoaDichVu)
-                    .addComponent(btnSuaDichVu)
-                    .addComponent(btnLamMoiDichVu)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnDauTienDichVu)
                     .addComponent(btnTruocDichVu)
                     .addComponent(btnSauDichVu)
-                    .addComponent(btnCuoiCungDichVu))
+                    .addComponent(btnCuoiCungDichVu)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnThemDichVu)
+                        .addComponent(btnXoaDichVu)
+                        .addComponent(btnSuaDichVu)
+                        .addComponent(btnLamMoiDichVu)))
                 .addContainerGap())
         );
 
@@ -3619,7 +3620,7 @@ public class mainJFrame extends javax.swing.JFrame {
                     .addComponent(pnlHoaDonChiTiet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 29, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlNenThemHoaDonLayout.setVerticalGroup(
             pnlNenThemHoaDonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

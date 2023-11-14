@@ -3489,15 +3489,17 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="btnThemDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnXoaDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnSuaDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="btnLamMoiDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="btnDauTienDichVu" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnTruocDichVu" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnSauDichVu" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnCuoiCungDichVu" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="btnThemDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnXoaDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnSuaDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnLamMoiDichVu" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -4786,7 +4788,7 @@
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="pnlHoaDon" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="29" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
