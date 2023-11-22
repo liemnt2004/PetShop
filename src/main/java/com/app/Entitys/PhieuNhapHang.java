@@ -1,19 +1,18 @@
 package com.app.Entitys;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class PhieuNhapHang {
     private String SoPhieuNhap;
-    private Date NgayNhap;
-    private String SoDonHang;
+    private Date NgayNhap ;
 
     public PhieuNhapHang() {
     }
 
-    public PhieuNhapHang(String SoPhieuNhap, Date NgayNhap, String SoDonHang) {
+    public PhieuNhapHang(String SoPhieuNhap, Date NgayNhap) {
         this.SoPhieuNhap = SoPhieuNhap;
         this.NgayNhap = NgayNhap;
-        this.SoDonHang = SoDonHang;
     }
 
     public String getSoPhieuNhap() {
@@ -32,13 +31,4 @@ public class PhieuNhapHang {
         this.NgayNhap = NgayNhap;
     }
 
-    public String getSoDonHang() {
-        return SoDonHang;
-    }
-
-    public void setSoDonHang(String SoDonHang) {
-        this.SoDonHang = SoDonHang;
-    }
-    
-    
 }

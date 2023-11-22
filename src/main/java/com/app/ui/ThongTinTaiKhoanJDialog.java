@@ -1,14 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.app.ui;
+package com.app.Ui;
 
-/**
- *
- * @author NT Thân
- */
+
 public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
 
     /**
@@ -30,7 +22,7 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new com.app.Other.ColorPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();

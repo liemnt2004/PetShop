@@ -1,7 +1,7 @@
 package com.app.Daos;
 
 import com.app.Entitys.PhieuNhapHang;
-import com.app.utils.JdbcHelper;
+import com.app.Utils.JdbcHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,19 +12,19 @@ public class PhieuNhapHangDao implements DaoMain<PhieuNhapHang, String> {
 
     @Override
     public void insert(PhieuNhapHang entity) {
-        String sql = "INSERT INTO PhieuNhapHang (So_phieu_nhap, Ngay_Nhap, sodh) VALUES (?, ?, ?)";
-        JdbcHelper.executeUpdate(sql, entity.getSoPhieuNhap(), entity.getNgayNhap(), entity.getSoDonHang());
+        String sql = "INSERT INTO PhieuNhapHang (SoPhieuNhap, NgayNhap) VALUES (?, ?)";
+        JdbcHelper.executeUpdate(sql, entity.getSoPhieuNhap(), entity.getNgayNhap());
     }
 
     @Override
     public void update(PhieuNhapHang entity) {
-        String sql = "UPDATE PhieuNhapHang SET Ngay_Nhap=?, sodh=? WHERE So_phieu_nhap=?";
-        JdbcHelper.executeUpdate(sql, entity.getNgayNhap(), entity.getSoDonHang(), entity.getSoPhieuNhap());
+        String sql = "UPDATE PhieuNhapHang SET NgayNhap=? WHERE SoPhieuNhap=?";
+        JdbcHelper.executeUpdate(sql, entity.getNgayNhap(), entity.getSoPhieuNhap());
     }
 
     @Override
     public void delete(String key) {
-        String sql = "DELETE FROM PhieuNhapHang WHERE So_phieu_nhap=?";
+        String sql = "DELETE FROM PhieuNhapHang WHERE SoPhieuNhap=?";
         JdbcHelper.executeUpdate(sql, key);
     }
 
@@ -36,9 +36,14 @@ public class PhieuNhapHangDao implements DaoMain<PhieuNhapHang, String> {
 
     @Override
     public PhieuNhapHang selectById(String key) {
-        String sql = "SELECT * FROM PhieuNhapHang WHERE So_phieu_nhap=?";
+        String sql = "SELECT * FROM PhieuNhapHang WHERE SoPhieuNhap=?";
         List<PhieuNhapHang> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
+    }
+    
+    public void insertChiTietPhieuNhapHang(String sophieunhap , String masp , String manhacc , int slnhap){
+        String sql = "INSERT INTO ChiTietNhapHang VALUES (?,?,?,?)";
+        JdbcHelper.executeUpdate(sql, sophieunhap,masp,manhacc,slnhap);
     }
 
     @Override
@@ -65,9 +70,8 @@ public class PhieuNhapHangDao implements DaoMain<PhieuNhapHang, String> {
 
     private PhieuNhapHang readFromResultSet(ResultSet rs) throws SQLException {
         PhieuNhapHang model = new PhieuNhapHang();
-        model.setSoPhieuNhap(rs.getString("So_phieu_nhap"));
-        model.setNgayNhap(rs.getDate("Ngay_Nhap"));
-        model.setSoDonHang(rs.getString("sodh"));
+        model.setSoPhieuNhap(rs.getString("SoPhieuNhap"));
+        model.setNgayNhap(rs.getDate("NgayNhap"));
         return model;
     }
 }

@@ -1,29 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.Daos;
 
 import com.app.Entitys.SanPham;
-import com.app.utils.JdbcHelper;
+import com.app.Utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class SanPhamDAO implements DaoMain<SanPham, String> {
 
     @Override
     public void insert(SanPham entity) {
-        String sql = "INSERT INTO SanPham (MaSP, Gia_tien, Ten_sp, donvi, phantram, maloaisp) VALUES (?,?,?,?,?,?)";
-        JdbcHelper.executeUpdate(sql,entity.getMaSP(),entity.getGiaTien(),entity.getTenSP(),entity.getDonVi(),entity.getPhanTram(),entity.getMaLoaiSP());
-                }
+        String sql = "INSERT INTO SanPham (MaSP, GiaTien, TenSP, DonVi, PhanTram, MaLoaiSP, MaNhaCC) VALUES (?,?,?,?,?,?,?)";
+        JdbcHelper.executeUpdate(sql, entity.getMaSP(), entity.getGiaTien(), entity.getTenSP(), entity.getDonVi(), entity.getPhanTram(), entity.getMaLoaiSP(), entity.getMaNhaCungCap());
+    }
 
     @Override
     public void update(SanPham entity) {
-        String sql = "UPDATE SanPham SET Gia_tien=?, Ten_sp=?,donvi=?,phantram=?,maloaisp=? WHERE MaSP=?"; 
-        JdbcHelper.executeUpdate(sql,entity.getGiaTien(),entity.getTenSP(),entity.getDonVi(),entity.getPhanTram(),entity.getMaLoaiSP(),entity.getMaSP());
+        String sql = "UPDATE SanPham SET GiaTien=?, TenSP=?, DonVi=?, PhanTram=?, MaLoaiSP=?, MaNhaCC=? WHERE MaSP=?";
+        JdbcHelper.executeUpdate(sql, entity.getGiaTien(), entity.getTenSP(), entity.getDonVi(), entity.getPhanTram(), entity.getMaLoaiSP(), entity.getMaNhaCungCap(), entity.getMaSP());
     }
 
     @Override
@@ -70,12 +65,12 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
     private SanPham readFromResultSet(ResultSet rs) throws SQLException {
         SanPham model = new SanPham();
         model.setMaSP(rs.getString("MaSP"));
-        model.setGiaTien(rs.getDouble("Gia_tien"));
-        model.setTenSP(rs.getString("Ten_sp"));    
-        model.setDonVi(rs.getString("donvi"));
-        model.setPhanTram(rs.getFloat("phantram"));
-        model.setMaLoaiSP(rs.getString("maloaisp"));
+        model.setGiaTien(rs.getDouble("GiaTien"));
+        model.setTenSP(rs.getString("TenSP"));
+        model.setDonVi(rs.getString("DonVi"));
+        model.setPhanTram(rs.getFloat("PhanTram"));
+        model.setMaLoaiSP(rs.getString("MaLoaiSP"));
+        model.setMaNhaCungCap(rs.getString("MaNhaCC"));
         return model;
     }
-    
 }
