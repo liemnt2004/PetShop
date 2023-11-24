@@ -11,20 +11,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DatDVDAO implements DaoMain<DatDV, String> {
-    
 
     @Override
     public void insert(DatDV entity) {
         String sql = "INSERT INTO DatDV(MaDL, MaHV, sdt, NgayDat, TrangThai, mota, NgayTra, soluong) VALUES(?,?,?,?,?,?,?,?)";
-        JdbcHelper.executeUpdate(sql,entity.getMaDL(),entity.getMaHV(),entity.getSoDienThoai(),entity.getNgayDat(),entity.getTrangThai(),entity.getMoTa(),entity.getNgayTra(),entity.getSoLuong());
+        JdbcHelper.executeUpdate(sql, entity.getMaDL(), entity.getMaHV(), entity.getSoDienThoai(), entity.getNgayDat(), entity.getTrangThai(), entity.getMoTa(), entity.getNgayTra(), entity.getSoLuong());
     }
 
     @Override
     public void update(DatDV entity) {
         String sql = "UPDATE DatDV SET MaHV=?, sdt=?, NgayDat=?, TrangThai=?,mota=?,NgayTra=?,soluong=? WHERE MaDL=?";
-        JdbcHelper.executeUpdate(sql,entity.getMaHV(),entity.getSoDienThoai(),entity.getNgayDat(),entity.getTrangThai(),entity.getMoTa(),entity.getNgayTra(),entity.getSoLuong(),entity.getMaDL());
+        JdbcHelper.executeUpdate(sql, entity.getMaHV(), entity.getSoDienThoai(), entity.getNgayDat(), entity.getTrangThai(), entity.getMoTa(), entity.getNgayTra(), entity.getSoLuong(), entity.getMaDL());
     }
 
     @Override
@@ -41,9 +39,15 @@ public class DatDVDAO implements DaoMain<DatDV, String> {
 
     @Override
     public DatDV selectById(String key) {
-        String sql = "SELECT * FROM DatDV WHERE MaDL";
+        String sql = "SELECT * FROM DatDV WHERE MaDL = ?";
         List<DatDV> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
+    }
+
+    public List selectByToday() {
+        String sql = "SELECT * FROM DATDV WHERE NGAYTRA >= GETDATE()";
+        List<DatDV> lst = selectBySql(sql);
+        return lst;
     }
 
     @Override
@@ -79,7 +83,7 @@ public class DatDVDAO implements DaoMain<DatDV, String> {
         model.setNgayTra(rs.getDate("NgayTra"));
         model.setSoLuong(rs.getInt("soluong"));
         return model;
-            
-}
-    
+
+    }
+
 }
