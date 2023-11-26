@@ -15,7 +15,6 @@ com\app\ui\mainJFrame$11.class
 com\app\ui\ThemMoiLoaiJDialog$4.class
 com\app\ui\ThongTinTaiKhoanJDialog.class
 com\app\ui\ChiTietCaLamJDialog$2.class
-com\app\Daos\DonDatHangDao.class
 com\app\ui\mainJFrame$31.class
 com\app\ui\DoiMatKhauJDialog$6$1.class
 com\app\ui\mainJFrame$5.class
@@ -64,7 +63,6 @@ com\app\ui\mainJFrame$4.class
 com\app\ui\mainJFrame$60.class
 com\app\ui\HoiVienJDialog$5.class
 com\app\ui\mainJFrame$40.class
-com\app\Entitys\DonDatHang.class
 com\app\ui\mainJFrame$10.class
 com\app\ui\mainJFrame$30.class
 com\app\ui\DangNhapJFrame$2.class
@@ -209,8 +207,6 @@ com\app\ui\HoiVienJDialog$2.class
 com\app\ui\mainJFrame$68.class
 com\app\ui\ChiTietCaLamJDialog.class
 com\app\ui\mainJFrame$45.class
-com\app\Daos\KhoHangDao.class
-com\app\Entitys\KhoHang.class
 com\app\ui\ChiTietCaLamJDialog$10.class
 com\app\ui\ThemMoiGiongDialog$8.class
 com\app\ui\ThemMoiLoaiJDialog$10.class
