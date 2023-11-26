@@ -1,40 +1,27 @@
-<<<<<<< HEAD
-package com.app.ui;
+package com.app.Ui;
 
-import com.app.utils.XImage;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import com.app.Daos.*;
 import com.app.Entitys.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.Timer;
-import com.app.utils.Validate;
-=======
-package com.app.Ui;
-
-import java.sql.*;
-import com.app.Daos.*;
-import com.app.Entitys.*;
 import com.app.Other.ModelChart;
-import com.app.Other.ModelPieChart;
 import com.app.Utils.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
-import javax.swing.table.DefaultTableModel;
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+import com.app.Other.*;
+
+
+
 
 public class mainJFrame extends javax.swing.JFrame {
 
@@ -47,15 +34,9 @@ public class mainJFrame extends javax.swing.JFrame {
     private String soluong = "";
     private List<SanPham> listSanPham = new ArrayList<>();
 
-<<<<<<< HEAD
-    /**
-     * Creates new form mainJFrame
-     */
-    int index = 0;
     HoiVienDao hvdao = new HoiVienDao();
 
-=======
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+
     public mainJFrame() {
 
         initComponents();
@@ -97,7 +78,6 @@ public class mainJFrame extends javax.swing.JFrame {
         txtDonViHangNhap.setEnabled(false);
         cbbnhacc.setEditable(false);
         setLocationRelativeTo(null);
-<<<<<<< HEAD
         taidulieuDanhSachKhachHang();
         btnDauTienDanhSachNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\khuyenmai.png"));
         btnSauDanhSachNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\sau.png"));
@@ -114,7 +94,6 @@ public class mainJFrame extends javax.swing.JFrame {
         btnTruocDanhSachKhachHang.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\truoc.png"));
         btnCuoiCungDanhSachKhachHang.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\cuoicung.png"));
         btnDauTienDanhSachKhachHang.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\dautien.png"));
-=======
     }
 
     private void sille() {
@@ -151,7 +130,6 @@ public class mainJFrame extends javax.swing.JFrame {
         }
         return true;
 
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
     }
 
     private void openMenuBar() {
@@ -269,30 +247,34 @@ public class mainJFrame extends javax.swing.JFrame {
     }
 
     private void ThongKeKho() {
-        List<ThongKe> lists = new ArrayList<>();
-        String sql = "SELECT FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') AS Thang, SUM(HoaDon.TongTien) AS Tong_Tien "
-                + "FROM HoaDon "
-                + "GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN'), MONTH(HoaDon.NgayLap) "
-                + "ORDER BY MONTH(HoaDon.NgayLap) DESC ";
-
-        ResultSet rs = JdbcHelper.executeQuery(sql);
-
         try {
-            while (rs.next()) {
-                String thang = rs.getString("Thang");
-                double tongTien = rs.getDouble("Tong_Tien");
-                lists.add(new ThongKe(thang, tongTien));
+            List<ThongKe> lists = new ArrayList<>();
+            String sql = "SELECT FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') AS Thang, SUM(HoaDon.TongTien) AS Tong_Tien "
+                    + "FROM HoaDon "
+                    + "GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN'), MONTH(HoaDon.NgayLap) "
+                    + "ORDER BY MONTH(HoaDon.NgayLap) DESC ";
+            
+            ResultSet rs = JdbcHelper.executeQuery(sql);
+            
+            try {
+                while (rs.next()) {
+                    String thang = rs.getString("Thang");
+                    double tongTien = rs.getDouble("Tong_Tien");
+                    lists.add(new ThongKe(thang, tongTien));
+                }
+                
+                rs.close();
+                for (int i = lists.size() - 1; i >= 0; i--) {
+                    ThongKe tk = lists.get(i);
+                    chart.addData(new ModelChart(tk.getThang(), new double[]{tk.getTongTien()}));
+                }
+                chart.start();
+                
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            rs.close();
-            for (int i = lists.size() - 1; i >= 0; i--) {
-                ThongKe tk = lists.get(i);
-                chart.addData(new ModelChart(tk.getThang(), new double[]{tk.getTongTien()}));
-            }
-            chart.start();
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(mainJFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -4824,7 +4806,7 @@ private void updateStatusKhachHang() {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDauTienDichVuActionPerformed
 
-<<<<<<< HEAD
+
     private void btnDauTienDanhSachKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDauTienDanhSachKhachHangActionPerformed
         this.dauTienKhachHang();
     }//GEN-LAST:event_btnDauTienDanhSachKhachHangActionPerformed
@@ -4855,7 +4837,7 @@ private void updateStatusKhachHang() {
         this.taidulieuDanhSachKhachHang();
         
     }//GEN-LAST:event_btnTimKiemKhachHangActionPerformed
-=======
+
     private void tbllDachSachNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbllDachSachNhapHangMouseClicked
         viTriKhoHang = tbllDachSachNhapHang.getSelectedRow();
         DefaultTableModel model = new DefaultTableModel();
@@ -4874,7 +4856,7 @@ private void updateStatusKhachHang() {
         int nam = (int) cbonam.getSelectedItem();
         thongKeKinhDoanh(nam);
     }//GEN-LAST:event_cbonamActionPerformed
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+
 
     /**
      * @param args the command line arguments

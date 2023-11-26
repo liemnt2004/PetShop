@@ -15,7 +15,6 @@ com\app\ui\mainJFrame$11.class
 com\app\ui\ThemMoiLoaiJDialog$4.class
 com\app\ui\ThongTinTaiKhoanJDialog.class
 com\app\ui\ChiTietCaLamJDialog$2.class
-com\app\Daos\DonDatHangDao.class
 com\app\ui\mainJFrame$31.class
 com\app\ui\DoiMatKhauJDialog$6$1.class
 com\app\ui\mainJFrame$5.class
@@ -27,19 +26,13 @@ com\app\ui\ThongTinTaiKhoanJDialog$5.class
 com\app\ui\ThemMoiChuongJDialog$6.class
 com\app\Other\CurveLineChart$2.class
 com\app\ui\DangNhapJFrame.class
-<<<<<<< HEAD
-com\app\Entitys\Giong.class
-com\app\ui\mainJFrame$12.class
-com\app\ui\ThemMoiGiongDialog$9.class
-com\app\Entitys\Log.class
-=======
 com\app\Other\ShadowRenderer.class
+com\app\Entitys\Giong.class
 com\app\Other\ColorPanel.class
 com\app\ui\mainJFrame$12.class
 com\app\ui\ThemMoiGiongDialog$9.class
 com\app\Entitys\Log.class
 com\app\Other\CurveLineChart$3.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\mainJFrame$65.class
 com\app\ui\HoiVienJDialog$3.class
 com\app\Other\PanelShadow$GradientType.class
@@ -70,26 +63,19 @@ com\app\ui\mainJFrame$4.class
 com\app\ui\mainJFrame$60.class
 com\app\ui\HoiVienJDialog$5.class
 com\app\ui\mainJFrame$40.class
-com\app\Entitys\DonDatHang.class
 com\app\ui\mainJFrame$10.class
 com\app\ui\mainJFrame$30.class
 com\app\ui\DangNhapJFrame$2.class
 com\app\ui\mainJFrame$63.class
-<<<<<<< HEAD
 com\app\Daos\DatDVDAO.class
-com\app\ui\mainJFrame$53.class
-com\app\ui\ThemMoiChuongJDialog$2.class
-com\app\Entitys\TaiKhoan.class
-com\app\ui\mainJFrame$76.class
-=======
 com\app\Other\CurveLineChart$1.class
 com\app\ui\mainJFrame$53.class
 com\app\ui\ThemMoiChuongJDialog$2.class
 com\app\Entitys\TaiKhoan.class
 com\app\Other\blankchart\BlankPlotChart$1.class
+com\app\ui\mainJFrame$76.class
 com\app\Other\ModelLegend.class
 com\app\Other\blankchart\BlankPlotChatRender.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\HoiVienJDialog.class
 com\app\Daos\ChuongDAO.class
 com\app\ui\mainJFrame$33.class
@@ -97,16 +83,12 @@ com\app\ui\ThemMoiLoaiJVatDialog$5.class
 com\app\ui\ChiTietCaLamJDialog$4.class
 com\app\ui\mainJFrame$28.class
 com\app\ui\mainJFrame$48.class
-<<<<<<< HEAD
 com\app\Daos\NhanVienDao.class
-com\app\ui\ThemMoiLoaiJDialog.class
-com\app\Entitys\Chuong.class
-=======
 com\app\Other\blankchart\NiceScale.class
 com\app\ui\ThemMoiLoaiJDialog.class
 com\app\Other\ModelPieChart.class
+com\app\Entitys\Chuong.class
 com\app\Other\PieChart$1.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\ThemMoiLoaiJDialog$5.class
 com\app\ui\ChiTietCaLamJDialog$1.class
 com\app\ui\mainJFrame$25.class
@@ -115,14 +97,12 @@ com\app\ui\ThemMoiLoaiJVatDialog$2.class
 com\app\ui\DoiMatKhauJDialog.class
 com\app\Other\ImageSplit.class
 com\app\ui\ChiTietCaLamJDialog$3.class
-<<<<<<< HEAD
 com\app\Entitys\CaLam.class
-=======
 com\app\Other\Spline.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\ThemMoiLoaiJDialog$2.class
 com\app\ui\DangNhapJFrame$1.class
 com\app\ui\mainJFrame$49.class
+com\app\ui\mainJFrame$79.class
 com\app\ui\mainJFrame$61.class
 com\app\ui\ThemMoiLoaiJVatDialog$3.class
 com\app\Daos\VaiTroDao.class
@@ -130,14 +110,11 @@ com\app\ui\mainJFrame$56.class
 com\app\ui\mainJFrame$26.class
 com\app\ui\mainJFrame$6.class
 com\app\ui\ThemMoiLoaiJDialog$3.class
-<<<<<<< HEAD
 com\app\ui\HoiVienJDialog$6.class
 com\app\Daos\CaLamDAO.class
 com\app\Entitys\HoaDon.class
-com\app\ui\mainJFrame$78.class
-=======
 com\app\Other\ImageSlide$1.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+com\app\ui\mainJFrame$78.class
 com\app\ui\mainJFrame$7.class
 com\app\ui\ThemMoiLoaiJVatDialog$11$1.class
 com\app\ui\mainJFrame$55.class
@@ -184,11 +161,8 @@ com\app\ui\mainJFrame$9.class
 com\app\ui\ThemMoiGiongDialog$2.class
 com\app\ui\ThemMoiGiongDialog$11$1.class
 com\app\ui\ThemMoiGiongDialog$11.class
-<<<<<<< HEAD
-com\app\Daos\LoaiVatDao.class
-=======
 com\app\Other\CurveLineChart.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+com\app\Daos\LoaiVatDao.class
 com\app\ui\mainJFrame$59.class
 com\app\Other\PanelShadow.class
 com\app\ui\DoiMatKhauJDialog$6.class
@@ -198,11 +172,8 @@ com\app\ui\mainJFrame$41.class
 com\app\ui\mainJFrame$3.class
 com\app\ui\ChiTietCaLamJDialog$11.class
 com\app\ui\ThemMoiLoaiJDialog$6.class
-<<<<<<< HEAD
 com\app\Entitys\LoaiSanPham.class
-=======
 com\app\Other\CurveLineChart$4.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\mainJFrame$35.class
 com\app\ui\ChiTietCaLamJDialog$6.class
 com\app\Other\PieChart$PeiChartType.class
@@ -210,6 +181,7 @@ com\app\Daos\TonKhoDao.class
 com\app\ui\mainJFrame$50.class
 com\app\Daos\TaiKhoanDao.class
 com\app\ui\mainJFrame$70.class
+com\app\ui\mainJFrame$80.class
 com\app\ui\mainJFrame$20.class
 com\app\ui\ThongTinTaiKhoanJDialog$3.class
 com\app\Daos\HoiVienDao.class
@@ -221,43 +193,30 @@ com\app\Other\ImageSlide.class
 com\app\ui\ThemMoiLoaiJVatDialog$8.class
 com\app\Daos\ThuCungDao.class
 com\app\ui\ThemMoiLoaiJVatDialog$11.class
-<<<<<<< HEAD
-com\app\Entitys\DatDV.class
-=======
 com\app\Other\blankchart\SeriesSize.class
 com\app\Other\PanelShadow$ShadowType.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+com\app\Entitys\DatDV.class
 com\app\ui\ThemMoiLoaiJDialog$8.class
 com\app\ui\mainJFrame$13.class
 com\app\ui\ChiTietCaLamJDialog$11$1.class
 com\app\utils\XImage.class
-<<<<<<< HEAD
-com\app\Daos\HoaDonDAO.class
-=======
 com\app\Other\GraphicsUtilities.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+com\app\Daos\HoaDonDAO.class
 com\app\ui\ThemMoiGiongDialog$5.class
 com\app\ui\HoiVienJDialog$2.class
 com\app\ui\mainJFrame$68.class
 com\app\ui\ChiTietCaLamJDialog.class
 com\app\ui\mainJFrame$45.class
-com\app\Daos\KhoHangDao.class
-com\app\Entitys\KhoHang.class
 com\app\ui\ChiTietCaLamJDialog$10.class
 com\app\ui\ThemMoiGiongDialog$8.class
 com\app\ui\ThemMoiLoaiJDialog$10.class
 com\app\utils\XDate.class
-<<<<<<< HEAD
 com\app\Entitys\SanPham.class
 com\app\Daos\LoaiSanPhamDao.class
 com\app\ui\mainJFrame$39.class
 com\app\utils\JdbcHelper.class
 com\app\Daos\GiongDao.class
 com\app\Entitys\Nhanvien.class
-=======
-com\app\ui\mainJFrame$39.class
-com\app\utils\JdbcHelper.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\ThemMoiLoaiJVatDialog$9.class
 com\app\ui\ThongTinTaiKhoanJDialog$4.class
 com\app\ui\ThemMoiChuongJDialog$7.class
@@ -265,12 +224,9 @@ com\app\ui\ThemMoiLoaiJDialog$10$1.class
 com\app\ui\DoiMatKhauJDialog$3.class
 com\app\ui\mainJFrame$71.class
 com\app\ui\ThemMoiLoaiJDialog$9.class
-<<<<<<< HEAD
+com\app\Other\ModelChart.class
 com\app\ui\HoiVienJDialog$6$1.class
 com\app\Entitys\LoaiVat.class
-=======
-com\app\Other\ModelChart.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\mainJFrame$16.class
 com\app\ui\mainJFrame$66.class
 com\app\ui\mainJFrame$21.class
@@ -278,18 +234,12 @@ com\app\Other\PanelGradient$GradientType.class
 com\app\ui\ChiTietCaLamJDialog$9.class
 com\app\ui\mainJFrame$38.class
 com\app\Daos\PhieuGiamGiaDao.class
-<<<<<<< HEAD
-=======
 com\app\Entitys\TonKho.class
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\ThemMoiChuongJDialog$8.class
 com\app\ui\mainJFrame$15.class
 com\app\ui\ThemMoiGiongDialog$6.class
 com\app\ui\DoiMatKhauJDialog$2.class
-<<<<<<< HEAD
 com\app\Entitys\PhieuNhapHang.class
-=======
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 com\app\ui\mainJFrame$72.class
 com\app\ui\ThemMoiLoaiJVatDialog$10.class
 com\app\Other\PieChart.class

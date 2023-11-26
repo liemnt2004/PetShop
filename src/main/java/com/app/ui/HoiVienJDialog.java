@@ -1,25 +1,15 @@
 package com.app.Ui;
 
-
-<<<<<<< HEAD
 import com.app.Daos.*;
 import com.app.Entitys.*;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-import com.app.utils.*;
+import com.app.Utils.*;
 
-/**
- *
- * @author NT Thân
- */
-=======
->>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 public class HoiVienJDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form HoiVienJDialog
-     */
+    
     int index = -1;
     HoiVienDao hvdao = new HoiVienDao();
 
