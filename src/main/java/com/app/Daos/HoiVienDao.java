@@ -12,7 +12,7 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
 
     @Override
     public void insert(HoiVien entity) {
-        String sql = "INSERT INTO HoiVien (MaHV, TenKhachHang, Gioi_Tinh, Email, SDT, Tich_diem, CCCD) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO HoiVien (MaHV, TenKhachHang, GioiTinh, Email, SDT, Tichdiem, CCCD) VALUES (?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaHoiVien(),
                 entity.getTenKhachHang(),
@@ -25,7 +25,7 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
 
     @Override
     public void update(HoiVien entity) {
-        String sql = "UPDATE HoiVien SET TenKhachHang=?, Gioi_Tinh=?, Email=?, SDT=?, Tich_diem=?, CCCD=? WHERE MaHV=?";
+        String sql = "UPDATE HoiVien SET TenKhachHang=?, GioiTinh=?, Email=?, SDT=?, Tichdiem=?, CCCD=? WHERE MaHV=?";
         JdbcHelper.executeUpdate(sql,
                 entity.getTenKhachHang(),
                 entity.getGioiTinh(),
@@ -76,15 +76,22 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
         }
         return list;
     }
-
+    public List<HoiVien> select() throws SQLException{
+        String sql="SELECT * FROM HoiVien";
+        return selectBySql(sql);
+    }
+    public List<HoiVien> selectByKeyword(String keyword) throws SQLException{
+        String sql="SELECT * FROM HoiVien WHERE TenKhachHang LIKE ?";
+        return selectBySql(sql, "%"+keyword+"%");
+    }
     private HoiVien readFromResultSet(ResultSet rs) throws SQLException {
         HoiVien entity = new HoiVien();
         entity.setMaHoiVien(rs.getString("MaHV"));
         entity.setTenKhachHang(rs.getString("TenKhachHang"));
-        entity.setGioiTinh(rs.getString("Gioi_Tinh"));
+        entity.setGioiTinh(rs.getString("GioiTinh"));
         entity.setEmail(rs.getString("Email"));
         entity.setSoDienThoai(rs.getString("SDT"));
-        entity.setTichDiem(rs.getInt("Tich_diem"));
+        entity.setTichDiem(rs.getInt("Tichdiem"));
         entity.setCccd(rs.getString("CCCD"));
         return entity;
     }

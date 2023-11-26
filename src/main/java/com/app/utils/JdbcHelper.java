@@ -4,12 +4,12 @@ import java.sql.*;
 
 public class JdbcHelper {
     private static String hostname = "localhost";
-    private static String sqlInstanceName = "DESKTOP-0S54VS3\\SQLEXPRESS";  // Thay đổi lại thành "LAPTOP-9A476JQ5\\SQLEXPRESS"
+    private static String sqlInstanceName = "NT-Thân";  // Thay đổi lại thành "LAPTOP-9A476JQ5\\SQLEXPRESS"
     private static String sqlDatabase = "petshop";
     private static String sqlUser = "sa";
     private static String sqlPassword = "12345";
     private static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static String dburl = "jdbc:sqlserver://" + hostname + ":1433;instanceName=" + sqlInstanceName + ";databaseName=" + sqlDatabase + ";encrypt=true;trustServerCertificate=true";
+    private static String dburl = "jdbc:sqlserver://localhost:1433;instanceName=NT-Thân;databaseName=petshop;encrypt=true;trustServerCertificate=true";
 
     static {
         try {

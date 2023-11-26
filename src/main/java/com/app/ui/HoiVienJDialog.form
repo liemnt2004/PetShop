@@ -8,6 +8,9 @@
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -64,17 +67,13 @@
                           </Group>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="cboGioiTinh" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Component id="txtMaKhachHang" alignment="0" min="-2" pref="308" max="-2" attributes="0"/>
                               <Component id="txtCCCD" min="-2" pref="308" max="-2" attributes="0"/>
                               <Component id="txtTenKhachHang" min="-2" pref="308" max="-2" attributes="0"/>
                               <Component id="txtEmail" min="-2" pref="308" max="-2" attributes="0"/>
                               <Component id="txtSDT" min="-2" pref="308" max="-2" attributes="0"/>
                               <Component id="txtTichDiem" min="-2" pref="308" max="-2" attributes="0"/>
+                              <Component id="cboGioiTinh" min="-2" pref="308" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -124,8 +123,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cboGioiTinh" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboGioiTinh" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -181,16 +179,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMaKhachHang">
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="cboGioiTinh">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nam "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="N&#x1eef;"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnThem">
           <Properties>
@@ -257,6 +245,8 @@
         <Component class="javax.swing.JTextField" name="txtSDT">
         </Component>
         <Component class="javax.swing.JTextField" name="txtTichDiem">
+        </Component>
+        <Component class="javax.swing.JTextField" name="cboGioiTinh">
         </Component>
       </SubComponents>
     </Container>

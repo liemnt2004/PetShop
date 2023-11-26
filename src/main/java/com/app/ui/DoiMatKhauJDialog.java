@@ -4,13 +4,17 @@
  * and open the template in the editor.
  */
 package com.app.ui;
+import com.app.Daos.NhanVienDao;
+import com.sun.nio.sctp.SctpStandardSocketOptions;
+import javax.swing.JOptionPane;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
 /**
  *
  * @author NT Thân
  */
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
-
+    NhanVienDao dao = new NhanVienDao();
     /**
      * Creates new form DoiMatKhauJDialog
      */
@@ -18,7 +22,24 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+//    public void DoiMatKhau() {
+//    String MatKhauHienTai = new String(txtMatKhauHienTai.getText());
+//    String MatKhauMoi = new String(txtMatKhauMoi.getText());
+//    String XacNhanMatKhau = new String(txtXacNhanMatKhau.getText());
+//    if (!MatKhauHienTai.equals(Auth.user.getMatKhauHientai())){
+//        JOptionPane.showMessageDialog(rootPane, "Sai Mat khau");
+//    }
+//    else if(!MatKhauMoi.equals(XacNhanMatKhau)){
+//        JOptionPane.showMessageDialog(rootPane, "Xac nhan mat khau khong dung");
+//    }
+//    else {
+//        Auth.user.setMatKhau(MatKhauMoi);
+//        dao.update(Auth.user);
+//        JOptionPane.showMessageDialog(rootPane, "Doi mat khau thanh cong");
+//    }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
