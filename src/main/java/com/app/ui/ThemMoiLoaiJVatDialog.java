@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.app.ui;
+package com.app.Ui;
 
 /**
  *
@@ -42,7 +37,7 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new com.app.Other.ColorPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnMoThemGiong = new javax.swing.JButton();

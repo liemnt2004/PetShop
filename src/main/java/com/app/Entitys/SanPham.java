@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.Entitys;
 
 
@@ -12,17 +8,19 @@ public class SanPham {
     private String donVi;
     private float phanTram;
     private String maLoaiSP;
+    private String maNhaCungCap;
 
     public SanPham() {
     }
 
-    public SanPham(String maSP, Double giaTien, String tenSP, String donVi, float phanTram, String maLoaiSP) {
+    public SanPham(String maSP, Double giaTien, String tenSP, String donVi, float phanTram, String maLoaiSP, String maNhaCungCap) {
         this.maSP = maSP;
         this.giaTien = giaTien;
         this.tenSP = tenSP;
         this.donVi = donVi;
         this.phanTram = phanTram;
         this.maLoaiSP = maLoaiSP;
+        this.maNhaCungCap = maNhaCungCap;
     }
 
     public String getMaSP() {
@@ -72,6 +70,15 @@ public class SanPham {
     public void setMaLoaiSP(String maLoaiSP) {
         this.maLoaiSP = maLoaiSP;
     }
+
+    public String getMaNhaCungCap() {
+        return maNhaCungCap;
+    }
+
+    public void setMaNhaCungCap(String maNhaCungCap) {
+        this.maNhaCungCap = maNhaCungCap;
+    }
+   
 
     
     

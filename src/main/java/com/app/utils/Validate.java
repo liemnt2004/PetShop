@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.app.utils;
+package com.app.Utils;
+
 import javax.swing.JTextField;
+import org.apache.commons.validator.routines.DateValidator;
+import org.apache.commons.validator.routines.DoubleValidator;
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.commons.validator.routines.*;
-/**
- *
- * @author ACER
- */
+import org.apache.commons.validator.routines.IntegerValidator;
+
 public class Validate {
 
     public static boolean validateEmail(String email) {
@@ -27,7 +23,7 @@ public class Validate {
 
     public static boolean validateDate(String dateStr) {
         DateValidator validator = DateValidator.getInstance();
-        return validator.isValid(dateStr,"dd-MM-yyyy");
+        return validator.isValid(dateStr,"dd/MM/yyyy");
     }
 
     public static boolean validateInteger(String integer) {
@@ -48,5 +44,4 @@ public class Validate {
         }
         return false; // Tất cả các trường đều không rỗng
     }
-
 }

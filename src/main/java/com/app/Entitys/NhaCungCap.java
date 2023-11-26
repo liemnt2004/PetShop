@@ -37,6 +37,13 @@ public class NhaCungCap {
     public void setDiaChi(String DiaChi) {
         this.DiaChi = DiaChi;
     }
+
+    @Override
+    public String toString() {
+        return this.TenNhaCungCap;
+    }
+    
+    
     
     
 }
