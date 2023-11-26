@@ -75,6 +75,8 @@ com\app\Ui\mainJFrame$63.class
 com\app\Other\blankchart\NiceScale.class
 com\app\Ui\mainJFrame$29.class
 com\app\Ui\mainJFrame$71.class
+com\app\Other\ModelPieChart.class
+com\app\Other\PieChart$1.class
 com\app\Ui\mainJFrame.class
 com\app\Ui\ChiTietCaLamJDialog$1.class
 com\app\Ui\ThemMoiChuongJDialog$10.class
@@ -142,8 +144,10 @@ com\app\Ui\ThemMoiLoaiJDialog$8.class
 com\app\Entitys\PhieuGiamGia.class
 com\app\Ui\ThemMoiLoaiJDialog$7.class
 com\app\Ui\DoiMatKhauJDialog$5.class
+com\app\Ui\mainJFrame$73.class
 com\app\Other\CurveLineChart$4.class
 com\app\Ui\ThemMoiChuongJDialog$6.class
+com\app\Other\PieChart$PeiChartType.class
 com\app\Ui\mainJFrame$5.class
 com\app\Ui\mainJFrame$44.class
 com\app\Ui\ThemMoiGiongDialog.class
@@ -154,7 +158,6 @@ com\app\Ui\mainJFrame$46.class
 com\app\Ui\mainJFrame$16.class
 com\app\Ui\ThemMoiChuongJDialog$2.class
 com\app\Daos\HoiVienDao.class
-com\app\Ui\test.class
 com\app\Ui\mainJFrame$23.class
 com\app\Ui\ThongTinTaiKhoanJDialog$3.class
 com\app\Ui\ThemMoiGiongDialog$6.class
@@ -208,4 +211,5 @@ com\app\Ui\mainJFrame$24.class
 com\app\Ui\ChiTietCaLamJDialog$6.class
 com\app\Ui\ThemMoiGiongDialog$7.class
 com\app\Ui\mainJFrame$19.class
+com\app\Other\PieChart.class
 com\app\Ui\HoiVienJDialog$1.class

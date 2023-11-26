@@ -22,9 +22,9 @@ public class ColorPanel extends JPanel{
         int width = getWidth();
         int height = getHeight();
 
-        Color color1 = new Color(52, 143, 80);
-        Color color2 = new Color(86, 180, 211);
-        Color color3 = new Color(51, 51, 51);
+        Color color1 = new Color(227, 61, 239);
+        Color color2 = new Color(202, 87, 210);
+        Color color3 = new Color(220, 149, 225);
 
         float[] fractions = {0.0f, 0.5f, 1.0f};
         Color[] colors = {color1, color2, color3};

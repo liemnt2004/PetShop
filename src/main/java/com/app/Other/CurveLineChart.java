@@ -307,7 +307,6 @@ public class CurveLineChart extends JComponent {
     public void addLegend(String name, Color color1, Color color2) {
         ModelLegend data = new ModelLegend(name, color1, color2);
         legends.add(data);
-        System.out.println(legends.size());
         LegendItem legend = new LegendItem(data, legends.size() - 1);
         legend.setForeground(getForeground());
         legend.addActionListener((ActionEvent e) -> {

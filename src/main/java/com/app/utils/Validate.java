@@ -34,12 +34,12 @@ public class Validate {
         return validator.isValid(doubleStr) && Double.parseDouble(doubleStr) > 0;
     }
     
-    public static JTextField nothingText(JTextField... list){
+    public static Boolean nothingText(JTextField... list){
         for (JTextField x : list){
             if (x.getText().isEmpty()){
-                return x; // Có ít nhất một trường rỗng
+                return true; // Có ít nhất một trường rỗng
             }
         }
-        return null; // Tất cả các trường đều không rỗng
+        return false; // Tất cả các trường đều không rỗng
     }
 }

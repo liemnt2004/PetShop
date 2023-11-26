@@ -15,6 +15,7 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\Di
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\TaiKhoan.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\SeriesSize.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\GraphicsUtilities.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelPieChart.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Utils\XDate.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ThongKe.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\ThemMoiGiongDialog.java
@@ -27,7 +28,6 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\SanPham.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\ChuongDAO.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ImageSplit.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\test.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\HoaDonDAO.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\DangNhapJFrame.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\ThemMoiLoaiJDialog.java
@@ -37,6 +37,7 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\C
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Chuong.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Nhanvien.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\PanelGradient.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\PieChart.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelChart.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\Spline.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Utils\XImage.java

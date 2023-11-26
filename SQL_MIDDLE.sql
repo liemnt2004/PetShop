@@ -8,7 +8,7 @@ CREATE TABLE HoiVien
     TenKhachHang NVARCHAR(255),
     GioiTinh NVARCHAR(10),
     Email NVARCHAR(255),
-    SDT NVARCHAR(20),
+    SDT NVARCHAR(20) UNIQUE,
     TichDiem INT DEFAULT 0,
     CCCD NVARCHAR(20)
 );
@@ -204,7 +204,6 @@ CREATE TABLE PhieuGiamGia
     DateEnd DATETIME
 );
 
---22 Bảng HoaDon  
 CREATE TABLE HoaDon
 (
     MaHoaDon CHAR(10) PRIMARY KEY,
@@ -219,8 +218,7 @@ CREATE TABLE HoaDon
     FOREIGN KEY (MaHV) REFERENCES HoiVien(MaHV) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (MaPhieuGiamGia) REFERENCES PhieuGiamGia(MaPhieuGiamGia) ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (MaPTTT) REFERENCES PhuongThucThanhToan(MaPTTT) ON UPDATE CASCADE,
-    FOREIGN KEY (MaDL) REFERENCES DatDV(MaDL)  ON DELETE SET NULL ON UPDATE CASCADE,
-    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV) ON DELETE SET NULL ON UPDATE CASCADE
+    FOREIGN KEY (MaDL) REFERENCES DatDV(MaDL) ON DELETE NO ACTION ON UPDATE NO ACTION  -- Modified foreign key
 );
 
 --23 Bảng ChiTietHoaDon
@@ -242,9 +240,9 @@ CREATE TABLE ChiTietHoaDon_TC
     MaSP CHAR(10),
     MaTC CHAR(10),
     SoLuong INT,
-    FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (MaSP) REFERENCES SanPham(MaSP) ON DELETE SET NULL ON UPDATE  CASCADE,
-    FOREIGN KEY (MaTC) REFERENCES ThuCung(MaTC) ON DELETE CASCADE ON UPDATE  CASCADE
+    FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    FOREIGN KEY (MaSP) REFERENCES SanPham(MaSP) ON DELETE SET NULL ON UPDATE CASCADE,
+    FOREIGN KEY (MaTC) REFERENCES ThuCung(MaTC) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 --25 Bảng CaLam
@@ -450,60 +448,55 @@ Values
     ('CL02', NULL, 'NV02');
 
 
--- lấy ra thông tin của kho
-CREATE PROCEDURE dbo.ThongSoKho
-AS
-BEGIN
-   SELECT 
-       (SELECT COUNT(*) FROM PhieuNhapHang) AS TongNhap,
-       (SELECT COUNT(*) FROM HoaDon) AS TongXuat,  
-       (SELECT COUNT(*) FROM SanPham) AS TongSanPham,
-       (SELECT SUM(soluong) FROM tonkho) AS TongSoLuongSanPham
-END;
+-- -- lấy ra thông tin của kho
+-- CREATE PROCEDURE dbo.ThongSoKho
+-- AS
+-- BEGIN
+--    SELECT 
+--        (SELECT COUNT(*) FROM PhieuNhapHang) AS TongNhap,
+--        (SELECT COUNT(*) FROM HoaDon) AS TongXuat,  
+--        (SELECT COUNT(*) FROM SanPham) AS TongSanPham,
+--        (SELECT SUM(soluong) FROM tonkho) AS TongSoLuongSanPham
+-- END;
 
-EXECUTE dbo.ThongSoKho
-
-
-
-
--- triger tự thêm sản phẩm vào tồn kho nếu có sản phẩm mới được thêm vào database
-CREATE TRIGGER AfterInsertSanPhamTrigger
-ON SanPham
-AFTER INSERT
-AS
-BEGIN
-    -- Insert các sản phẩm mới vào bảng tonkho
-    INSERT INTO tonkho
-        (makho, masp, soluong)
-    SELECT 'KHO1', inserted.MaSP, 0
-    FROM inserted;
-END;
-
-
--- triger tự thêm cập nhật số lượng sản phẩm
-CREATE TRIGGER updateSoLuongSanPhamKho
-ON ChiTietNhapHang
-AFTER INSERT
-AS
-BEGIN
-    UPDATE tonkho
-    SET soluong = soluong + i.SLNhap
-    FROM tonkho
-        INNER JOIN inserted i ON tonkho.masp = i.masp;
-END;
+-- EXECUTE dbo.ThongSoKho
 
 
 
-SELECT FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') AS Thang, SUM(HoaDon.TongTien) AS Tong_Tien FROM HoaDon GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') ORDER BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN');
+
+-- -- triger tự thêm sản phẩm vào tồn kho nếu có sản phẩm mới được thêm vào database
+-- CREATE TRIGGER AfterInsertSanPhamTrigger
+-- ON SanPham
+-- AFTER INSERT
+-- AS
+-- BEGIN
+--     -- Insert các sản phẩm mới vào bảng tonkho
+--     INSERT INTO tonkho
+--         (makho, masp, soluong)
+--     SELECT 'KHO1', inserted.MaSP, 0
+--     FROM inserted;
+-- END;
 
 
-SELECT FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') AS Thang, 
-       SUM(HoaDon.TongTien) AS Tong_Tien 
-FROM HoaDon 
-GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN'), MONTH(HoaDon.NgayLap) 
-ORDER BY MONTH(HoaDon.NgayLap) DESC
-LIMIT 7;
+-- -- triger tự thêm cập nhật số lượng sản phẩm
+-- CREATE TRIGGER updateSoLuongSanPhamKho
+-- ON ChiTietNhapHang
+-- AFTER INSERT
+-- AS
+-- BEGIN
+--     UPDATE tonkho
+--     SET soluong = soluong + i.SLNhap
+--     FROM tonkho
+--         INNER JOIN inserted i ON tonkho.masp = i.masp;
+-- END;
 
 
-SELECT YEAR(HoaDon.NgayLap) as 'Nam' , as
+-- SELECT FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') AS Thang, 
+--        SUM(HoaDon.TongTien) AS Tong_Tien 
+-- FROM HoaDon 
+-- GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN'), MONTH(HoaDon.NgayLap) 
+-- ORDER BY MONTH(HoaDon.NgayLap);
+
+
+-- SELECT YEAR(HoaDon.NgayLap) as 'Nam' , SUM(HoaDon.TongTien) AS TongTien FROM HoaDon GROUP BY  YEAR(HoaDon.NgayLap)
 
