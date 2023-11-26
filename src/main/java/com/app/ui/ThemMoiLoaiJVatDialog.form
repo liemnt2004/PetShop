@@ -114,6 +114,9 @@
           <Color blue="0" green="0" red="0" type="rgb"/>
         </Property>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new com.app.Other.ColorPanel()"/>
+      </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">

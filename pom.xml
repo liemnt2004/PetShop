@@ -6,19 +6,28 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <dependencies>
+        
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE160</version>
         </dependency>
+<<<<<<< HEAD
         <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+=======
+                     
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>12.4.2.jre11</version>
         </dependency>
         
+<<<<<<< HEAD
         <!-- https://mvnrepository.com/artifact/net.java.dev.timingframework/timingframework -->
+=======
+       
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
         <dependency>
             <groupId>net.java.dev.timingframework</groupId>
             <artifactId>timingframework</artifactId>
@@ -35,23 +44,36 @@
             <artifactId>log4j-api</artifactId>
             <version>2.19.0</version>
         </dependency>
+<<<<<<< HEAD
         
         <!-- https://mvnrepository.com/artifact/commons-validator/commons-validator -->
+=======
+              
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
         <dependency>
             <groupId>commons-validator</groupId>
             <artifactId>commons-validator</artifactId>
             <version>1.7</version>
         </dependency>
+<<<<<<< HEAD
         
         <!-- https://mvnrepository.com/artifact/com.miglayout/miglayout -->
+=======
+              
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
         <dependency>
             <groupId>com.miglayout</groupId>
             <artifactId>miglayout</artifactId>
             <version>3.7.4</version>
         </dependency>
 
+<<<<<<< HEAD
   
+=======
+        
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
     </dependencies>
+    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>19</maven.compiler.source>

@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package com.app.ui;
-import com.app.utils.XImage;
+package com.app.Ui;
 
-/**
- *
- * @author NT Thân
- */
+import com.app.Utils.XImage;
+
+
 public class DangNhapJFrame extends javax.swing.JFrame {
 
     /**
@@ -33,7 +26,7 @@ public class DangNhapJFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         lblHinhLogo = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel2 = new com.app.Other.ColorPanel();
         jLabel2 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         txtUsername = new javax.swing.JTextField();

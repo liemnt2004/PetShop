@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package com.app.utils;
+=======
+package com.app.Utils;
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

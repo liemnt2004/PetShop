@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -8,11 +9,11 @@ import com.app.Daos.NhanVienDao;
 import com.sun.nio.sctp.SctpStandardSocketOptions;
 import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+=======
+package com.app.Ui;
 
-/**
- *
- * @author NT Thân
- */
+>>>>>>> 9c206f2d380673b96f6f59bbb98d259e3187909c
+
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
     NhanVienDao dao = new NhanVienDao();
     /**
