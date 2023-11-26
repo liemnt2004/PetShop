@@ -3,38 +3,38 @@ package com.app.Entitys;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Nhanvien implements Serializable {
+public class NhanVien implements Serializable {
 
     private String maNhanVien;
     private String hoTen;
     private String gioiTinh;
     private Date ngaySinh;
     private String soDienThoai;
-    private String Emai;
+    private String Email;
     private String trangThai;
     private String Hinh;
-    private boolean maVaiTro = false;
+    private boolean maVaiTro;
 
-    public Nhanvien() {
+    public NhanVien() {
     }
 
-    public Nhanvien(String maNhanVien, String hoTen, String gioiTinh, Date ngaySinh, String soDienThoai, String Emai, String trangThai, String Hinh) {
+    public NhanVien(String maNhanVien, String hoTen, String gioiTinh, Date ngaySinh, String soDienThoai, String Email, String trangThai, String Hinh) {
         this.maNhanVien = maNhanVien;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
         this.soDienThoai = soDienThoai;
-        this.Emai = Emai;
+        this.Email = Email;
         this.trangThai = trangThai;
         this.Hinh = Hinh;
     }
 
 
-    public String getMaNhanvien() {
+    public String getMaNhanVien() {
         return maNhanVien;
     }
 
-    public void setMaNhanvien(String maNhanvien) {
+    public void setMaNhanVien(String maNhanvien) {
         this.maNhanVien = maNhanvien;
     }
 
@@ -70,12 +70,12 @@ public class Nhanvien implements Serializable {
         this.soDienThoai = soDienThoai;
     }
 
-    public String getEmai() {
-        return Emai;
+    public String getEmail() {
+        return Email;
     }
 
-    public void setEmai(String Emai) {
-        this.Emai = Emai;
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 
     public String getTrangThai() {

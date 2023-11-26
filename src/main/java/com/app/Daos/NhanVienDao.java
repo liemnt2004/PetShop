@@ -1,25 +1,31 @@
 package com.app.Daos;
 
-import com.app.Daos.DaoMain;
-import com.app.Entitys.Nhanvien;
+import com.app.Entitys.NhanVien;
+import com.app.Entitys.TaiKhoan;
 import com.app.Utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NhanVienDao implements DaoMain<Nhanvien, String> {
+public class NhanVienDao implements DaoMain<NhanVien, String> {
+
+    String SELECT_NOT_IN_TaiKhoan = "SELECT * FROM NhanVien WHERE MANV NOT IN (SELECT MANV FROM TAIKHOAN)";
+
+    public List<NhanVien> selectKhongTaiKhoan() {
+        return selectBySql(SELECT_NOT_IN_TaiKhoan);
+    }
 
     @Override
-    public void insert(Nhanvien entity) {
-        String sql = "INSERT INTO NhanVien (MaNV, Ho_Ten, Gioi_Tinh, Ngay_Sinh, Sdt, Email, Trang_Thai, Hinh, MaVT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void insert(NhanVien entity) {
+        String sql = "INSERT INTO NhanVien (MaNV, HoTen, GioiTinh, NgaySinh, Sdt, Email, TrangThai, Hinh, MaVT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         JdbcHelper.executeUpdate(sql,
-                entity.getMaNhanvien(),
+                entity.getMaNhanVien(),
                 entity.getHoTen(),
                 entity.getGioiTinh(),
                 entity.getNgaySinh(),
                 entity.getSoDienThoai(),
-                entity.getEmai(),
+                entity.getEmail(),
                 entity.getTrangThai(),
                 entity.getHinh(),
                 entity.isMaVaitro());
@@ -27,48 +33,48 @@ public class NhanVienDao implements DaoMain<Nhanvien, String> {
     }
 
     @Override
-    public void update(Nhanvien entity) {
-        String sql = "UPDATE INTO NhanVien (MaNV, Ho_Ten, Gioi_Tinh, Ngay_Sinh, Sdt, Email, Trang_Thai, Hinh, MaVT) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    public void update(NhanVien entity) {
+        String sql = "UPDATE  NhanVien SET HoTen = ?, GioiTinh= ?, NgaySinh= ?, Sdt= ?, Email= ?, TrangThai= ?, Hinh= ?, MaVT= ? Where MaNV =?";
         JdbcHelper.executeUpdate(sql,
-                entity.getMaNhanvien(),
                 entity.getHoTen(),
                 entity.getGioiTinh(),
                 entity.getNgaySinh(),
                 entity.getSoDienThoai(),
-                entity.getEmai(),
+                entity.getEmail(),
                 entity.getTrangThai(),
                 entity.getHinh(),
-                entity.isMaVaitro());
+                entity.isMaVaitro(),
+                entity.getMaNhanVien());
     }
 
     @Override
     public void delete(String MaNV) {
-        String sql = "DELETE FROM MaNV WHERE MaNV=?";
+        String sql = "DELETE NhanVien WHERE MaNV = ?";
         JdbcHelper.executeUpdate(sql, MaNV);
     }
 
     @Override
-    public List<Nhanvien> selectAll() {
+    public List<NhanVien> selectAll() {
         String sql = "SELECT * FROM NhanVien";
         return selectBySql(sql);
     }
 
     @Override
-    public Nhanvien selectById(String key) {
-        String sql = "SELECT * FROM Giong WHERE MaNV=?";
-        List<Nhanvien> list = selectBySql(sql, key);
+    public NhanVien selectById(String key) {
+        String sql = "SELECT * FROM NhanVien WHERE MaNV = ?";
+        List<NhanVien> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     @Override
-    public List<Nhanvien> selectBySql(String sql, Object... args) {
-        List<Nhanvien> list = new ArrayList<>();
+    public List<NhanVien> selectBySql(String sql, Object... args) {
+        List<NhanVien> list = new ArrayList<>();
         try {
             ResultSet rs = null;
             try {
                 rs = JdbcHelper.executeQuery(sql, args);
                 while (rs.next()) {
-                    Nhanvien model = readFromResultSet(rs);
+                    NhanVien model = readFromResultSet(rs);
                     list.add(model);
                 }
             } finally {
@@ -80,18 +86,31 @@ public class NhanVienDao implements DaoMain<Nhanvien, String> {
         return list;
     }
 
-    private Nhanvien readFromResultSet(ResultSet rs) throws SQLException {
-        Nhanvien entity = new Nhanvien();
-        entity.setMaNhanvien(rs.getString("MaNV"));
-        entity.setHoTen(rs.getString("Ho_Ten"));
-        entity.setGioiTinh(rs.getString("Gioi_Tinh"));
-        entity.setNgaySinh(rs.getDate("Ngay_Sinh"));
+    private NhanVien readFromResultSet(ResultSet rs) throws SQLException {
+        NhanVien entity = new NhanVien();
+        entity.setMaNhanVien(rs.getString("MaNV"));
+        entity.setHoTen(rs.getString("HoTen"));
+        entity.setGioiTinh(rs.getString("GioiTinh"));
+        entity.setNgaySinh(rs.getDate("NgaySinh"));
         entity.setSoDienThoai(rs.getString("Sdt"));
-        entity.setEmai(rs.getString("Email"));
-        entity.setTrangThai(rs.getString("Trang_Thai"));
+        entity.setEmail(rs.getString("Email"));
+        entity.setTrangThai(rs.getString("TrangThai"));
         entity.setHinh(rs.getString("Hinh"));
-        entity.isMaVaitro();
+        entity.setMaVaitro(rs.getBoolean("MaVT"));
         return entity;
     }
 
+    public List<NhanVien> selectByName(String name) {
+        String sql = "SELECT * FROM NhanVien WHERE HoTen like ?";
+        List<NhanVien> list = selectBySql(sql, "%" + name + "%");
+        return list;
+    }
+
+   
+
+    public List<NhanVien> selectBy(boolean vaitro, String name, String trangThai) {
+        String sql = "SELECT * FROM NhanVien WHERE MaVT = ? and HoTen like ? and TrangThai like ?";
+        List<NhanVien> list = selectBySql(sql, vaitro, "%" + name + "%", "%" + trangThai + "%");
+        return list;
+    }
 }
