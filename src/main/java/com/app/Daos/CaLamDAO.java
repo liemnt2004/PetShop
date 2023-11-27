@@ -5,7 +5,7 @@
 package com.app.Daos;
 
 import com.app.Entitys.CaLam;
-import com.app.utils.JdbcHelper;
+import com.app.Utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

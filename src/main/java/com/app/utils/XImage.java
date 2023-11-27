@@ -1,4 +1,4 @@
-package com.app.utils;
+package com.app.Utils;
 
 import java.awt.Image;
 import java.io.File;

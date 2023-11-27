@@ -1,18 +1,12 @@
-package com.app.ui;
+package com.app.Ui;
 
 import com.app.Daos.TaiKhoanDao;
 import com.app.Entitys.TaiKhoan;
 
-import com.app.utils.Validate;
-import com.app.utils.Auth;
-import com.app.utils.MsgBox;
+import com.app.Utils.*;
 
-import com.app.utils.XImage;
 
-/**
- *
- * @author MY LINH
- */
+
 public class DangNhapJDialog extends javax.swing.JDialog {
 
     TaiKhoanDao dao = new TaiKhoanDao();

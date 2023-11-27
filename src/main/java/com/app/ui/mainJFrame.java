@@ -1,13 +1,9 @@
-package com.app.ui;
+package com.app.Ui;
 
 import com.app.Daos.DatDVDAO;
 import com.app.Daos.NhanVienDao;
 import com.app.Entitys.NhanVien;
-import com.app.utils.Auth;
-import com.app.utils.MsgBox;
-import com.app.utils.Validate;
-import com.app.utils.XDate;
-import com.app.utils.XImage;
+import com.app.Utils.*;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

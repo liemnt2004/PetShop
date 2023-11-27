@@ -1,8 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.app.utils;
+package com.app.Utils;
 
 
 import com.app.Daos.NhanVienDao;
@@ -10,10 +6,6 @@ import com.app.Entitys.NhanVien;
 import com.app.Entitys.TaiKhoan;
 
 
-/**
- *
- * @author MY LINH
- */
 public class Auth {
     static NhanVienDao dao = new NhanVienDao();
     public static TaiKhoan user = null;
