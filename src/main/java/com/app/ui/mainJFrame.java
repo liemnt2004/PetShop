@@ -19,6 +19,11 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 import com.app.Other.*;
+import java.awt.Image;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JFileChooser;
 
 
 
@@ -33,9 +38,14 @@ public class mainJFrame extends javax.swing.JFrame {
     private int viTriKhoHang = -1;
     private String soluong = "";
     private List<SanPham> listSanPham = new ArrayList<>();
-
+    int row = -1;
     HoiVienDao hvdao = new HoiVienDao();
-
+     private Timer time;
+    private Timer menuTimer;
+    DefaultTableModel modelTblNhanVien;
+    DefaultTableModel modelTblSuKien;
+    NhanVienDao daoNhanVien = new NhanVienDao();
+    DatDVDAO daoSuKien = new DatDVDAO();
 
     public mainJFrame() {
 
@@ -78,6 +88,19 @@ public class mainJFrame extends javax.swing.JFrame {
         txtDonViHangNhap.setEnabled(false);
         cbbnhacc.setEditable(false);
         setLocationRelativeTo(null);
+        new ManHinhChaoJDialog(this, true).setVisible(true);
+        new DangNhapJDialog(this, true).setVisible(true);
+        // vùng set trạng thái component************************************************
+        updateStatusNhanVien();
+        rdoNamNhanVien.setSelected(true);
+        rdoVaiTroQuanLy.setSelected(true);
+        // Tải dữ liệu*************************************************************
+        initTableNhanVien();
+        taiDuLieuNhanVien();
+        
+        initTableSuKien();
+
+        // Chỗ đặt hàm*********************************************************//
         taidulieuDanhSachKhachHang();
         btnDauTienDanhSachNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\khuyenmai.png"));
         btnSauDanhSachNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\sau.png"));
@@ -472,10 +495,348 @@ private void updateStatusKhachHang() {
         btnCuoiCungDanhSachKhachHang.setEnabled(edit && !last);
 
     }
+
+
+   // vùng code của Linh*********************************************************************
+    private void startTimers() {
+        ActionListener action = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SimpleDateFormat fd = new SimpleDateFormat("hh:mm:ss a");
+                lblLock.setText(fd.format(new Date()));
+
+            }
+        };
+        time = new javax.swing.Timer(1000, action);
+        time.start();
+
+    }
+    // FoRM Sư Kiện ****************************************************************
+    public void initTableSuKien() {
+        modelTblSuKien = (DefaultTableModel) tblDanhSachSuKien.getModel();
+        String columns[] = new String[]{
+            "STT",
+            "Mã đặt lịch",
+            "Tên khách hàng",
+            "Số điện thoại",
+            "Tên dịch vụ",
+            "Ghi chú",
+            "Ngày đặt lịch",
+            "Ngày nhận"
+        };
+        modelTblNhanVien.setColumnIdentifiers(columns);
+    }
+     private void taiDuLieuSuKien() {
+        try {
+            String name = txtTimTenNhanVien.getText();
+            List<NhanVien> lst = daoNhanVien.selectByName(name);
+            modelTblNhanVien.setRowCount(0);
+            for (int i = 0; i < lst.size(); i++) {
+                NhanVien nv = lst.get(i);
+                Object[] rowNV = {
+                    i + 1,
+                    nv.getMaNhanVien(),
+                    nv.getHoTen(),
+                    nv.isMaVaitro() ? "Quản lí" : "Nhân viên",
+                    nv.getGioiTinh().equals("Nam") ? "Nam" : "Nữ",
+                    nv.getNgaySinh(),
+                    nv.getSoDienThoai(),
+                    nv.getEmail(),
+                    nv.getTrangThai(),
+                    nv.getHinh()
+                };
+                modelTblNhanVien.addRow(rowNV);
+
+            }
+            modelTblNhanVien.fireTableDataChanged();
+        } catch (Exception e) {
+
+        }
+
+    }
+
     
-//    private boolean KiemtradulieuKhachHang(){
-//        if(Validate.nothingText(txtMaKhac))
-//    }
+    // HẾt Form sự kiện **********************************************************************
+// FORM NV*******************************
+
+    private void updateStatusNhanVien() {
+        boolean edit = (this.row >= 0);
+        boolean first = (this.row == 0);
+        boolean last = (this.row == tblDanhSachNhanVien.getRowCount() - 1);
+        txtMaNhanVien.setEditable(!edit);
+        btnThemNhanVien.setEnabled(!edit);
+        btnXoaNhanVien.setEnabled(edit);
+        btnSuaNhanVien.setEnabled(edit);
+        btnDauTienDanhSachNhanVien.setEnabled(edit && !first);
+        btnCuoiCungDanhSachNhanVien.setEnabled(edit && !last);
+
+    }
+
+    public void initTableNhanVien() {
+        modelTblNhanVien = (DefaultTableModel) tblDanhSachNhanVien.getModel();
+        String columns[] = new String[]{
+            "STT",
+            "Mã Nhân Viên ",
+            "Họ Tên",
+            "Vai Trò",
+            "Giới Tính",
+            "Ngày Sinh",
+            "Số Điện Thoại",
+            "Email",
+            "Trạng Thái",
+            "Hình"
+        };
+        modelTblNhanVien.setColumnIdentifiers(columns);
+
+        cboTrangThaiNhanVien.addItem("Đang làm");
+        cboTrangThaiNhanVien.addItem("Đã nghỉ");
+
+        cboLocTrangThaiNhanVien.addItem("Đang làm");
+        cboLocTrangThaiNhanVien.addItem("Đã nghỉ");
+
+        cboLocVaiTroNhanVien.addItem("Nhân viên");
+        cboLocVaiTroNhanVien.addItem("Quản lí");
+    }
+
+    private void locDuLieuNhanVien() {
+        List<NhanVien> lst = null;
+        String name = txtTimTenNhanVien.getText();
+        String trangThai = (String) cboLocTrangThaiNhanVien.getSelectedItem();
+        try {
+            int vaiTro = cboLocVaiTroNhanVien.getSelectedIndex();
+            boolean key = false;
+            if (vaiTro != 0) {
+                key = true;
+            }
+            lst = daoNhanVien.selectBy(key, name, trangThai);
+
+            modelTblNhanVien.setRowCount(0);
+            for (int i = 0; i < lst.size(); i++) {
+                NhanVien nv = lst.get(i);
+                Object[] rowNV = {
+                    i + 1,
+                    nv.getMaNhanVien(),
+                    nv.getHoTen(),
+                    nv.isMaVaitro() ? "Quản lí" : "Nhân viên",
+                    nv.getGioiTinh().equals("Nam") ? "Nam" : "Nữ",
+                    nv.getNgaySinh(),
+                    nv.getSoDienThoai(),
+                    nv.getEmail(),
+                    nv.getTrangThai(),
+                    nv.getHinh()
+                };
+                modelTblNhanVien.addRow(rowNV);
+
+            }
+            modelTblNhanVien.fireTableDataChanged();
+        } catch (Exception e) {
+
+        }
+    }
+
+    private void taiDuLieuNhanVien() {
+        try {
+            String name = txtTimTenNhanVien.getText();
+            List<NhanVien> lst = daoNhanVien.selectByName(name);
+            modelTblNhanVien.setRowCount(0);
+            for (int i = 0; i < lst.size(); i++) {
+                NhanVien nv = lst.get(i);
+                Object[] rowNV = {
+                    i + 1,
+                    nv.getMaNhanVien(),
+                    nv.getHoTen(),
+                    nv.isMaVaitro() ? "Quản lí" : "Nhân viên",
+                    nv.getGioiTinh().equals("Nam") ? "Nam" : "Nữ",
+                    nv.getNgaySinh(),
+                    nv.getSoDienThoai(),
+                    nv.getEmail(),
+                    nv.getTrangThai(),
+                    nv.getHinh()
+                };
+                modelTblNhanVien.addRow(rowNV);
+
+            }
+            modelTblNhanVien.fireTableDataChanged();
+        } catch (Exception e) {
+
+        }
+
+    }
+
+    private void chonHinhNhanVien() {
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            XImage.save(file);
+            ImageIcon ico = XImage.read(file.getName());
+            Image img = ico.getImage().getScaledInstance(lblHinhNhanVien.getWidth(), lblHinhNhanVien.getHeight(), Image.SCALE_SMOOTH);
+            lblHinhNhanVien.setIcon(new ImageIcon(img));
+            lblHinhNhanVien.setToolTipText(file.getName());
+        }
+    }
+
+    private void hienThiThongTinLenFormNhanVien(NhanVien nv) {
+        try {
+            txtMaNhanVien.setText(nv.getMaNhanVien());
+            txtHoTenNhanVien.setText(nv.getHoTen());
+            rdoNamNhanVien.setSelected(nv.getGioiTinh().equals("Nam"));
+            rdoNuNhanVien.setSelected(!nv.getGioiTinh().equals("Nam"));
+            txtSoDienThoaiNhanVien.setText(nv.getSoDienThoai());
+            txtEmailNhanVien.setText(nv.getEmail());
+            txtNgaySinhNhanVien.setText(XDate.toString(nv.getNgaySinh(), "dd/MM/yyyy"));
+            cboTrangThaiNhanVien.setSelectedItem(nv.getTrangThai());
+            rdoVaiTroQuanLy.setSelected(nv.isMaVaitro());
+            rdoVaiTroNhanVien.setSelected(!nv.isMaVaitro());
+            if (nv.getHinh() != null) {
+                lblHinhNhanVien.setToolTipText(nv.getHinh());
+                ImageIcon ico = XImage.read(nv.getHinh());
+                Image img = ico.getImage().getScaledInstance(lblHinhNhanVien.getWidth(), lblHinhNhanVien.getHeight(), Image.SCALE_SMOOTH);
+                lblHinhNhanVien.setIcon(new ImageIcon(img));
+            }
+        } catch (Exception e) {
+        }
+
+    }
+
+    private boolean kiemTraDuLieuVao() {
+        if (Validate.nothingText(txtMaNhanVien, txtHoTenNhanVien, txtNgaySinhNhanVien, txtSoDienThoaiNhanVien, txtEmailNhanVien) != null) {
+            MsgBox.AlertFall(this, Validate.nothingText(txtMaNhanVien, txtHoTenNhanVien, txtNgaySinhNhanVien, txtSoDienThoaiNhanVien, txtEmailNhanVien));
+            return false;
+        }
+        if (!Validate.validateDate(txtNgaySinhNhanVien.getText())) {
+            MsgBox.AlertFall(this, "Vui lòng nhập đúng định dạng dd/MM/yyyy!!");
+            return false;
+        }
+        if (!Validate.validateNumberPhone(txtSoDienThoaiNhanVien.getText())) {
+            MsgBox.AlertFall(this, "Số điện thoại chưa đúng!!");
+            return false;
+        }
+        if (!Validate.validateEmail(txtEmailNhanVien.getText())) {
+            MsgBox.AlertFall(this, "Email chưa hợp lệ!!");
+            return false;
+        }
+        return true;
+    }
+
+    private NhanVien layDuLieuTuFormNhanVien() {
+
+        if (!kiemTraDuLieuVao()) {
+            return null;
+        }
+
+        NhanVien nv = new NhanVien();
+        nv.setMaNhanVien(txtMaNhanVien.getText());
+        nv.setHoTen(txtHoTenNhanVien.getText());
+        nv.setGioiTinh(rdoNamNhanVien.isSelected() ? "Nam" : "Nữ");
+        nv.setSoDienThoai(txtSoDienThoaiNhanVien.getText());
+        nv.setEmail(txtEmailNhanVien.getText());
+        nv.setNgaySinh(XDate.toDate(txtNgaySinhNhanVien.getText(), "dd/MM/yyyy"));
+        nv.setTrangThai((String) cboTrangThaiNhanVien.getSelectedItem());
+        nv.setMaVaitro(rdoVaiTroQuanLy.isSelected());
+        nv.setHinh(lblHinhNhanVien.getToolTipText());
+        return nv;
+    }
+
+    private void ThemNhanVien() {
+        NhanVien nv = layDuLieuTuFormNhanVien();
+        try {
+            if (nv != null) {
+                if (daoNhanVien.selectById(nv.getMaNhanVien()) != null) {
+                    MsgBox.AlertFall(this, "Mã nhân viên đã tồn tại");
+                    return;
+                }
+                daoNhanVien.insert(nv);
+                this.taiDuLieuNhanVien();
+                MsgBox.AlertSuccess(this, "Thêm mới thành công");
+            }
+
+        } catch (Exception e) {
+            MsgBox.AlertFall(this, e.getMessage());
+        }
+    }
+
+    private void xoaNhanVien() {
+        if (!Auth.isManager()) {
+            MsgBox.AlertFall(this, "Bạn không có quyền xóa nhân viên");
+        } else {
+            String maNV = txtMaNhanVien.getText();
+            if (MsgBox.confirm(this, "Bạn thực sự muốn xóa nhân viên " + maNV)) {
+                try {
+                    daoNhanVien.delete(maNV);
+                    this.taiDuLieuNhanVien();
+                    MsgBox.AlertSuccess(this, "Xóa thành công");
+                } catch (Exception e) {
+                    MsgBox.AlertFall(this, e.getMessage());
+                }
+            }
+        }
+    }
+
+    private void lamMoiNhanVien() {
+        NhanVien nv = new NhanVien(null, null, "Nam", XDate.toDate("1/1/1999", "dd/MM/yyyy"), null, null, "Đang làm", "");
+        this.hienThiThongTinLenFormNhanVien(nv);
+        lblHinhNhanVien.setIcon(null);
+        txtNgaySinhNhanVien.setText("");
+        lblHinhNhanVien.setToolTipText("");
+        this.row = -1;
+        this.lamMoiNhanVien();
+
+    }
+
+    private void capNhatNhanVien() {
+        NhanVien nv = layDuLieuTuFormNhanVien();
+        try {
+            daoNhanVien.update(nv);
+            this.taiDuLieuNhanVien();
+            MsgBox.AlertSuccess(this, "Cập nhật thành công");
+        } catch (Exception e) {
+            MsgBox.AlertFall(this, e.getMessage());
+
+        }
+
+    }
+
+    private void edit() {
+        String maNhanVien = (String) tblDanhSachNhanVien.getValueAt(this.row, 1);
+        NhanVien nv = daoNhanVien.selectById(maNhanVien);
+        this.hienThiThongTinLenFormNhanVien(nv);
+        this.updateStatusNhanVien();
+
+    }
+
+    void dauTienNhanVien() {
+        this.row = 0;
+        this.edit();
+    }
+
+    private void cuoiCungNhanVien() {
+        this.row = tblDanhSachNhanVien.getRowCount() - 1;
+        this.edit();
+    }
+
+    void TruocNhanVien() {
+        this.row--;
+        if (this.row >= 0) {
+            this.edit();
+        } else if (this.row < 0) {
+            this.row = tblDanhSachNhanVien.getRowCount() - 1;
+            this.edit();
+        }
+    }
+
+    private void SauNhanVien() {
+        this.row++;
+        System.out.println(this.row);
+        if (this.row <= tblDanhSachNhanVien.getRowCount() - 1) {
+            this.edit();
+        } else if (this.row > tblDanhSachNhanVien.getRowCount() - 1) {
+            this.row = 0;
+            this.edit();
+        }
+    }
+
+    // HẾt FORM NV*******************************
+    // Giao diện*********************
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -511,7 +872,7 @@ private void updateStatusKhachHang() {
         lblExitMenuIcon = new javax.swing.JLabel();
         pnlTrangThai = new com.app.Other.ColorPanel();
         jLabel5 = new javax.swing.JLabel();
-        txtTime = new javax.swing.JLabel();
+        lblLock = new javax.swing.JLabel();
         pnlHead = new com.app.Other.ColorPanel();
         jLabel1 = new javax.swing.JLabel();
         lblHinhLogo1 = new javax.swing.JLabel();
@@ -560,7 +921,7 @@ private void updateStatusKhachHang() {
         tabSuKien = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablDanhSachSuKien = new javax.swing.JTable();
+        tblDanhSachSuKien = new javax.swing.JTable();
         tabThuCung = new javax.swing.JPanel();
         pnlNenThuCung = new javax.swing.JPanel();
         tabbedThuCung = new javax.swing.JPanel();
@@ -1111,9 +1472,9 @@ private void updateStatusKhachHang() {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Docaaaaaaa");
 
-        txtTime.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        txtTime.setForeground(new java.awt.Color(255, 255, 255));
-        txtTime.setText("dd-mm-yyyy   hh-mm-ss");
+        lblLock.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lblLock.setForeground(new java.awt.Color(255, 255, 255));
+        lblLock.setText("dd-mm-yyyy   hh-mm-ss");
 
         javax.swing.GroupLayout pnlTrangThaiLayout = new javax.swing.GroupLayout(pnlTrangThai);
         pnlTrangThai.setLayout(pnlTrangThaiLayout);
@@ -1123,7 +1484,7 @@ private void updateStatusKhachHang() {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtTime, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblLock, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlTrangThaiLayout.setVerticalGroup(
             pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1131,7 +1492,7 @@ private void updateStatusKhachHang() {
                 .addContainerGap()
                 .addGroup(pnlTrangThaiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblLock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -1493,7 +1854,7 @@ private void updateStatusKhachHang() {
         jLabel7.setFont(new java.awt.Font("Source Sans Pro Black", 1, 24)); // NOI18N
         jLabel7.setText("Thông Báo");
 
-        tablDanhSachSuKien.setModel(new javax.swing.table.DefaultTableModel(
+        tblDanhSachSuKien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1504,7 +1865,7 @@ private void updateStatusKhachHang() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablDanhSachSuKien);
+        jScrollPane1.setViewportView(tblDanhSachSuKien);
 
         javax.swing.GroupLayout tabSuKienLayout = new javax.swing.GroupLayout(tabSuKien);
         tabSuKien.setLayout(tabSuKienLayout);
@@ -4266,7 +4627,7 @@ private void updateStatusKhachHang() {
             tabThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongKeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabThongKeLayout.setVerticalGroup(
@@ -4766,8 +5127,9 @@ private void updateStatusKhachHang() {
     }//GEN-LAST:event_btnSauDanhSachNhanVienActionPerformed
 
     private void btnTaiKhoanNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanNhanVienActionPerformed
-        // TODO add your handling code here:
-        new ThongTinTaiKhoanJDialog(this, true).setVisible(true);
+        row = 0;
+        String maNhanVien = (String) tblDanhSachNhanVien.getValueAt(this.row, 1);
+        new ThongTinTaiKhoanJDialog(this, true, maNhanVien).setVisible(true);
     }//GEN-LAST:event_btnTaiKhoanNhanVienActionPerformed
 
     private void btnThemKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKhachHangActionPerformed
@@ -5154,6 +5516,7 @@ private void updateStatusKhachHang() {
     private javax.swing.JLabel lblHoaDonLichSu;
     private javax.swing.JLabel lblHoaDonSanPham;
     private javax.swing.JLabel lblKhuyenMaiIcon;
+    private javax.swing.JLabel lblLock;
     private javax.swing.JLabel lblMenuDichVu;
     private javax.swing.JLabel lblMenuHoaDon;
     private javax.swing.JLabel lblMenuKhachHang;
@@ -5220,13 +5583,13 @@ private void updateStatusKhachHang() {
     private javax.swing.JPanel tabbedSanPham_DichVu;
     private javax.swing.JPanel tabbedThuCung;
     private javax.swing.JTable tablDanhSachSanPhamHoaDon;
-    private javax.swing.JTable tablDanhSachSuKien;
     private javax.swing.JTable tblDanahSachThuCung;
     private javax.swing.JTable tblDanhSachDonHang;
     private javax.swing.JTable tblDanhSachHoaDon;
     private javax.swing.JTable tblDanhSachKhachHang;
     private javax.swing.JTable tblDanhSachNhanVien;
     private javax.swing.JTable tblDanhSachSanPham;
+    private javax.swing.JTable tblDanhSachSuKien;
     private javax.swing.JTable tblDanhSahChiTietHoaDon;
     private javax.swing.JTable tbllDachSachNhapHang;
     private javax.swing.JTable tnlDanhSachDichVu;
@@ -5283,7 +5646,6 @@ private void updateStatusKhachHang() {
     private javax.swing.JTextField txtTimKiemTenSanPham;
     private javax.swing.JTextField txtTimKiemThuCung;
     private javax.swing.JTextField txtTimTenNhanVien;
-    private javax.swing.JLabel txtTime;
     private javax.swing.JTextField txtTongTienHoaDon;
     private javax.swing.JTextField txtTuoiThuCung;
     // End of variables declaration//GEN-END:variables

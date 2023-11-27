@@ -11,8 +11,11 @@ import com.app.Utils.JdbcHelper;
 
 
 public class TaiKhoanDao implements DaoMain<TaiKhoan, String>  {
+    
+        
+        
      public void insert(TaiKhoan model){
-        String sql="INSERT INTO TaiKhoan (Tai_Khoan,Mat_Khau,MaNV) VALUES (?,?,?)";
+        String sql="INSERT INTO TaiKhoan (TaiKhoan,MatKhau,MaNV) VALUES (?,?,?)";
         JdbcHelper.executeUpdate(sql,
         model.getTaiKhoan(),
         model.getMatKhau(),
@@ -20,32 +23,33 @@ public class TaiKhoanDao implements DaoMain<TaiKhoan, String>  {
         );
     }
      public void update(TaiKhoan model){
-        String sql="UPDATE TaiKhoan (Tai_Khoan,Mat_Khau,MaNV) VALUES (?,?,?)";
+        String sql="UPDATE TaiKhoan Set MatKhau = ?,MaNV =? Where TaiKhoan = ?";
         JdbcHelper.executeUpdate(sql,
-        model.getTaiKhoan(),
         model.getMatKhau(),
-        model.getMaNhanVien()
+        model.getMaNhanVien(),
+        model.getTaiKhoan()
         );
         
     }
      
      public void delete(String id){
-        String sql="DELETE FROM TaiKhoan WHERE Tai_Khoan=?";
+        String sql="DELETE FROM TaiKhoan WHERE TaiKhoan=?";
         JdbcHelper.executeUpdate(sql, id);
-    }
-     
-     public List<TaiKhoan> select() throws SQLException{
-        String sql="SELECT * FROM TaiKhoan";
-        return select(sql);
     }
     
      public List<TaiKhoan> selectAll() {
         String sql = "SELECT * FROM TaiKhoan";
         return selectBySql(sql);
     }
+
     
     public TaiKhoan selectById(String key) {
-        String sql = "SELECT * FROM TaiKhoan WHERE Tai_Khoan=?";
+        String sql = "SELECT * FROM TaiKhoan WHERE TaiKhoan =?";
+        List<TaiKhoan> list = selectBySql(sql, key);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+        public TaiKhoan selectByMaNhanVien(String key) {
+        String sql = "SELECT * FROM TaiKhoan WHERE MaNV =?";
         List<TaiKhoan> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -95,8 +99,8 @@ public class TaiKhoanDao implements DaoMain<TaiKhoan, String>  {
     
     private TaiKhoan readFromResultSet(ResultSet rs) throws SQLException{
         TaiKhoan model=new TaiKhoan();
-        model.setTaiKhoan(rs.getString("Tai_Khoan"));
-        model.setMatKhau(rs.getString("Mat_Khau"));
+        model.setTaiKhoan(rs.getString("TaiKhoan"));
+        model.setMatKhau(rs.getString("MatKhau"));
         model.setMaNhanVien(rs.getString("MaNV"));
         return model;
     }

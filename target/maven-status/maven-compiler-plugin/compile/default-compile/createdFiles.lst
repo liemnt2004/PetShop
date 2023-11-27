@@ -28,6 +28,7 @@ com\app\Other\CurveLineChart$2.class
 com\app\ui\DangNhapJFrame.class
 com\app\Other\ShadowRenderer.class
 com\app\Entitys\Giong.class
+com\app\Entitys\NhanVien.class
 com\app\Other\ColorPanel.class
 com\app\ui\mainJFrame$12.class
 com\app\ui\ThemMoiGiongDialog$9.class
@@ -216,7 +217,6 @@ com\app\Daos\LoaiSanPhamDao.class
 com\app\ui\mainJFrame$39.class
 com\app\utils\JdbcHelper.class
 com\app\Daos\GiongDao.class
-com\app\Entitys\Nhanvien.class
 com\app\ui\ThemMoiLoaiJVatDialog$9.class
 com\app\ui\ThongTinTaiKhoanJDialog$4.class
 com\app\ui\ThemMoiChuongJDialog$7.class
