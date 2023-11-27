@@ -912,6 +912,7 @@ private void updateStatusKhachHang() {
         btnDauTienDanhSachNhanVien = new javax.swing.JButton();
         btnSuaNhanVien = new javax.swing.JButton();
         btnXoaNhanVien = new javax.swing.JButton();
+        btnLoad = new javax.swing.JButton();
         jLabel44 = new javax.swing.JLabel();
         txtTimTenNhanVien = new javax.swing.JTextField();
         btnTimTenNhanVien = new javax.swing.JButton();
@@ -1597,15 +1598,22 @@ private void updateStatusKhachHang() {
 
         rdoVaiTroQuanLy.setText("Quản Lý");
 
+        txtHoTenNhanVien.setText("Họ Tên");
+
         jLabel26.setText("Trạng Thái");
 
         jLabel24.setText("Số Điện Thoại");
 
         jLabel25.setText("Email");
 
+        txtSoDienThoaiNhanVien.setToolTipText("Số Điện Thoại");
+
         rdoNamNhanVien.setText("Nam");
 
+        txtEmailNhanVien.setToolTipText("Email");
+
         cboTrangThaiNhanVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTrangThaiNhanVien.setToolTipText("Trạng Thái");
 
         jLabel23.setText("Giới Tính");
 
@@ -1614,6 +1622,8 @@ private void updateStatusKhachHang() {
         txtMaNhanVien.setToolTipText("Mã Nhân Viên");
 
         jLabel28.setText("Ngày Sinh");
+
+        txtNgaySinhNhanVien.setToolTipText("Ngày Sinh");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -1769,6 +1779,15 @@ private void updateStatusKhachHang() {
             }
         });
 
+        btnLoad.setBackground(new java.awt.Color(0, 51, 51));
+        btnLoad.setForeground(new java.awt.Color(255, 255, 255));
+        btnLoad.setText("Tải Lại");
+        btnLoad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -1782,7 +1801,9 @@ private void updateStatusKhachHang() {
                 .addComponent(btnSuaNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLamMoiNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(233, 233, 233)
+                .addGap(18, 18, 18)
+                .addComponent(btnLoad)
+                .addGap(140, 140, 140)
                 .addComponent(btnDauTienDanhSachNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(btnTruocDanhSachNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1804,11 +1825,14 @@ private void updateStatusKhachHang() {
                     .addComponent(btnDauTienDanhSachNhanVien)
                     .addComponent(btnTruocDanhSachNhanVien)
                     .addComponent(btnSauDanhSachNhanVien)
-                    .addComponent(btnCuoiCungDanhSachNhanVien)))
+                    .addComponent(btnCuoiCungDanhSachNhanVien)
+                    .addComponent(btnLoad)))
         );
 
         jLabel44.setFont(new java.awt.Font("Source Sans Pro SemiBold", 1, 12)); // NOI18N
         jLabel44.setText("Tìm kiếm");
+
+        txtTimTenNhanVien.setToolTipText("Tìm Kiếm");
 
         btnTimTenNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnTimTenNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 1, 12)); // NOI18N
@@ -1875,7 +1899,7 @@ private void updateStatusKhachHang() {
                     .addGroup(tabNhanVienLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         tabNhanVienLayout.setVerticalGroup(
             tabNhanVienLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -5396,6 +5420,7 @@ private void updateStatusKhachHang() {
     private javax.swing.JButton btnLamMoiKhuyenMai;
     private javax.swing.JButton btnLamMoiNhanVien;
     private javax.swing.JButton btnLamMoiThuCung;
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnMoiNhapHang;
     private javax.swing.JButton btnSauDanhSachKhachHang;
     private javax.swing.JButton btnSauDanhSachKhuyenMai;

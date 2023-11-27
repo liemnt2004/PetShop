@@ -648,7 +648,7 @@
                                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="9" max="32767" attributes="0"/>
+                          <EmptySpace pref="12" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -886,6 +886,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtHoTenNhanVien">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="H&#x1ecd; T&#xea;n"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel26">
                       <Properties>
@@ -903,6 +906,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtSoDienThoaiNhanVien">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JRadioButton" name="rdoNamNhanVien">
                       <Properties>
@@ -913,6 +919,9 @@
                       </AuxValues>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtEmailNhanVien">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="Email"/>
+                      </Properties>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cboTrangThaiNhanVien">
                       <Properties>
@@ -924,6 +933,7 @@
                             <StringItem index="3" value="Item 4"/>
                           </StringArray>
                         </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Tr&#x1ea1;ng Th&#xe1;i"/>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -950,6 +960,9 @@
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtNgaySinhNhanVien">
+                      <Properties>
+                        <Property name="toolTipText" type="java.lang.String" value="Ng&#xe0;y Sinh"/>
+                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -972,7 +985,9 @@
                               <Component id="btnSuaNhanVien" min="-2" pref="110" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnLamMoiNhanVien" min="-2" pref="110" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="233" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnLoad" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
                               <Component id="btnDauTienDanhSachNhanVien" min="-2" pref="90" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                               <Component id="btnTruocDanhSachNhanVien" min="-2" pref="90" max="-2" attributes="0"/>
@@ -997,6 +1012,7 @@
                                   <Component id="btnTruocDanhSachNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnSauDanhSachNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnCuoiCungDanhSachNhanVien" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnLoad" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1135,6 +1151,20 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaNhanVienActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JButton" name="btnLoad">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="33" green="33" red="0" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="T&#x1ea3;i L&#x1ea1;i"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadActionPerformed"/>
+                      </Events>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel44">
@@ -1146,6 +1176,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="txtTimTenNhanVien">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m"/>
+                  </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnTimTenNhanVien">
                   <Properties>
