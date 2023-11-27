@@ -44,4 +44,6 @@ public class Validate {
         }
         return false; // Tất cả các trường đều không rỗng
     }
+ 
+ 
 }
