@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import com.app.Daos.*;
 import com.app.Entitys.*;
-import com.app.Other.ModelChart;
 import com.app.Utils.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -902,6 +901,8 @@ private void updateStatusKhachHang() {
         jLabel23 = new javax.swing.JLabel();
         rdoNuNhanVien = new javax.swing.JRadioButton();
         txtMaNhanVien = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        txtNgaySinhNhanVien = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btnThemNhanVien = new javax.swing.JButton();
         btnLamMoiNhanVien = new javax.swing.JButton();
@@ -1550,6 +1551,11 @@ private void updateStatusKhachHang() {
         jLabel8.setText("Thông Tin Nhân Viên");
 
         lblHinhNhanVien.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblHinhNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHinhNhanVienMouseClicked(evt);
+            }
+        });
 
         btnTaiKhoanNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnTaiKhoanNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
@@ -1572,6 +1578,11 @@ private void updateStatusKhachHang() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblDanhSachNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDanhSachNhanVienMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblDanhSachNhanVien);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -1602,6 +1613,8 @@ private void updateStatusKhachHang() {
 
         txtMaNhanVien.setToolTipText("Mã Nhân Viên");
 
+        jLabel28.setText("Ngày Sinh");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -1609,13 +1622,14 @@ private void updateStatusKhachHang() {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboTrangThaiNhanVien, 0, 337, Short.MAX_VALUE)
@@ -1633,7 +1647,8 @@ private void updateStatusKhachHang() {
                                 .addComponent(rdoVaiTroNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdoVaiTroQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE))
+                    .addComponent(txtNgaySinhNhanVien))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1652,7 +1667,11 @@ private void updateStatusKhachHang() {
                     .addComponent(jLabel23)
                     .addComponent(rdoNamNhanVien)
                     .addComponent(rdoNuNhanVien))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(txtNgaySinhNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
                     .addComponent(txtSoDienThoaiNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1678,11 +1697,21 @@ private void updateStatusKhachHang() {
         btnThemNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnThemNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         btnThemNhanVien.setText("Thêm");
+        btnThemNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemNhanVienActionPerformed(evt);
+            }
+        });
 
         btnLamMoiNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnLamMoiNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnLamMoiNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         btnLamMoiNhanVien.setText("Làm mới");
+        btnLamMoiNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLamMoiNhanVienActionPerformed(evt);
+            }
+        });
 
         btnSauDanhSachNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnSauDanhSachNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
@@ -1696,24 +1725,49 @@ private void updateStatusKhachHang() {
         btnTruocDanhSachNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnTruocDanhSachNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnTruocDanhSachNhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        btnTruocDanhSachNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTruocDanhSachNhanVienActionPerformed(evt);
+            }
+        });
 
         btnCuoiCungDanhSachNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnCuoiCungDanhSachNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnCuoiCungDanhSachNhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        btnCuoiCungDanhSachNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuoiCungDanhSachNhanVienActionPerformed(evt);
+            }
+        });
 
         btnDauTienDanhSachNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnDauTienDanhSachNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnDauTienDanhSachNhanVien.setForeground(new java.awt.Color(255, 255, 255));
+        btnDauTienDanhSachNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDauTienDanhSachNhanVienActionPerformed(evt);
+            }
+        });
 
         btnSuaNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnSuaNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnSuaNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         btnSuaNhanVien.setText("Sửa");
+        btnSuaNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaNhanVienActionPerformed(evt);
+            }
+        });
 
         btnXoaNhanVien.setBackground(new java.awt.Color(0, 51, 51));
         btnXoaNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 0, 12)); // NOI18N
         btnXoaNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         btnXoaNhanVien.setText("Xóa");
+        btnXoaNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaNhanVienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -1760,10 +1814,20 @@ private void updateStatusKhachHang() {
         btnTimTenNhanVien.setFont(new java.awt.Font("Source Sans Pro SemiBold", 1, 12)); // NOI18N
         btnTimTenNhanVien.setForeground(new java.awt.Color(255, 255, 255));
         btnTimTenNhanVien.setText("Tìm");
+        btnTimTenNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimTenNhanVienActionPerformed(evt);
+            }
+        });
 
         cboLocVaiTroNhanVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         cboLocTrangThaiNhanVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboLocTrangThaiNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboLocTrangThaiNhanVienActionPerformed(evt);
+            }
+        });
 
         jLabel45.setFont(new java.awt.Font("Source Sans Pro SemiBold", 1, 12)); // NOI18N
         jLabel45.setText("Vai Trò:");
@@ -1844,7 +1908,7 @@ private void updateStatusKhachHang() {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pnlCard.add(tabNhanVien, "card4");
@@ -2357,7 +2421,7 @@ private void updateStatusKhachHang() {
         pnlNenThuCungLayout.setHorizontalGroup(
             pnlNenThuCungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tabbedThuCung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         pnlNenThuCungLayout.setVerticalGroup(
             pnlNenThuCungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4627,7 +4691,7 @@ private void updateStatusKhachHang() {
             tabThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongKeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1250, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabThongKeLayout.setVerticalGroup(
@@ -4940,7 +5004,7 @@ private void updateStatusKhachHang() {
     }//GEN-LAST:event_lblMenuSanPhamMouseClicked
 
     private void lblUserIconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblUserIconMouseClicked
-        // TODO add your handling code here:
+        evt.consume();
         openMenuThongTinNguoiDung();
         setComponentZOrder(pnlThongTinNguoiDung, 0);
 
@@ -5123,7 +5187,7 @@ private void updateStatusKhachHang() {
     }//GEN-LAST:event_txtSoLuongHangDonHangActionPerformed
 
     private void btnSauDanhSachNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSauDanhSachNhanVienActionPerformed
-        // TODO add your handling code here:
+        SauNhanVien();
     }//GEN-LAST:event_btnSauDanhSachNhanVienActionPerformed
 
     private void btnTaiKhoanNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanNhanVienActionPerformed
@@ -5218,6 +5282,57 @@ private void updateStatusKhachHang() {
         int nam = (int) cbonam.getSelectedItem();
         thongKeKinhDoanh(nam);
     }//GEN-LAST:event_cbonamActionPerformed
+
+    private void btnTimTenNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimTenNhanVienActionPerformed
+        taiDuLieuNhanVien();
+    }//GEN-LAST:event_btnTimTenNhanVienActionPerformed
+
+    private void btnXoaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaNhanVienActionPerformed
+        xoaNhanVien();
+    }//GEN-LAST:event_btnXoaNhanVienActionPerformed
+
+    private void btnSuaNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaNhanVienActionPerformed
+        capNhatNhanVien();
+    }//GEN-LAST:event_btnSuaNhanVienActionPerformed
+
+    private void btnLamMoiNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiNhanVienActionPerformed
+        lamMoiNhanVien();
+    }//GEN-LAST:event_btnLamMoiNhanVienActionPerformed
+
+    private void btnThemNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemNhanVienActionPerformed
+        ThemNhanVien();
+    }//GEN-LAST:event_btnThemNhanVienActionPerformed
+
+    private void tblDanhSachNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachNhanVienMouseClicked
+        this.row = tblDanhSachNhanVien.getSelectedRow();
+        edit();
+    }//GEN-LAST:event_tblDanhSachNhanVienMouseClicked
+
+    private void lblHinhNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhNhanVienMouseClicked
+        chonHinhNhanVien();
+    }//GEN-LAST:event_lblHinhNhanVienMouseClicked
+
+    private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
+        // TODO add your handling code here:
+        txtTimTenNhanVien.setText("");
+        taiDuLieuNhanVien();
+    }//GEN-LAST:event_btnLoadActionPerformed
+
+    private void cboLocTrangThaiNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboLocTrangThaiNhanVienActionPerformed
+        locDuLieuNhanVien();
+    }//GEN-LAST:event_cboLocTrangThaiNhanVienActionPerformed
+
+    private void btnCuoiCungDanhSachNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuoiCungDanhSachNhanVienActionPerformed
+        cuoiCungNhanVien();
+    }//GEN-LAST:event_btnCuoiCungDanhSachNhanVienActionPerformed
+
+    private void btnDauTienDanhSachNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDauTienDanhSachNhanVienActionPerformed
+        dauTienNhanVien();
+    }//GEN-LAST:event_btnDauTienDanhSachNhanVienActionPerformed
+
+    private void btnTruocDanhSachNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTruocDanhSachNhanVienActionPerformed
+        TruocNhanVien();
+    }//GEN-LAST:event_btnTruocDanhSachNhanVienActionPerformed
 
 
     /**
@@ -5384,6 +5499,7 @@ private void updateStatusKhachHang() {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -5623,6 +5739,7 @@ private void updateStatusKhachHang() {
     private javax.swing.JTextField txtNgayBatDauKhuyenMai;
     private javax.swing.JTextField txtNgayDatDichVu;
     private javax.swing.JTextField txtNgayNhanThuCung;
+    private javax.swing.JTextField txtNgaySinhNhanVien;
     private javax.swing.JTextField txtPhanTramKhuyenMai;
     private javax.swing.JTextField txtSoChuongThuCung;
     private javax.swing.JTextField txtSoDienThoaiDatLich;
