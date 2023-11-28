@@ -9,7 +9,6 @@ com\app\ui\mainJFrame$24.class
 com\app\ui\mainJFrame$44.class
 com\app\ui\ThemMoiLoaiJVatDialog$1.class
 com\app\Other\ImageSlide$2.class
-com\app\ui\ThongTinTaiKhoanJDialog$5$1.class
 com\app\ui\ThemMoiGiongDialog$4.class
 com\app\ui\mainJFrame$11.class
 com\app\ui\ThemMoiLoaiJDialog$4.class
@@ -184,6 +183,7 @@ com\app\Daos\TaiKhoanDao.class
 com\app\ui\mainJFrame$70.class
 com\app\ui\mainJFrame$80.class
 com\app\ui\mainJFrame$20.class
+com\app\ui\mainJFrame$93.class
 com\app\ui\ThongTinTaiKhoanJDialog$3.class
 com\app\Daos\HoiVienDao.class
 com\app\ui\mainJFrame$73.class

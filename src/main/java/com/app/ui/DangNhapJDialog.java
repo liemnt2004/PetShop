@@ -24,7 +24,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         String manv = txtTaiKhoan.getText();
         String matKhau = new String(txtMatKhau.getPassword());
         TaiKhoan nv = dao.selectById(manv);
-        String notThing = Validate.nothingText(txtMatKhau, txtTaiKhoan);
+        String notThing = Validate.nothingText1(txtMatKhau, txtTaiKhoan);
         if (notThing != null) {
             MsgBox.AlertFall(this, notThing);
         } else if (!manv.equals(nv.getTaiKhoan())) {

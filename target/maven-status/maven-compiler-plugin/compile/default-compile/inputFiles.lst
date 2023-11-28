@@ -16,6 +16,7 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\SeriesSize.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\GraphicsUtilities.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelPieChart.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\DangNhapJDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Utils\XDate.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ThongKe.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\ThemMoiGiongDialog.java
@@ -66,7 +67,9 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\DoiM
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\CurveLineChart.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Giong.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\DatDVDAO.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Utils\Auth.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\BlankPlotChart.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\ManHinhChaoJDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Log.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Ui\mainJFrame.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\ThuCungDao.java
