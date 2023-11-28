@@ -5400,6 +5400,7 @@ private void updateStatusKhachHang() {
     private javax.swing.JButton btnLamMoiKhuyenMai;
     private javax.swing.JButton btnLamMoiNhanVien;
     private javax.swing.JButton btnLamMoiThuCung;
+    private javax.swing.JButton btnLoad;
     private javax.swing.JButton btnMoiNhapHang;
     private javax.swing.JButton btnSauDanhSachKhachHang;
     private javax.swing.JButton btnSauDanhSachKhuyenMai;
