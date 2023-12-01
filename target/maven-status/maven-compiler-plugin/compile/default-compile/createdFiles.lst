@@ -29,6 +29,7 @@ com\app\ui\HoiVienJDialog$4.class
 com\app\ui\ThemMoiGiongDialog$3.class
 com\app\ui\DoiMatKhauJDialog$5.class
 com\app\Daos\DaoMain.class
+com\app\ui\ChiTietCaLamJDialog$10$1.class
 com\app\ui\ThemMoiLoaiJVatDialog$7.class
 com\app\Entitys\HoiVien.class
 com\app\ui\ThemMoiGiongDialog$10.class
@@ -49,6 +50,7 @@ com\app\Entitys\NhaCungCap.class
 com\app\ui\ThemMoiLoaiJVatDialog$2.class
 com\app\ui\DoiMatKhauJDialog.class
 com\app\Other\ImageSplit.class
+com\app\Entitys\ChiTietCaLam.class
 com\app\ui\ChiTietCaLamJDialog$3.class
 com\app\Other\Spline.class
 com\app\ui\DangNhapJFrame$1.class
@@ -113,7 +115,6 @@ com\app\ui\mainJFrame$46.class
 com\app\Entitys\PhieuGiamGia.class
 com\app\ui\mainJFrame$41.class
 com\app\ui\mainJFrame$3.class
-com\app\ui\ChiTietCaLamJDialog$11.class
 com\app\ui\ThemMoiLoaiJDialog$6.class
 com\app\Entitys\LoaiSanPham.class
 com\app\Other\CurveLineChart$4.class
@@ -142,7 +143,6 @@ com\app\Other\PanelShadow$ShadowType.class
 com\app\Entitys\DatDV.class
 com\app\ui\ThemMoiLoaiJDialog$8.class
 com\app\ui\mainJFrame$13.class
-com\app\ui\ChiTietCaLamJDialog$11$1.class
 com\app\utils\XImage.class
 com\app\Other\GraphicsUtilities.class
 com\app\Daos\HoaDonDAO.class

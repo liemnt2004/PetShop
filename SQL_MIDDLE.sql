@@ -215,6 +215,7 @@ CREATE TABLE HoaDon
     TrangThai NVARCHAR(50) NULL,
     MaPTTT CHAR(10),
     MaDL CHAR(10),
+    FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV) ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (MaHV) REFERENCES HoiVien(MaHV) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (MaPhieuGiamGia) REFERENCES PhieuGiamGia(MaPhieuGiamGia) ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (MaPTTT) REFERENCES PhuongThucThanhToan(MaPTTT) ON UPDATE CASCADE,
@@ -249,15 +250,17 @@ CREATE TABLE ChiTietHoaDon_TC
 CREATE TABLE CaLam
 (
     MaCL CHAR(10) PRIMARY KEY,
-    TenCaLam NVARCHAR(255)
+    TenCaLam NVARCHAR(255),
+    ThoiGian NVARCHAR(50)
 );
 
 --26 Bảng ChiTietCaLam
 CREATE TABLE ChiTietCaLam
 (
+    MaChiTietCaLam int IDENTITY(1,1) PRIMARY KEY,
     MaCL CHAR(10),
-    ThoiGian DATETIME,
     MaNV CHAR(10),
+    NgayLam DATE,
     FOREIGN KEY (MaCL) REFERENCES CaLam(MaCL) ON UPDATE CASCADE,
     FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV) ON UPDATE CASCADE ON DELETE SET NULL
 );
@@ -438,65 +441,119 @@ Values
 
 INSERT INTO CaLam
 Values
-    ('CL01', N'ca sáng'),
-    ('CL02', N'ca chiều');
+    ('CL01','7:00:00-12:00:00', N'ca sáng'),
+    ('CL02','12:00:00-17:00:00',N'ca chiều');
 
 INSERT INTO ChiTietCaLam
-    (MaCL, ThoiGian, MaNV)
 Values
-    ('CL01', NULL, 'NV01'),
-    ('CL02', NULL, 'NV02');
+    ('CL01','NV01','2021/01/23'),
+    ('CL02','NV02','2022/02/06');
 
 
--- -- lấy ra thông tin của kho
--- CREATE PROCEDURE dbo.ThongSoKho
--- AS
--- BEGIN
---    SELECT 
---        (SELECT COUNT(*) FROM PhieuNhapHang) AS TongNhap,
---        (SELECT COUNT(*) FROM HoaDon) AS TongXuat,  
---        (SELECT COUNT(*) FROM SanPham) AS TongSanPham,
---        (SELECT SUM(soluong) FROM tonkho) AS TongSoLuongSanPham
--- END;
+-- lấy ra thông tin của kho
+CREATE PROCEDURE dbo.ThongSoKho
+AS
+BEGIN
+   SELECT 
+       (SELECT COUNT(*) FROM PhieuNhapHang) AS TongNhap,
+       (SELECT COUNT(*) FROM HoaDon) AS TongXuat,  
+       (SELECT COUNT(*) FROM SanPham) AS TongSanPham,
+       (SELECT SUM(soluong) FROM tonkho) AS TongSoLuongSanPham
+END;
 
 -- EXECUTE dbo.ThongSoKho
 
 
 
 
--- -- triger tự thêm sản phẩm vào tồn kho nếu có sản phẩm mới được thêm vào database
--- CREATE TRIGGER AfterInsertSanPhamTrigger
--- ON SanPham
--- AFTER INSERT
--- AS
--- BEGIN
---     -- Insert các sản phẩm mới vào bảng tonkho
---     INSERT INTO tonkho
---         (makho, masp, soluong)
---     SELECT 'KHO1', inserted.MaSP, 0
---     FROM inserted;
--- END;
+-- triger tự thêm sản phẩm vào tồn kho nếu có sản phẩm mới được thêm vào database
+CREATE TRIGGER AfterInsertSanPhamTrigger
+ON SanPham
+AFTER INSERT
+AS
+BEGIN
+    -- Insert các sản phẩm mới vào bảng tonkho
+    INSERT INTO tonkho
+        (makho, masp, soluong)
+    SELECT 'KHO1', inserted.MaSP, 0
+    FROM inserted;
+END;
 
 
--- -- triger tự thêm cập nhật số lượng sản phẩm
--- CREATE TRIGGER updateSoLuongSanPhamKho
--- ON ChiTietNhapHang
--- AFTER INSERT
--- AS
--- BEGIN
---     UPDATE tonkho
---     SET soluong = soluong + i.SLNhap
---     FROM tonkho
---         INNER JOIN inserted i ON tonkho.masp = i.masp;
--- END;
+-- triger tự thêm cập nhật số lượng sản phẩm
+CREATE TRIGGER updateSoLuongSanPhamKho
+ON ChiTietNhapHang
+AFTER INSERT
+AS
+BEGIN
+    UPDATE tonkho
+    SET soluong = soluong + i.SLNhap
+    FROM tonkho
+        INNER JOIN inserted i ON tonkho.masp = i.masp;
+END;
 
 
--- SELECT FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN') AS Thang, 
---        SUM(HoaDon.TongTien) AS Tong_Tien 
--- FROM HoaDon 
--- GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN'), MONTH(HoaDon.NgayLap) 
--- ORDER BY MONTH(HoaDon.NgayLap);
+
+CREATE PROCEDURE [dbo].[ThongKeTongTien]
+    @nam INT
+AS
+BEGIN
+    SELECT
+        YEAR(HoaDon.NgayLap) AS Nam,
+        SUM(CASE WHEN ChiTietHoaDon_TC.MaTC IS NOT NULL THEN HoaDon.TongTien ELSE 0 END) AS TongTienThuCung,
+        SUM(CASE WHEN ChiTietHoaDon.MaSP IS NOT NULL THEN HoaDon.TongTien ELSE 0 END) AS TongTienSanPham,
+        SUM(CASE WHEN DatDV.MaDL IS NOT NULL THEN HoaDon.TongTien ELSE 0 END) AS TongTienDichVu
+    FROM
+        HoaDon
+    LEFT JOIN ChiTietHoaDon_TC ON HoaDon.MaHoaDon = ChiTietHoaDon_TC.MaHoaDon
+    LEFT JOIN ChiTietHoaDon ON HoaDon.MaHoaDon = ChiTietHoaDon.MaHoaDon
+    LEFT JOIN DatDV ON HoaDon.MaDL = DatDV.MaDL
+    WHERE
+        YEAR(HoaDon.NgayLap) = @nam
+    GROUP BY
+        YEAR(HoaDon.NgayLap)
+    ORDER BY
+        Nam DESC;
+END;
 
 
--- SELECT YEAR(HoaDon.NgayLap) as 'Nam' , SUM(HoaDon.TongTien) AS TongTien FROM HoaDon GROUP BY  YEAR(HoaDon.NgayLap)
+CREATE PROCEDURE NgayCaLam
+AS
+BEGIN
+    DECLARE @Today DATE = GETDATE();
+    DECLARE @LastDayOfMonth DATE = EOMONTH(@Today);
 
+    WITH DateList AS (
+        SELECT @Today AS [Date]
+        UNION ALL
+        SELECT DATEADD(DAY, 1, [Date])
+        FROM DateList
+        WHERE [Date] < @LastDayOfMonth
+    )
+
+    SELECT [Date]
+    FROM DateList
+    OPTION (MAXRECURSION 0);
+END;
+
+
+
+-- Tạo thủ tục tìm nhân viên chưa thuộc ca làm đó
+CREATE PROCEDURE NhanVienChuaCaLam
+    @ngay DATE,
+    @macl CHAR(10)
+AS
+BEGIN
+    SELECT NV.*
+    FROM NhanVien NV
+    WHERE NOT EXISTS (
+        SELECT 1
+        FROM ChiTietCaLam CTL
+        JOIN CaLam CL ON CTL.MaCL = CL.MaCL
+        WHERE CTL.MaNV = NV.MaNV
+            AND CTL.NgayLam = @ngay
+            AND CTL.MaCL = @macl
+    );
+END;
+
+SELECT * FROM ChiTietCaLam

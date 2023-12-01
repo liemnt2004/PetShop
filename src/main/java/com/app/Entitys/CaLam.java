@@ -8,14 +8,18 @@ package com.app.Entitys;
 public class CaLam {
     private String maCL;
     private String tenCaLam;
+    private String ThoiGian;
 
     public CaLam() {
     }
 
-    public CaLam(String maCL, String tenCaLam) {
+    public CaLam(String maCL, String tenCaLam, String ThoiGian) {
         this.maCL = maCL;
         this.tenCaLam = tenCaLam;
+        this.ThoiGian = ThoiGian;
     }
+    
+    
 
     public String getMaCL() {
         return maCL;
@@ -32,6 +36,21 @@ public class CaLam {
     public void setTenCaLam(String tenCaLam) {
         this.tenCaLam = tenCaLam;
     }
+
+    public String getThoiGian() {
+        return ThoiGian;
+    }
+
+    public void setThoiGian(String ThoiGian) {
+        this.ThoiGian = ThoiGian;
+    }
+
+    @Override
+    public String toString() {
+        return this.tenCaLam;
+    }
+   
+    
 
     
     
