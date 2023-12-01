@@ -1,7 +1,8 @@
 package com.app.Daos;
 
 import com.app.Entitys.LoaiSanPham;
-import com.app.Utils.JdbcHelper;
+import com.app.Entitys.SanPham;
+import com.app.utils.JdbcHelper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,13 +13,13 @@ public class LoaiSanPhamDao implements DaoMain<LoaiSanPham, String> {
 
     @Override
     public void insert(LoaiSanPham entity) {
-        String sql = "INSERT INTO LoaiSanPham (maloaisp, ten_loai) VALUES (?, ?)";
+        String sql = "INSERT INTO LoaiSanPham (maloaisp, tenloai) VALUES (?, ?)";
         JdbcHelper.executeUpdate(sql, entity.getMaloaisanpham(), entity.getTenloai());
     }
 
     @Override
     public void update(LoaiSanPham entity) {
-        String sql = "UPDATE LoaiSanPham SET ten_loai=? WHERE maloaisp=?";
+        String sql = "UPDATE LoaiSanPham SET tenloai=? WHERE maloaisp=?";
         JdbcHelper.executeUpdate(sql, entity.getTenloai(), entity.getMaloaisanpham());
     }
 
@@ -39,6 +40,10 @@ public class LoaiSanPhamDao implements DaoMain<LoaiSanPham, String> {
         String sql = "SELECT * FROM LoaiSanPham WHERE maloaisp=?";
         List<LoaiSanPham> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
+    }
+        public List<LoaiSanPham> selectByKeyWord(String keyword) throws SQLException{
+        String sql="SELECT * FROM LoaiSanPham WHERE TenLoai LIKE ?";
+        return selectBySql(sql, "%"+keyword+"%");
     }
 
     @Override
@@ -66,7 +71,7 @@ public class LoaiSanPhamDao implements DaoMain<LoaiSanPham, String> {
     private LoaiSanPham readFromResultSet(ResultSet rs) throws SQLException {
         LoaiSanPham model = new LoaiSanPham();
         model.setMaloaisanpham(rs.getString("maloaisp"));
-        model.setTenloai(rs.getString("ten_loai"));
+        model.setTenloai(rs.getString("tenloai"));
         return model;
     }
 }

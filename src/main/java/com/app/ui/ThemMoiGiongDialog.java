@@ -1,4 +1,4 @@
-package com.app.Ui;
+package com.app.ui;
 
 
 public class ThemMoiGiongDialog extends javax.swing.JDialog {

@@ -1,6 +1,6 @@
-package com.app.Ui;
+package com.app.ui;
 
-import com.app.Utils.XImage;
+import com.app.utils.XImage;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;

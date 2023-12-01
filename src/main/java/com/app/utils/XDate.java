@@ -1,5 +1,5 @@
 
-package com.app.Utils;
+package com.app.utils;
 
 
 import java.text.ParseException;

@@ -1,12 +1,16 @@
-package com.app.Ui;
+package com.app.ui;
 
-
+import com.app.utils.XImage;
+import com.app.utils.Auth;
+import com.app.utils.XDate;
+import com.app.utils.Validate;
+import com.app.utils.JdbcHelper;
+import com.app.utils.MsgBox;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import com.app.Daos.*;
 import com.app.Entitys.*;
-import com.app.Utils.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +28,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFileChooser;
 
-
-
-
 public class mainJFrame extends javax.swing.JFrame {
 
     int rowHV = -1;
@@ -39,12 +40,14 @@ public class mainJFrame extends javax.swing.JFrame {
     private List<SanPham> listSanPham = new ArrayList<>();
     int row = -1;
     HoiVienDao hvdao = new HoiVienDao();
-     private Timer time;
+    private Timer time;
     private Timer menuTimer;
     DefaultTableModel modelTblNhanVien;
     DefaultTableModel modelTblSuKien;
     NhanVienDao daoNhanVien = new NhanVienDao();
     DatDVDAO daoSuKien = new DatDVDAO();
+    SanPhamDAO spDao = new SanPhamDAO();
+    TonKhoDao tkDao = new TonKhoDao();
 
     public mainJFrame() {
 
@@ -78,7 +81,7 @@ public class mainJFrame extends javax.swing.JFrame {
         btnSuaNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\capnhat.png"));
         btnLamMoiNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\lammoi.png"));
         btnTimTenNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\timkiem.png"));
-         btnDauTienDanhSachNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\khuyenmai.png"));
+        btnDauTienDanhSachNhanVien.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\khuyenmai.png"));
         btnSauDanhSachKhachHang.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\sau.png"));
         btnTruocDanhSachKhachHang.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\truoc.png"));
         btnCuoiCungDanhSachKhachHang.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\cuoicung.png"));
@@ -110,12 +113,13 @@ public class mainJFrame extends javax.swing.JFrame {
         // Tải dữ liệu*************************************************************
         initTableNhanVien();
         taiDuLieuNhanVien();
-        
+
         initTableSuKien();
 
         // Chỗ đặt hàm*********************************************************//
         taidulieuDanhSachKhachHang();
     }
+
     //Liem Lam **************************************************************************
     private void sille() {
         ImageIcon icon = new ImageIcon("..\\PetShop\\src\\main\\java\\com\\app\\img\\banner1.jpg");
@@ -191,7 +195,7 @@ public class mainJFrame extends javax.swing.JFrame {
         for (SanPham x : listSanPham) {
             TonKho khohang = new TonKhoDao().selectByIdSanPham(x.getMaSP());
             int soluong = khohang != null ? khohang.getSoluong() : 0;
-            tblmodel.addRow(new Object[]{stt, x.getMaSP(), x.getTenSP(), x.getDonVi(), soluong, x.getMaNhaCungCap()});
+            tblmodel.addRow(new Object[]{stt, x.getMaSP(), x.getTenSP(), x.getDonVi(), soluong, x.getMaNhaCC()});
             stt++;
         }
     }
@@ -222,7 +226,7 @@ public class mainJFrame extends javax.swing.JFrame {
         combox.removeAllElements();
         List<NhaCungCap> list = new NhaCungCapDao().selectAll();
         for (NhaCungCap x : list) {
-            if (x.getMaNhaCungCap().equals(sp.getMaNhaCungCap())) {
+            if (x.getMaNhaCungCap().equals(sp.getMaNhaCC())) {
                 combox.addElement(x);
                 return;
             }
@@ -274,23 +278,23 @@ public class mainJFrame extends javax.swing.JFrame {
                     + "FROM HoaDon "
                     + "GROUP BY FORMAT(HoaDon.NgayLap, 'MMMM', 'vi-VN'), MONTH(HoaDon.NgayLap) "
                     + "ORDER BY MONTH(HoaDon.NgayLap) DESC ";
-            
+
             ResultSet rs = JdbcHelper.executeQuery(sql);
-            
+
             try {
                 while (rs.next()) {
                     String thang = rs.getString("Thang");
                     double tongTien = rs.getDouble("Tong_Tien");
                     lists.add(new ThongKe(thang, tongTien));
                 }
-                
+
                 rs.close();
                 for (int i = lists.size() - 1; i >= 0; i--) {
                     ThongKe tk = lists.get(i);
                     chart.addData(new ModelChart(tk.getThang(), new double[]{tk.getTongTien()}));
                 }
                 chart.start();
-                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -369,6 +373,7 @@ public class mainJFrame extends javax.swing.JFrame {
         return colors[thutu];
     }
 //Het Liem Lam *******************************************************************************
+
     private void closeMenuBar() {
         new Thread(new Runnable() {
             @Override
@@ -422,57 +427,55 @@ public class mainJFrame extends javax.swing.JFrame {
     }
 
     //Khu nTThan************************************************************************
-
     public void taidulieuDanhSachKhachHang() {
-    new Timer(100, new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            DefaultTableModel model = (DefaultTableModel) tblDanhSachKhachHang.getModel();
-            model.setRowCount(0);
+        new Timer(100, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DefaultTableModel model = (DefaultTableModel) tblDanhSachKhachHang.getModel();
+                model.setRowCount(0);
 
-            try {
-                String keyword = txtTimKiemTenKhachHang.getText();
-                List<HoiVien> listHV = (List<HoiVien>) hvdao.selectByKeyword(keyword);
+                try {
+                    String keyword = txtTimKiemTenKhachHang.getText();
+                    List<HoiVien> listHV = (List<HoiVien>) hvdao.selectByKeyword(keyword);
 
-                for (int i = 0; i < listHV.size(); i++) {
-                    HoiVien hv = listHV.get(i);
-                    Object[] row = {
-                        i + 1,
-                        hv.getMaHoiVien(),
-                        hv.getTenKhachHang(),
-                        hv.getGioiTinh(),
-                        hv.getEmail(),
-                        hv.getSoDienThoai(),
-                        hv.getTichDiem()
-                    };
-                    model.addRow(row);
+                    for (int i = 0; i < listHV.size(); i++) {
+                        HoiVien hv = listHV.get(i);
+                        Object[] row = {
+                            i + 1,
+                            hv.getMaHoiVien(),
+                            hv.getTenKhachHang(),
+                            hv.getGioiTinh(),
+                            hv.getEmail(),
+                            hv.getSoDienThoai(),
+                            hv.getTichDiem()
+                        };
+                        model.addRow(row);
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                    // Xử lý ngoại lệ ở đây, ví dụ: hiển thị một hộp thoại thông báo lỗi
                 }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                // Xử lý ngoại lệ ở đây, ví dụ: hiển thị một hộp thoại thông báo lỗi
             }
-        }
-    }).start();
-}
-    
+        }).start();
+    }
 
-void dauTienKhachHang() {
+    void dauTienKhachHang() {
         this.rowHV = 0;
 
     }
 
     private void cuoiCungKhachHang() {
         this.rowHV = tblDanhSachKhachHang.getRowCount() - 1;
-        
+
     }
 
     void TruocKhachHang() {
         this.rowHV--;
         if (this.rowHV >= 0) {
-           
+
         } else if (this.rowHV < 0) {
             this.rowHV = tblDanhSachKhachHang.getRowCount() - 1;
-           
+
         }
     }
 
@@ -482,10 +485,11 @@ void dauTienKhachHang() {
         if (this.rowHV <= tblDanhSachNhanVien.getRowCount() - 1) {
         } else if (this.rowHV > tblDanhSachNhanVien.getRowCount() - 1) {
             this.rowHV = 0;
-            
+
         }
     }
-private void updateStatusKhachHang() {
+
+    private void updateStatusKhachHang() {
         boolean edit = (this.rowHV >= 0);
         boolean first = (this.rowHV == 0);
         boolean last = (this.rowHV == tblDanhSachKhachHang.getRowCount() - 1);
@@ -494,8 +498,7 @@ private void updateStatusKhachHang() {
 
     }
 
-
-   // vùng code của Linh*********************************************************************
+    // vùng code của Linh*********************************************************************
     private void startTimers() {
         ActionListener action = new ActionListener() {
             @Override
@@ -509,6 +512,7 @@ private void updateStatusKhachHang() {
         time.start();
 
     }
+
     // FoRM Sư Kiện ****************************************************************
     public void initTableSuKien() {
         modelTblSuKien = (DefaultTableModel) tblDanhSachSuKien.getModel();
@@ -524,7 +528,8 @@ private void updateStatusKhachHang() {
         };
         modelTblNhanVien.setColumnIdentifiers(columns);
     }
-     private void taiDuLieuSuKien() {
+
+    private void taiDuLieuSuKien() {
         try {
             String name = txtTimTenNhanVien.getText();
             List<NhanVien> lst = daoNhanVien.selectByName(name);
@@ -553,10 +558,8 @@ private void updateStatusKhachHang() {
 
     }
 
-    
     // HẾt Form sự kiện **********************************************************************
 // FORM NV*******************************
-
     private void updateStatusNhanVien() {
         boolean edit = (this.row >= 0);
         boolean first = (this.row == 0);
@@ -777,7 +780,6 @@ private void updateStatusKhachHang() {
         txtNgaySinhNhanVien.setText("");
         lblHinhNhanVien.setToolTipText("");
         this.row = -1;
-  
 
     }
 
@@ -835,7 +837,6 @@ private void updateStatusKhachHang() {
 
     // HẾt FORM NV*******************************
     // Giao diện*********************
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -2051,7 +2052,7 @@ private void updateStatusKhachHang() {
         pnlNenThuCungLayout.setHorizontalGroup(
             pnlNenThuCungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(tabbedThuCung, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
         );
         pnlNenThuCungLayout.setVerticalGroup(
             pnlNenThuCungLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -4330,7 +4331,7 @@ private void updateStatusKhachHang() {
             tabThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabThongKeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1251, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1251, Short.MAX_VALUE)
                 .addContainerGap())
         );
         tabThongKeLayout.setVerticalGroup(
@@ -5264,7 +5265,7 @@ private void updateStatusKhachHang() {
 
     private void btnTimKiemKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemKhachHangActionPerformed
         this.taidulieuDanhSachKhachHang();
-        
+
     }//GEN-LAST:event_btnTimKiemKhachHangActionPerformed
 
     private void tbllDachSachNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbllDachSachNhapHangMouseClicked
@@ -5340,7 +5341,6 @@ private void updateStatusKhachHang() {
     private void tabKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabKhachHangMouseClicked
         evt.consume();
     }//GEN-LAST:event_tabKhachHangMouseClicked
-
 
     /**
      * @param args the command line arguments

@@ -3,6 +3,8 @@ package com.app.Entitys;
 public class LoaiSanPham {
     private String maloaisanpham;
     private String tenloai;
+    
+    
 
     public LoaiSanPham() {
     }

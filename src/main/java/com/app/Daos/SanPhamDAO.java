@@ -1,24 +1,25 @@
 package com.app.Daos;
 
 import com.app.Entitys.SanPham;
-import com.app.Utils.JdbcHelper;
+import com.app.utils.JdbcHelper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SanPhamDAO implements DaoMain<SanPham, String> {
 
     @Override
     public void insert(SanPham entity) {
-        String sql = "INSERT INTO SanPham (MaSP, GiaTien, TenSP, DonVi, PhanTram, MaLoaiSP, MaNhaCC) VALUES (?,?,?,?,?,?,?)";
-        JdbcHelper.executeUpdate(sql, entity.getMaSP(), entity.getGiaTien(), entity.getTenSP(), entity.getDonVi(), entity.getPhanTram(), entity.getMaLoaiSP(), entity.getMaNhaCungCap());
-    }
+        String sql = "INSERT INTO SanPham (MaSP, Giatien, Tensp, donvi, phantram, maloaisp, trangthai, manhacc) VALUES (?,?,?,?,?,?,?,?)";
+        JdbcHelper.executeUpdate(sql,entity.getMaSP(),entity.getGiaTien(),entity.getTenSP(),entity.getDonVi(),entity.getPhanTram(),entity.getMaLoaiSP(), entity.getTrangThai(), entity.getMaNhaCC());
+                }
 
     @Override
     public void update(SanPham entity) {
-        String sql = "UPDATE SanPham SET GiaTien=?, TenSP=?, DonVi=?, PhanTram=?, MaLoaiSP=?, MaNhaCC=? WHERE MaSP=?";
-        JdbcHelper.executeUpdate(sql, entity.getGiaTien(), entity.getTenSP(), entity.getDonVi(), entity.getPhanTram(), entity.getMaLoaiSP(), entity.getMaNhaCungCap(), entity.getMaSP());
+        String sql = "UPDATE SanPham SET Giatien=?, Tensp=?,donvi=?,phantram=?,maloaisp=?, trangthai=?,MaNhaCC=? WHERE MaSP=?"; 
+        JdbcHelper.executeUpdate(sql,entity.getGiaTien(),entity.getTenSP(),entity.getDonVi(),entity.getPhanTram(),entity.getMaLoaiSP(),entity.getMaSP(), entity.getMaNhaCC());
     }
 
     @Override
@@ -39,7 +40,14 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
         List<SanPham> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
-
+    public List<SanPham> selectByKeyWord(String keyword) throws SQLException{
+        String sql="SELECT * FROM SANPHAM WHERE TenSP LIKE ?";
+        return selectBySql(sql, "%"+keyword+"%");
+    }
+    public List<SanPham> selectByCombobox(String combobox) throws SQLException{
+        String sql="SELECT * FROM SANPHAM WHERE TrangThai LIKE ?";
+        return selectBySql(sql, "%"+combobox+"%");
+    }
     @Override
     public List<SanPham> selectBySql(String sql, Object... args) {
         List<SanPham> list = new ArrayList<>();
@@ -62,15 +70,19 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
         return list;
     }
 
+    
+
     private SanPham readFromResultSet(ResultSet rs) throws SQLException {
         SanPham model = new SanPham();
         model.setMaSP(rs.getString("MaSP"));
-        model.setGiaTien(rs.getDouble("GiaTien"));
-        model.setTenSP(rs.getString("TenSP"));
-        model.setDonVi(rs.getString("DonVi"));
-        model.setPhanTram(rs.getFloat("PhanTram"));
-        model.setMaLoaiSP(rs.getString("MaLoaiSP"));
-        model.setMaNhaCungCap(rs.getString("MaNhaCC"));
+        model.setGiaTien(rs.getDouble("Giatien"));
+        model.setTenSP(rs.getString("Tensp"));    
+        model.setDonVi(rs.getString("donvi"));
+        model.setPhanTram(rs.getFloat("phantram"));
+        model.setMaLoaiSP(rs.getString("maloaisp"));
+        model.setTrangThai(rs.getString("TrangThai"));
+        model.setMaNhaCC(rs.getString("MaNhaCC"));
         return model;
     }
+    
 }

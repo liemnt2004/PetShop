@@ -6,21 +6,23 @@ public class SanPham {
     private Double giaTien;
     private String tenSP;
     private String donVi;
-    private float phanTram;
+    private Float phanTram;
     private String maLoaiSP;
-    private String maNhaCungCap;
+    private String maNhaCC;
+    private String trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(String maSP, Double giaTien, String tenSP, String donVi, float phanTram, String maLoaiSP, String maNhaCungCap) {
+    public SanPham(String maSP, Double giaTien, String tenSP, String donVi, Float phanTram, String maLoaiSP, String maNhaCC, String trangThai) {
         this.maSP = maSP;
         this.giaTien = giaTien;
         this.tenSP = tenSP;
         this.donVi = donVi;
         this.phanTram = phanTram;
         this.maLoaiSP = maLoaiSP;
-        this.maNhaCungCap = maNhaCungCap;
+        this.maNhaCC = maNhaCC;
+        this.trangThai = trangThai;
     }
 
     public String getMaSP() {
@@ -55,11 +57,11 @@ public class SanPham {
         this.donVi = donVi;
     }
 
-    public float getPhanTram() {
+    public Float getPhanTram() {
         return phanTram;
     }
 
-    public void setPhanTram(float phanTram) {
+    public void setPhanTram(Float phanTram) {
         this.phanTram = phanTram;
     }
 
@@ -71,16 +73,26 @@ public class SanPham {
         this.maLoaiSP = maLoaiSP;
     }
 
-    public String getMaNhaCungCap() {
-        return maNhaCungCap;
+    public String getMaNhaCC() {
+        return maNhaCC;
     }
 
-    public void setMaNhaCungCap(String maNhaCungCap) {
-        this.maNhaCungCap = maNhaCungCap;
+    public void setMaNhaCC(String maNhaCC) {
+        this.maNhaCC = maNhaCC;
     }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
    
 
+
     
     
-    
+
 }

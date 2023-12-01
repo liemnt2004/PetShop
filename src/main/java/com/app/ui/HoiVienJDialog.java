@@ -1,11 +1,12 @@
-package com.app.Ui;
+package com.app.ui;
 
+import com.app.utils.Validate;
+import com.app.utils.MsgBox;
 import com.app.Daos.*;
 import com.app.Entitys.*;
 import java.awt.HeadlessException;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
-import com.app.Utils.*;
 
 public class HoiVienJDialog extends javax.swing.JDialog {
 

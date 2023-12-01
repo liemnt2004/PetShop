@@ -1,4 +1,4 @@
-package com.app.Ui;
+package com.app.ui;
 
 
 public class ThemMoiLoaiJDialog extends javax.swing.JDialog {

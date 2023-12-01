@@ -1,6 +1,6 @@
 
 
-package com.app.Ui;
+package com.app.ui;
 import com.app.Daos.NhanVienDao;
 import com.sun.nio.sctp.SctpStandardSocketOptions;
 import javax.swing.JOptionPane;
