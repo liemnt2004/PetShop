@@ -62,6 +62,21 @@ public class TonKhoDao implements DaoMain<TonKho, Integer> {
         return tonKho;
     }
     
+    
+     
+    public TonKho selectBySanPham(String key) {
+        TonKho tonKho = null;
+        String query = "SELECT * FROM tonkho WHERE masp = ?";
+        try (ResultSet resultSet = JdbcHelper.executeQuery(query, key)) {
+            if (resultSet.next()) {
+                tonKho = readFromResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tonKho;
+    }
+    
     public List<Object[]> getThongSoKho() {
         List<Object[]> list = new ArrayList<>();
         try {
