@@ -1,0 +1,123 @@
+[INFO ] 23-11-2023 13:29:15 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 23-11-2023 13:29:51 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 23-11-2023 13:30:48 [AWT-EventQueue-0] Log - Xóa thành công nè
+[INFO ] 23-11-2023 13:30:56 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 23-11-2023 21:07:43 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 23-11-2023 21:08:04 [AWT-EventQueue-0] Log - Thêm thành công
+[INFO ] 23-11-2023 21:08:39 [AWT-EventQueue-0] Log - Thêm thành công
+[ERROR] 25-11-2023 00:15:30 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 25-11-2023 00:15:59 [AWT-EventQueue-0] Log - Mã thú cưng đã tồn tại
+[ERROR] 25-11-2023 00:16:12 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form MM/dd/yyyy
+[ERROR] 25-11-2023 00:16:41 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 25-11-2023 00:16:46 [AWT-EventQueue-0] Log - Thất bại
+[ERROR] 25-11-2023 00:22:12 [AWT-EventQueue-0] Log - Thông tin chưa đẩy đủ! Vui lòng nhập thông tin đầy đủ
+[ERROR] 25-11-2023 00:22:17 [AWT-EventQueue-0] Log - Thông tin chưa đẩy đủ! Vui lòng nhập thông tin đầy đủ
+[ERROR] 25-11-2023 00:22:21 [AWT-EventQueue-0] Log - Thông tin chưa đẩy đủ! Vui lòng nhập thông tin đầy đủ
+[ERROR] 25-11-2023 00:22:35 [AWT-EventQueue-0] Log - Thông tin chưa đẩy đủ! Vui lòng nhập thông tin đầy đủ
+[ERROR] 25-11-2023 00:24:37 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 25-11-2023 00:24:42 [AWT-EventQueue-0] Log - Thất bại
+[ERROR] 25-11-2023 00:24:49 [AWT-EventQueue-0] Log - Mã thú cưng đã tồn tại
+[ERROR] 25-11-2023 00:24:56 [AWT-EventQueue-0] Log - Thất bại
+[ERROR] 25-11-2023 00:26:40 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[INFO ] 25-11-2023 00:26:45 [AWT-EventQueue-0] Log - Xóa thành công nè
+[ERROR] 25-11-2023 00:26:56 [AWT-EventQueue-0] Log - Thông tin chưa đẩy đủ! Vui lòng nhập thông tin đầy đủ
+[ERROR] 25-11-2023 00:27:01 [AWT-EventQueue-0] Log - Thất bại
+[INFO ] 25-11-2023 10:02:45 [AWT-EventQueue-0] Log - Cập nhật thành công
+[ERROR] 25-11-2023 10:02:54 [AWT-EventQueue-0] Log - Mã loài đã tồn tại
+[ERROR] 25-11-2023 10:40:51 [AWT-EventQueue-0] Log - có trường rỗng
+[INFO ] 25-11-2023 10:40:53 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 25-11-2023 10:48:13 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 25-11-2023 11:03:55 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 25-11-2023 11:15:06 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 25-11-2023 11:15:22 [AWT-EventQueue-0] Log - Thêm mới thành công
+[ERROR] 02-12-2023 10:31:39 [AWT-EventQueue-0] Log - Lỗi
+[ERROR] 02-12-2023 11:14:58 [AWT-EventQueue-0] Log - Lỗi fill cboChuong
+[ERROR] 02-12-2023 12:54:05 [AWT-EventQueue-0] Log - Có trường rỗng
+[ERROR] 02-12-2023 13:01:54 [AWT-EventQueue-0] Log - Lỗi!
+[ERROR] 02-12-2023 13:02:09 [AWT-EventQueue-0] Log - Lỗi!
+[ERROR] 02-12-2023 13:04:14 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 02-12-2023 13:14:44 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form MM/dd/yyyy
+[ERROR] 02-12-2023 13:17:34 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 02-12-2023 13:26:23 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 02-12-2023 13:33:06 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 02-12-2023 13:33:13 [AWT-EventQueue-0] Log - Thất bại
+[ERROR] 02-12-2023 13:33:39 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 02-12-2023 13:33:58 [AWT-EventQueue-0] Log - Thất bại
+[ERROR] 03-12-2023 13:55:42 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 03-12-2023 13:55:47 [AWT-EventQueue-0] Log - Thất bại
+[ERROR] 03-12-2023 13:56:26 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 03-12-2023 13:57:13 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:09:06 [AWT-EventQueue-0] Log - Lỗi!
+[ERROR] 03-12-2023 14:15:11 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 03-12-2023 14:15:19 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:15:38 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 03-12-2023 14:15:55 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:16:02 [AWT-EventQueue-0] Log - Giá tiền phải là số
+[ERROR] 03-12-2023 14:16:31 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:16:52 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:18:19 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[INFO ] 03-12-2023 14:18:50 [AWT-EventQueue-0] Log - Xóa thành công nè
+[ERROR] 03-12-2023 14:18:59 [AWT-EventQueue-0] Log - Thất bại thêm thú cưng
+[ERROR] 03-12-2023 14:21:47 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 03-12-2023 14:21:53 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:22:20 [AWT-EventQueue-0] Log - Thất bại thêm thú cưng
+[ERROR] 03-12-2023 14:29:28 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:33:47 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:37:04 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:49:02 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:53:17 [AWT-EventQueue-0] Log - Thất bại cập nhật thú cưng
+[ERROR] 03-12-2023 14:56:49 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 14:57:22 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 14:57:27 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 14:57:41 [AWT-EventQueue-0] Log - Thêm mới thành công
+[ERROR] 03-12-2023 15:00:20 [AWT-EventQueue-0] Log - Cập nhật thất bại!
+[ERROR] 03-12-2023 15:04:04 [AWT-EventQueue-0] Log - Cập nhật thất bại!
+[ERROR] 03-12-2023 15:05:59 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 03-12-2023 15:17:41 [AWT-EventQueue-0] Log - lỗi dữ liệu
+[INFO ] 03-12-2023 15:20:30 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 03-12-2023 15:20:42 [AWT-EventQueue-0] Log - Cập nhật thành công
+[ERROR] 03-12-2023 15:22:10 [AWT-EventQueue-0] Log - Cập nhật thất bại!
+[ERROR] 03-12-2023 15:23:16 [AWT-EventQueue-0] Log - Cập nhật thất bại!
+[INFO ] 03-12-2023 15:24:38 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 15:24:50 [AWT-EventQueue-0] Log - Thêm mới thành công
+[INFO ] 03-12-2023 15:24:53 [AWT-EventQueue-0] Log - Xóa thành công nè
+[ERROR] 03-12-2023 16:13:10 [AWT-EventQueue-0] Log - Lỗi truy vấn dữ liệu!
+[ERROR] 03-12-2023 16:13:12 [AWT-EventQueue-0] Log - Lỗi truy vấn dữ liệu!
+[ERROR] 03-12-2023 16:13:16 [AWT-EventQueue-0] Log - Lỗi truy vấn dữ liệu!
+[ERROR] 03-12-2023 16:14:16 [AWT-EventQueue-0] Log - Lỗi truy vấn dữ liệu!
+[ERROR] 03-12-2023 16:14:22 [AWT-EventQueue-0] Log - Lỗi truy vấn dữ liệu!
+[ERROR] 03-12-2023 16:15:28 [AWT-EventQueue-0] Log - Lỗi truy vấn dữ liệu!
+[ERROR] 03-12-2023 16:20:06 [AWT-EventQueue-0] Log - Loi truy van du lieu!
+[INFO ] 03-12-2023 16:24:08 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 16:25:25 [AWT-EventQueue-0] Log - Thêm mới thành công
+[ERROR] 03-12-2023 16:25:41 [AWT-EventQueue-0] Log - Mã chuồng không được trống
+[ERROR] 03-12-2023 16:26:09 [AWT-EventQueue-0] Log - lỗi dữ liệu
+[ERROR] 03-12-2023 16:30:13 [AWT-EventQueue-0] Log - thêm thất bại
+[ERROR] 03-12-2023 16:35:31 [AWT-EventQueue-0] Log - Mã chuồng không được trống
+[INFO ] 03-12-2023 16:35:36 [AWT-EventQueue-0] Log - Xóa thành công
+[INFO ] 03-12-2023 16:35:51 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 18:57:47 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 18:59:37 [AWT-EventQueue-0] Log - Cập nhật thành công
+[ERROR] 03-12-2023 19:37:27 [AWT-EventQueue-0] Log - Thông tin chưa đẩy đủ! Vui lòng nhập thông tin đầy đủ
+[ERROR] 03-12-2023 19:44:44 [AWT-EventQueue-0] Log - Loi truy van du lieu!
+[ERROR] 03-12-2023 19:44:46 [AWT-EventQueue-0] Log - Loi truy van du lieu!
+[ERROR] 03-12-2023 21:50:43 [AWT-EventQueue-0] Log - Lỗi hiển thị hình ảnh
+[ERROR] 03-12-2023 22:11:24 [AWT-EventQueue-0] Log - Lỗi hiển thị hình ảnh
+[INFO ] 03-12-2023 22:12:44 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:19:50 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:22:47 [AWT-EventQueue-0] Log - Cập nhật thành công
+[ERROR] 03-12-2023 22:23:01 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[ERROR] 03-12-2023 22:23:09 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[INFO ] 03-12-2023 22:23:19 [AWT-EventQueue-0] Log - Cập nhật thành công
+[ERROR] 03-12-2023 22:23:40 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[INFO ] 03-12-2023 22:23:45 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:24:01 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:24:47 [AWT-EventQueue-0] Log - Cập nhật thành công
+[ERROR] 03-12-2023 22:26:13 [AWT-EventQueue-0] Log - Tuổi thú cưng nhập theo form dd/MM/yyyy
+[INFO ] 03-12-2023 22:26:19 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:29:35 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:29:57 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:32:45 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:33:08 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:33:17 [AWT-EventQueue-0] Log - Cập nhật thành công
+[INFO ] 03-12-2023 22:35:28 [AWT-EventQueue-0] Log - Cập nhật thành công
