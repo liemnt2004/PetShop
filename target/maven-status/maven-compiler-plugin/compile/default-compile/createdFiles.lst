@@ -1,6 +1,7 @@
 com\app\ui\DoiMatKhauJDialog$4.class
 com\app\ui\mainJFrame$119.class
 com\app\Daos\SanPhamDAO.class
+com\app\ui\mainJFrame$126.class
 com\app\ui\ThemMoiLoaiJVatDialog$1.class
 com\app\Other\ImageSlide$2.class
 com\app\ui\ThemMoiGiongDialog$4.class
@@ -14,6 +15,7 @@ com\app\ui\DoiMatKhauJDialog$6$1.class
 com\app\ui\mainJFrame$5.class
 com\app\Entitys\DichVu.class
 com\app\Daos\DichVuDao.class
+com\app\ui\mainJFrame$120.class
 com\app\ui\ChiTietCaLamJDialog$8.class
 com\app\Other\blankchart\BlankPlotChart.class
 com\app\ui\mainJFrame$97.class
@@ -42,6 +44,7 @@ com\app\ui\ThemMoiLoaiJVatDialog$7.class
 com\app\Entitys\HoiVien.class
 com\app\ui\ThemMoiGiongDialog$10.class
 com\app\Other\SplinePoint.class
+com\app\ui\mainJFrame$125.class
 com\app\ui\HoiVienJDialog$5.class
 com\app\ui\DangNhapJFrame$2.class
 com\app\Entitys\TaiKhoan.class
@@ -65,6 +68,7 @@ com\app\ui\ChiTietCaLamJDialog$3.class
 com\app\Other\Spline.class
 com\app\ui\DangNhapJFrame$1.class
 com\app\ui\ThemMoiLoaiJVatDialog$3.class
+com\app\ui\mainJFrame$121.class
 com\app\Daos\VaiTroDao.class
 com\app\ui\HoiVienJDialog$6.class
 com\app\Entitys\HoaDon.class
@@ -74,6 +78,7 @@ com\app\ui\mainJFrame$7.class
 com\app\ui\mainJFrame$117.class
 com\app\ui\ThemMoiLoaiJVatDialog$11$1.class
 com\app\ui\mainJFrame$55.class
+com\app\ui\mainJFrame$122.class
 com\app\ui\mainJFrame$32.class
 com\app\ui\ThemMoiChuongJDialog$1.class
 com\app\ui\ThemMoiChuongJDialog.class
@@ -82,6 +87,7 @@ com\app\ui\ThemMoiLoaiJDialog$7.class
 com\app\ui\mainJFrame$27.class
 com\app\ui\ChiTietCaLamJDialog$5.class
 com\app\ui\mainJFrame$109.class
+com\app\ui\mainJFrame$129.class
 com\app\ui\mainJFrame$47.class
 com\app\ui\mainJFrame$67.class
 com\app\Entitys\ThongKe.class
@@ -93,6 +99,7 @@ com\app\ui\DoiMatKhauJDialog$1.class
 com\app\ui\ThemMoiGiongDialog$7.class
 com\app\utils\Validate.class
 com\app\ui\mainJFrame$116.class
+com\app\ui\mainJFrame$123.class
 com\app\ui\ThongTinTaiKhoanJDialog$2.class
 com\app\ui\ThemMoiLoaiJDialog$1.class
 com\app\ui\mainJFrame$74.class
@@ -122,11 +129,13 @@ com\app\ui\ThemMoiGiongDialog$2.class
 com\app\ui\ThemMoiGiongDialog$11$1.class
 com\app\ui\ThemMoiGiongDialog$11.class
 com\app\Other\CurveLineChart.class
+com\app\ui\mainJFrame$124.class
 com\app\Daos\LoaiVatDao.class
 com\app\ui\mainJFrame$59.class
 com\app\Other\PanelShadow.class
 com\app\ui\mainJFrame$99.class
 com\app\ui\DoiMatKhauJDialog$6.class
+com\app\ui\mainJFrame$131.class
 com\app\ui\mainJFrame$46.class
 com\app\Entitys\PhieuGiamGia.class
 com\app\ui\mainJFrame$41.class
@@ -135,6 +144,7 @@ com\app\ui\ThemMoiLoaiJDialog$6.class
 com\app\Entitys\LoaiSanPham.class
 com\app\Other\CurveLineChart$4.class
 com\app\ui\mainJFrame$108.class
+com\app\ui\mainJFrame$130.class
 com\app\ui\mainJFrame$35.class
 com\app\ui\ChiTietCaLamJDialog$6.class
 com\app\Other\PieChart$PeiChartType.class
@@ -142,6 +152,7 @@ com\app\ui\mainJFrame$102.class
 com\app\Daos\TonKhoDao.class
 com\app\ui\mainJFrame$50.class
 com\app\Daos\TaiKhoanDao.class
+com\app\ui\mainJFrame$132.class
 com\app\ui\mainJFrame$70.class
 com\app\ui\mainJFrame$80.class
 com\app\ui\mainJFrame$20.class
@@ -170,6 +181,8 @@ com\app\ui\HoiVienJDialog$2.class
 com\app\ui\mainJFrame$68.class
 com\app\ui\mainJFrame$107.class
 com\app\ui\ChiTietCaLamJDialog.class
+com\app\ui\mainJFrame$127.class
+com\app\ui\mainJFrame$135.class
 com\app\ui\mainJFrame$45.class
 com\app\ui\mainJFrame$112.class
 com\app\ui\ChiTietCaLamJDialog$10.class
@@ -182,6 +195,7 @@ com\app\Entitys\SanPham.class
 com\app\Daos\LoaiSanPhamDao.class
 com\app\ui\mainJFrame$39.class
 com\app\utils\JdbcHelper.class
+com\app\ui\mainJFrame$134.class
 com\app\Daos\GiongDao.class
 com\app\ui\ThemMoiLoaiJVatDialog$9.class
 com\app\ui\mainJFrame$111.class
@@ -196,6 +210,7 @@ com\app\ui\HoiVienJDialog$6$1.class
 com\app\Entitys\LoaiVat.class
 com\app\ui\mainJFrame$16.class
 com\app\ui\mainJFrame$66.class
+com\app\ui\mainJFrame$133.class
 com\app\ui\mainJFrame$21.class
 com\app\ui\mainJFrame$105.class
 com\app\Other\PanelGradient$GradientType.class
@@ -204,6 +219,7 @@ com\app\ui\mainJFrame$38.class
 com\app\Daos\PhieuGiamGiaDao.class
 com\app\Entitys\TonKho.class
 com\app\ui\ThemMoiChuongJDialog$8.class
+com\app\ui\mainJFrame$128.class
 com\app\ui\mainJFrame$15.class
 com\app\ui\ThemMoiGiongDialog$6.class
 com\app\ui\DoiMatKhauJDialog$2.class
