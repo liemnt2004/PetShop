@@ -38,4 +38,11 @@ public class Giong {
         this.maLoai = maLoai;
     }
 
+    @Override
+    public String toString() {
+        return this.tenGiong;
+    }
+    
+    
+
 }

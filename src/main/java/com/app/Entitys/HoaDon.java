@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.Entitys;
 
 import java.util.Date;
@@ -15,13 +11,12 @@ public class HoaDon {
     private String maHV;
     private String maPhieuGiamGia;
     private String trangThai;
-    private String maPTTT;
     private String maDL;
 
     public HoaDon() {
     }
 
-    public HoaDon(String maHoaDon, String maNV, Date ngayLap, float tongTien, String maHV, String maPhieuGiamGia, String trangThai, String maPTTT, String maDL) {
+    public HoaDon(String maHoaDon, String maNV, Date ngayLap, float tongTien, String maHV, String maPhieuGiamGia, String trangThai, String maDL) {
         this.maHoaDon = maHoaDon;
         this.maNV = maNV;
         this.ngayLap = ngayLap;
@@ -29,7 +24,6 @@ public class HoaDon {
         this.maHV = maHV;
         this.maPhieuGiamGia = maPhieuGiamGia;
         this.trangThai = trangThai;
-        this.maPTTT = maPTTT;
         this.maDL = maDL;
     }
 
@@ -89,14 +83,6 @@ public class HoaDon {
         this.trangThai = trangThai;
     }
 
-    public String getMaPTTT() {
-        return maPTTT;
-    }
-
-    public void setMaPTTT(String maPTTT) {
-        this.maPTTT = maPTTT;
-    }
-
     public String getMaDL() {
         return maDL;
     }
@@ -105,8 +91,5 @@ public class HoaDon {
         this.maDL = maDL;
     }
 
-    
-
-   
     
 }

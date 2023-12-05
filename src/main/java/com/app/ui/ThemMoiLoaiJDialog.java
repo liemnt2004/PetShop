@@ -1,16 +1,150 @@
 package com.app.ui;
 
+import com.app.Daos.LoaiSanPhamDao;
+import com.app.Entitys.LoaiSanPham;
+import com.app.utils.MsgBox;
+import com.app.utils.Validate;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ThemMoiLoaiJDialog
-     */
+    int index = 0;
+    LoaiSanPhamDao loaiSPDao = new LoaiSanPhamDao();
+
     public ThemMoiLoaiJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-                setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
+        taiLoaiSP();
+    }
 
+    private boolean kiemTraSP() {
+        if (Validate.nothingText(txtMaLoaiSanPham, txtTenLoaiSanPham) != null) {
+            MsgBox.AlertFall(this, "Vui lòng nhập đầy đủ thông tin sản phẩm");
+            return false;
+        }
+        return true;
+    }
+
+    ;
+    void xoaDuLieu() {
+        txtMaLoaiSanPham.setText("");
+        txtTenLoaiSanPham.setText("");
+    }
+
+    void them() {
+        LoaiSanPham model = getModelLoaiSP();
+        if (kiemTraSP()) {
+            try {
+
+                loaiSPDao.insert(model);
+                this.taiLoaiSP();
+                this.xoaDuLieu();
+                JOptionPane.showMessageDialog(this, "Thêm mới thành công!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Thêm mới thất bại!");
+            }
+        }
+    }
+
+    void capNhat() {
+        LoaiSanPham model = getModelLoaiSP();
+        if (kiemTraSP()) {
+            try {
+                loaiSPDao.update(model);
+                this.taiLoaiSP();
+                JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Cập nhật thất bại!");
+            }
+        }
+    }
+
+    void xoa() {
+        String macd = txtMaLoaiSanPham.getText();
+        try {
+            loaiSPDao.delete(macd);
+            this.taiLoaiSP();
+            this.xoaDuLieu();
+            JOptionPane.showMessageDialog(this, "Xóa thành công!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại!");
+        }
+    }
+
+    void taiLoaiSP() {
+
+        DefaultTableModel model = (DefaultTableModel) tblLoaiSanPham.getModel();
+        model.setRowCount(0);
+        String keyword = txtTimKiem.getText();
+        try {
+            List<LoaiSanPham> listLoaiSP = loaiSPDao.selectByKeyWord(keyword);
+            for (LoaiSanPham lsp : listLoaiSP) {
+                Object[] row = {
+                    lsp.getMaloaisanpham(),
+                    lsp.getTenloai(),};
+                model.addRow(row);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    void setModelLoaiSP(LoaiSanPham model) {
+        txtMaLoaiSanPham.setText(model.getMaloaisanpham());
+        txtTenLoaiSanPham.setText(model.getTenloai());
+    }
+
+    LoaiSanPham getModelLoaiSP() {
+        LoaiSanPham model = new LoaiSanPham();
+        model.setMaloaisanpham(txtMaLoaiSanPham.getText());
+        model.setTenloai(txtTenLoaiSanPham.getText());
+        return model;
+    }
+
+    void edit() {
+        try {
+            String macd = (String) tblLoaiSanPham.getValueAt(this.index, 0);
+            LoaiSanPham model = loaiSPDao.selectById(macd);
+            if (model != null) {
+                this.setModelLoaiSP(model);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void dauTienSanPham() {
+        this.index = 0;
+        this.edit();
+    }
+
+    private void cuoiCungSamPham() {
+        this.index = tblLoaiSanPham.getRowCount() - 1;
+        this.edit();
+    }
+
+    void TruocSanPham() {
+        this.index--;
+        if (this.index >= 0) {
+            this.edit();
+        } else if (this.index < 0) {
+            this.index = tblLoaiSanPham.getRowCount() - 1;
+            this.edit();
+        }
+    }
+
+    private void SauSanPham() {
+        this.index++;
+        System.out.println(this.index);
+        if (this.index <= tblLoaiSanPham.getRowCount() - 1) {
+            this.edit();
+        } else if (this.index > tblLoaiSanPham.getRowCount() - 1) {
+            this.index = 0;
+            this.edit();
+        }
     }
 
     /**
@@ -43,13 +177,13 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
         btnXoa = new javax.swing.JButton();
         btnMoi = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
-        txtMaLoaiVat = new javax.swing.JTextField();
+        txtMaLoaiSanPham = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtTenLoaiVat = new javax.swing.JTextField();
+        txtTenLoaiSanPham = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblLoaiSanPham = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
@@ -153,19 +287,19 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
             }
         });
 
-        txtMaLoaiVat.addActionListener(new java.awt.event.ActionListener() {
+        txtMaLoaiSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaLoaiVatActionPerformed(evt);
+                txtMaLoaiSanPhamActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Mã loài vật");
+        jLabel2.setText("Mã Loại Sản Phẩm");
 
-        jLabel3.setText("Tên loài vật");
+        jLabel3.setText("Tên Loại Sản Phẩm");
 
-        txtTenLoaiVat.addActionListener(new java.awt.event.ActionListener() {
+        txtTenLoaiSanPham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenLoaiVatActionPerformed(evt);
+                txtTenLoaiSanPhamActionPerformed(evt);
             }
         });
 
@@ -178,12 +312,12 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtMaLoaiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTenLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtTenLoaiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -199,14 +333,14 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaLoaiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
                     .addComponent(btnThem)
                     .addComponent(btnCapNhat))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtTenLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTenLoaiSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnXoa)
                     .addComponent(btnMoi))
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -214,7 +348,7 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblLoaiSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -224,8 +358,21 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
-        ));
-        jScrollPane4.setViewportView(jTable2);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblLoaiSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblLoaiSanPhamMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblLoaiSanPham);
 
         jLabel6.setText("Tìm kiếm");
 
@@ -240,6 +387,11 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
         jButton6.setBackground(new java.awt.Color(0, 51, 51));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("<--");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(0, 51, 51));
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
@@ -262,6 +414,11 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
         jButton9.setBackground(new java.awt.Color(0, 51, 51));
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("-->");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -339,40 +496,59 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+
+        this.them();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        this.xoa();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
-        // TODO add your handling code here:
+        this.xoaDuLieu();
     }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        // TODO add your handling code here:
+
+        this.capNhat();
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
-    private void txtMaLoaiVatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaLoaiVatActionPerformed
+    private void txtMaLoaiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaLoaiSanPhamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaLoaiVatActionPerformed
+    }//GEN-LAST:event_txtMaLoaiSanPhamActionPerformed
 
-    private void txtTenLoaiVatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiVatActionPerformed
+    private void txtTenLoaiSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenLoaiSanPhamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenLoaiVatActionPerformed
+    }//GEN-LAST:event_txtTenLoaiSanPhamActionPerformed
+
+    private void tblLoaiSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiSanPhamMouseClicked
+        if (evt.getClickCount() == 2) {
+            this.index = tblLoaiSanPham.rowAtPoint(evt.getPoint());
+            if (this.index >= 0) {
+                this.edit();
+            }
+        }
+    }//GEN-LAST:event_tblLoaiSanPhamMouseClicked
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemActionPerformed
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        dauTienSanPham();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        SauSanPham();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        TruocSanPham();
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        cuoiCungSamPham();
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,10 +623,10 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField txtMaLoaiVat;
-    private javax.swing.JTextField txtTenLoaiVat;
+    private javax.swing.JTable tblLoaiSanPham;
+    private javax.swing.JTextField txtMaLoaiSanPham;
+    private javax.swing.JTextField txtTenLoaiSanPham;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

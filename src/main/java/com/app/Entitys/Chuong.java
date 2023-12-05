@@ -43,6 +43,11 @@ public class Chuong {
         this.moTa = moTa;
     }
 
+    @Override
+    public String toString() {
+        return this.maChuong;
+    }
+
     
     
     

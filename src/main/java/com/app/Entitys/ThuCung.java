@@ -1,21 +1,26 @@
 package com.app.Entitys;
 
+import java.util.Date;
+
 public class ThuCung {
 
     private String maThuCung;
     private String moTa;
-    private Double giaTien;
-    private Integer Tuoi;
+    private int giaTien;
+    private Date Tuoi;
     private Float canNang;
     private String maGiong;
-    private String gioiTinh;
-    private String Thuoc;
+    private boolean gioiTinh;
+    private String maHoiVien;
     private String maChuong;
+    private String maLoai;
+    private String hinhAnh;
 
+    
     public ThuCung() {
     }
 
-    public ThuCung(String maThuCung, String moTa, Double giaTien, Integer Tuoi, Float canNang, String maGiong, String gioiTinh, String Thuoc, String maChuong) {
+    public ThuCung(String maThuCung, String moTa, int giaTien, Date Tuoi, Float canNang, String maGiong, boolean gioiTinh, String maHoiVien, String maChuong, String maLoai, String hinhAnh) {
         this.maThuCung = maThuCung;
         this.moTa = moTa;
         this.giaTien = giaTien;
@@ -23,8 +28,10 @@ public class ThuCung {
         this.canNang = canNang;
         this.maGiong = maGiong;
         this.gioiTinh = gioiTinh;
-        this.Thuoc = Thuoc;
+        this.maHoiVien = maHoiVien;
         this.maChuong = maChuong;
+        this.maLoai = maLoai;
+        this.hinhAnh = hinhAnh;
     }
 
     public String getMaThuCung() {
@@ -43,19 +50,19 @@ public class ThuCung {
         this.moTa = moTa;
     }
 
-    public Double getGiaTien() {
+    public int getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(Double giaTien) {
+    public void setGiaTien(int giaTien) {
         this.giaTien = giaTien;
     }
 
-    public Integer getTuoi() {
+    public Date getTuoi() {
         return Tuoi;
     }
 
-    public void setTuoi(Integer Tuoi) {
+    public void setTuoi(Date Tuoi) {
         this.Tuoi = Tuoi;
     }
 
@@ -75,28 +82,46 @@ public class ThuCung {
         this.maGiong = maGiong;
     }
 
-    public String getGioiTinh() {
+    public boolean isGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public String getThuoc() {
-        return Thuoc;
+    public String getMaHoiVien() {
+        return maHoiVien;
     }
 
-    public void setThuoc(String Thuoc) {
-        this.Thuoc = Thuoc;
+    public void setMaHoiVien(String maHoiVien) {
+        this.maHoiVien = maHoiVien;
     }
 
     public String getMaChuong() {
         return maChuong;
     }
 
-    public void setMaChuong(String maChuogng) {
-        this.maChuong = maChuogng;
+    public void setMaChuong(String maChuong) {
+        this.maChuong = maChuong;
     }
 
+    public String getMaLoai() {
+        return maLoai;
+    }
+
+    public void setMaLoai(String maLoai) {
+        this.maLoai = maLoai;
+    }
+
+    public String getHinhAnh() {
+        return hinhAnh;
+    }
+
+    public void setHinhAnh(String hinhAnh) {
+        this.hinhAnh = hinhAnh;
+    }
+    
+    
+ 
 }

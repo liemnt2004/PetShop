@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.Entitys;
 
 
@@ -81,6 +77,11 @@ public class HoiVien {
 
     public void setCccd(String cccd) {
         this.cccd = cccd;
+    }
+
+    @Override
+    public String toString() {
+        return this.getMaHoiVien();
     }
 
     

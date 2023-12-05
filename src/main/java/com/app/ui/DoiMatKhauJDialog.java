@@ -1,41 +1,35 @@
-
-
 package com.app.ui;
+
 import com.app.Daos.NhanVienDao;
-import com.sun.nio.sctp.SctpStandardSocketOptions;
-import javax.swing.JOptionPane;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
-
-
-
+import com.app.Daos.TaiKhoanDao;
+import com.app.utils.Auth;
+import com.app.utils.*;
 
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
-    NhanVienDao dao = new NhanVienDao();
-    /**
-     * Creates new form DoiMatKhauJDialog
-     */
+
+    TaiKhoanDao dao = new TaiKhoanDao();
+
     public DoiMatKhauJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-//    public void DoiMatKhau() {
-//    String MatKhauHienTai = new String(txtMatKhauHienTai.getText());
-//    String MatKhauMoi = new String(txtMatKhauMoi.getText());
-//    String XacNhanMatKhau = new String(txtXacNhanMatKhau.getText());
-//    if (!MatKhauHienTai.equals(Auth.user.getMatKhauHientai())){
-//        JOptionPane.showMessageDialog(rootPane, "Sai Mat khau");
-//    }
-//    else if(!MatKhauMoi.equals(XacNhanMatKhau)){
-//        JOptionPane.showMessageDialog(rootPane, "Xac nhan mat khau khong dung");
-//    }
-//    else {
-//        Auth.user.setMatKhau(MatKhauMoi);
-//        dao.update(Auth.user);
-//        JOptionPane.showMessageDialog(rootPane, "Doi mat khau thanh cong");
-//    }
-//    }
+
+    public void DoiMatKhau() {
+        String MatKhauHienTai = new String(txtMatKhauHienTai.getText());
+        String MatKhauMoi = new String(txtMatKhauMoi.getText());
+        String XacNhanMatKhau = new String(txtXacNhanMatKhau.getText());
+        if (!MatKhauHienTai.equals(Auth.user.getMatKhau())) {
+
+        } else if (!MatKhauMoi.equals(XacNhanMatKhau)) {
+            MsgBox.AlertFall(this, "Đổi Thất Bại");
+        } else {
+            Auth.user.setMatKhau(MatKhauMoi);
+            dao.update(Auth.user);
+            MsgBox.AlertSuccess(this, "Thành Công");
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -201,7 +195,7 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtXacNhanMatKhauActionPerformed
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
-        // TODO add your handling code here:
+        DoiMatKhau();
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed

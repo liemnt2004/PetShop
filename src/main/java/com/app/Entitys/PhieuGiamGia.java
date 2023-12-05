@@ -55,6 +55,11 @@ public class PhieuGiamGia {
         this.dateEnd = dateEnd;
     }
 
+    @Override
+    public String toString() {
+        return this.maPhieuGiamGia +" Ngày Hết Hạn " +this.dateEnd;
+    }
+
     
     
 }

@@ -6,26 +6,53 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+public class ChuongDAO implements DaoMain<Chuong, String> {
 
-public class ChuongDAO implements DaoMain<Chuong, String>{
-    
+    public List<String> findKey(String x) {
+        List<String> chuonglist = new ArrayList<>();
+        try {
+            String sql = "SELECT MaChuong FROM Chuong WHERE TrangThai = (?)";
+            ResultSet rs = JdbcHelper.executeQuery(sql, x);
+            while (rs.next()) {
+                chuonglist.add(rs.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ChuongDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return chuonglist;
+    }
+
+    public List<String> selectTrangThai() {
+        List<String> chuonglist1 = new ArrayList<>();
+        try {
+            String sql = "SELECT TrangThai FROM Chuong GROUP BY TrangThai";
+            ResultSet rs = JdbcHelper.executeQuery(sql);
+            while (rs.next()) {
+                chuonglist1.add(rs.getString(1));
+            }
+        } catch (Exception e) {
+        }
+        return chuonglist1;
+    }
 
     @Override
     public void insert(Chuong entity) {
-        String sql = "INSERT INTO Chuong (machuong,trangthai,mota) VALUES(?,?,?)";
-        JdbcHelper.executeUpdate(sql,entity.getMaChuong(),entity.getTrangThai(),entity.getMoTa());
+        String sql = "INSERT INTO Chuong (MaChuong,TrangThai,MoTa) VALUES(?,?,?)";
+        JdbcHelper.executeUpdate(sql, entity.getMaChuong(), entity.getTrangThai(), entity.getMoTa());
     }
 
     @Override
     public void update(Chuong entity) {
-        String sql = "UPDATE Chuong SET trangthai=? mota=? WHERE machuong=?";
-        JdbcHelper.executeUpdate(sql,entity.getTrangThai(),entity.getMoTa(),entity.getMaChuong());
+        String sql = "UPDATE Chuong SET TrangThai=?, MoTa=? WHERE MaChuong=?";
+        JdbcHelper.executeUpdate(sql, entity.getTrangThai(), entity.getMoTa(), entity.getMaChuong());
     }
 
     @Override
     public void delete(String key) {
-        String sql = "DELETE FROM Chuong WHERE machuong=?";
+        String sql = "DELETE FROM Chuong WHERE MaChuong=?";
         JdbcHelper.executeUpdate(sql, key);
     }
 
@@ -37,7 +64,7 @@ public class ChuongDAO implements DaoMain<Chuong, String>{
 
     @Override
     public Chuong selectById(String key) {
-        String sql = "SELECT * FROM Chuong WHERE machuong=?";
+        String sql = "SELECT * FROM Chuong WHERE MaChuong=?";
         List<Chuong> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -66,11 +93,10 @@ public class ChuongDAO implements DaoMain<Chuong, String>{
 
     private Chuong readFromResultSet(ResultSet rs) throws SQLException {
         Chuong model = new Chuong();
-        model.setMaChuong(rs.getString("machuong"));
-        model.setTrangThai(rs.getString("trangthai"));
-        model.setMoTa(rs.getString("mota"));
+        model.setMaChuong(rs.getString(1));
+        model.setTrangThai(rs.getString(2));
+        model.setMoTa(rs.getString(3));
         return model;
     }
-    }
-    
 
+}

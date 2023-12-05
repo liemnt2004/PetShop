@@ -1,16 +1,161 @@
 package com.app.ui;
 
+import com.app.Daos.GiongDao;
+import com.app.Entitys.Giong;
+import com.app.utils.MsgBox;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class ThemMoiGiongDialog extends javax.swing.JDialog {
 
-    /**
-     * Creates new form ThemMoiLoaiJDialog
-     */
+    int index = 0;
+    GiongDao gdao = new GiongDao();
+    List<Giong> datalist = gdao.selectAll();
+    mainJFrame mainJFrame;
+
     public ThemMoiGiongDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        loadGiong();
+    }
 
+    void loadGiong() {
+        DefaultTableModel model = (DefaultTableModel) tblDachSachGiong.getModel();
+        model.setRowCount(0);
+        try {
+            List<Giong> list = gdao.selectAll();
+            for (Giong g : list) {
+
+                Object[] row = {
+                    g.getMaGiong(),
+                    g.getTenGiong(),
+                    g.getMaLoai()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            MsgBox.AlertFall(this, "Lỗi");
+        }
+    }
+
+    void edit() {
+        try {
+            String key = (String) tblDachSachGiong.getValueAt(this.index, 0);
+            Giong model = gdao.selectById(key);
+            if (model != null) {
+                this.setModel(model);
+                //this.setStatus(false);
+
+            }
+
+        } catch (Exception e) {
+            MsgBox.AlertFall(this, "Lỗi truy vấn dữ liệu!");
+        }
+    }
+
+    void insert() {
+        Giong model = getModel();
+        try {
+            gdao.insert(model);
+            this.loadGiong();
+            mainJFrame.fillComboBoxGiong();
+            MsgBox.AlertSuccess(this, "Thêm thành công");
+        } catch (Exception e) {
+            MsgBox.AlertFall(this, "Lỗi!");
+        }
+    }
+
+    void delete() {
+        if (MsgBox.confirm(this, "Muốn xóa thiệt không?")) {
+            String MaGiong = txtMaGiong.getText();
+            try {
+                gdao.delete(MaGiong);
+                this.loadGiong();
+                mainJFrame.fillComboBoxGiong();
+                MsgBox.AlertSuccess(this, "Xóa thành công");
+            } catch (Exception e) {
+                MsgBox.AlertFall(this, "Lỗi!");
+            }
+        }
+    }
+
+    void update() {
+        Giong model = getModel();
+        try {
+            gdao.update(model);
+            this.loadGiong();
+            mainJFrame.fillComboBoxGiong();
+            MsgBox.AlertSuccess(this, "Cập nhật thành công");
+        } catch (Exception e) {
+            MsgBox.AlertFall(this, "Lỗi!");
+        }
+    }
+
+    void clear() {
+        txtMaGiong.setText("");
+        txtMaLoaiVat.setText("");
+        txtTenGiong.setText("");
+        txtTimKiemGiong.setText("");
+    }
+
+    void first() {
+        this.index = 0;
+        this.edit();
+    }
+
+    void back() {
+        if (this.index <= 0) {
+            this.index = tblDachSachGiong.getRowCount() - 1;
+            this.edit();
+        } else {
+            this.index--;
+            this.edit();
+
+        }
+    }
+
+    void last() {
+        this.index = tblDachSachGiong.getRowCount() - 1;
+        this.edit();
+    }
+
+    void next() {
+        if (this.index >= tblDachSachGiong.getRowCount() - 1) {
+            this.index = 0;
+            this.edit();
+        } else {
+            this.index++;
+            this.edit();
+        }
+    }
+
+    void setModel(Giong model) {
+        txtMaGiong.setText(model.getMaGiong());
+        txtTenGiong.setText(model.getTenGiong());
+        txtMaLoaiVat.setText(model.getMaLoai());
+    }
+
+    Giong getModel() {
+        Giong model = new Giong();
+        model.setMaGiong(txtMaGiong.getText());
+        model.setTenGiong(txtTenGiong.getText());
+        model.setMaLoai(txtMaLoaiVat.getText());
+        return model;
+    }
+
+    void searchAndFill(String keyword) {
+        // Xóa tất cả các dòng hiện tại trong bảng
+        DefaultTableModel model = (DefaultTableModel) tblDachSachGiong.getModel();
+        model.setRowCount(0);
+
+        for (Giong giongThuCung : datalist) {
+            // Tìm kiếm dựa trên MaLoai hoặc TenLoai (hoặc cả hai)
+            if (giongThuCung.getMaGiong().contains(keyword) || giongThuCung.getTenGiong().contains(keyword) || giongThuCung.getMaLoai().contains(keyword)) {
+                // Thêm dòng mới vào bảng
+                model.addRow(new Object[]{giongThuCung.getMaGiong(), giongThuCung.getTenGiong(), giongThuCung.getMaLoai()});
+            }
+        }
     }
 
     /**
@@ -58,7 +203,7 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
         btnTruocGiong = new javax.swing.JButton();
         btnSauGiong = new javax.swing.JButton();
         btnCuoiCungGiong = new javax.swing.JButton();
-        jButton18 = new javax.swing.JButton();
+        btnTimKiem = new javax.swing.JButton();
 
         jButton10.setText("Cập nhật");
 
@@ -185,20 +330,19 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtMaGiong))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTenGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addGap(30, 30, 30)
-                        .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMaGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtTenGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnThemGiong, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -212,23 +356,29 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(btnThemGiong)
-                    .addComponent(btnSuaGiong))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel2))
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnThemGiong)
+                    .addComponent(btnSuaGiong)
                     .addComponent(jLabel3)
-                    .addComponent(txtTenGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnXoaGiong)
-                    .addComponent(btnLamMoiGiong))
-                .addContainerGap(27, Short.MAX_VALUE))
+                    .addComponent(txtTenGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnXoaGiong)
+                            .addComponent(btnLamMoiGiong))
+                        .addContainerGap(30, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtMaLoaiVat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(17, 17, 17))))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -241,9 +391,22 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "STT", "Mã Giống", "Tên Giống", "Mã Loài"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblDachSachGiong.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblDachSachGiongMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(tblDachSachGiong);
 
         jLabel6.setText("Tìm kiếm");
@@ -256,9 +419,16 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
 
         btDauTienGiong.setBackground(new java.awt.Color(0, 51, 51));
         btDauTienGiong.setForeground(new java.awt.Color(255, 255, 255));
+        btDauTienGiong.setText("<--");
+        btDauTienGiong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btDauTienGiongActionPerformed(evt);
+            }
+        });
 
         btnTruocGiong.setBackground(new java.awt.Color(0, 51, 51));
         btnTruocGiong.setForeground(new java.awt.Color(255, 255, 255));
+        btnTruocGiong.setText("<");
         btnTruocGiong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTruocGiongActionPerformed(evt);
@@ -267,6 +437,7 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
 
         btnSauGiong.setBackground(new java.awt.Color(0, 51, 51));
         btnSauGiong.setForeground(new java.awt.Color(255, 255, 255));
+        btnSauGiong.setText(">");
         btnSauGiong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSauGiongActionPerformed(evt);
@@ -275,10 +446,21 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
 
         btnCuoiCungGiong.setBackground(new java.awt.Color(0, 51, 51));
         btnCuoiCungGiong.setForeground(new java.awt.Color(255, 255, 255));
+        btnCuoiCungGiong.setText("-->");
+        btnCuoiCungGiong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCuoiCungGiongActionPerformed(evt);
+            }
+        });
 
-        jButton18.setBackground(new java.awt.Color(0, 51, 51));
-        jButton18.setForeground(new java.awt.Color(255, 255, 255));
-        jButton18.setText("Tìm");
+        btnTimKiem.setBackground(new java.awt.Color(0, 51, 51));
+        btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
+        btnTimKiem.setText("Tìm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -295,7 +477,7 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(txtTimKiemGiong, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton18)
+                        .addComponent(btnTimKiem)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btDauTienGiong)
                         .addGap(18, 18, 18)
@@ -317,7 +499,7 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
                     .addComponent(btnTruocGiong)
                     .addComponent(btnSauGiong)
                     .addComponent(btnCuoiCungGiong)
-                    .addComponent(jButton18))
+                    .addComponent(btnTimKiem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
                 .addContainerGap())
@@ -357,18 +539,22 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
 
     private void btnThemGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemGiongActionPerformed
         // TODO add your handling code here:
+        insert();
     }//GEN-LAST:event_btnThemGiongActionPerformed
 
     private void btnXoaGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaGiongActionPerformed
         // TODO add your handling code here:
+        delete();
     }//GEN-LAST:event_btnXoaGiongActionPerformed
 
     private void btnLamMoiGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiGiongActionPerformed
         // TODO add your handling code here:
+        clear();
     }//GEN-LAST:event_btnLamMoiGiongActionPerformed
 
     private void btnSuaGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaGiongActionPerformed
         // TODO add your handling code here:
+        update();
     }//GEN-LAST:event_btnSuaGiongActionPerformed
 
     private void txtMaGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaGiongActionPerformed
@@ -379,21 +565,48 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenGiongActionPerformed
 
+    private void txtMaLoaiVatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaLoaiVatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaLoaiVatActionPerformed
+
+    private void tblDachSachGiongMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDachSachGiongMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            this.index = tblDachSachGiong.rowAtPoint(evt.getPoint());
+            if (index >= 0) {
+                this.edit();
+            }
+        }
+    }//GEN-LAST:event_tblDachSachGiongMouseClicked
+
     private void txtTimKiemGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemGiongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTimKiemGiongActionPerformed
 
+    private void btDauTienGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDauTienGiongActionPerformed
+        // TODO add your handling code here:
+        first();
+    }//GEN-LAST:event_btDauTienGiongActionPerformed
+
     private void btnTruocGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTruocGiongActionPerformed
         // TODO add your handling code here:
+        back();
     }//GEN-LAST:event_btnTruocGiongActionPerformed
 
     private void btnSauGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSauGiongActionPerformed
         // TODO add your handling code here:
+        next();
     }//GEN-LAST:event_btnSauGiongActionPerformed
 
-    private void txtMaLoaiVatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaLoaiVatActionPerformed
+    private void btnCuoiCungGiongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCuoiCungGiongActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaLoaiVatActionPerformed
+        last();
+    }//GEN-LAST:event_btnCuoiCungGiongActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+        searchAndFill(txtTimKiemGiong.getText());
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -447,6 +660,7 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnSauGiong;
     private javax.swing.JButton btnSuaGiong;
     private javax.swing.JButton btnThemGiong;
+    private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnTruocGiong;
     private javax.swing.JButton btnXoaGiong;
     private javax.swing.JButton jButton1;
@@ -458,7 +672,6 @@ public class ThemMoiGiongDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
-    private javax.swing.JButton jButton18;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

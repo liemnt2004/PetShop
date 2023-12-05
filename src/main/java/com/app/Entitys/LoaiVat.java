@@ -31,4 +31,11 @@ public class LoaiVat implements Serializable {
         this.tenLoai = tenLoai;
     }
 
+    @Override
+    public String toString() {
+        return this.tenLoai;
+    }
+    
+    
+
 }
