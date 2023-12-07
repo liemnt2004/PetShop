@@ -12,12 +12,12 @@ public class DatDV {
     private String trangThai;
     private String moTa;
     private Date   ngayTra;
-    private int    soLuong;
+    
 
     public DatDV() {
     }
 
-    public DatDV(String maDL, String maHV, String soDienThoai, Date ngayDat, String trangThai, String moTa, Date ngayTra, int soLuong) {
+    public DatDV(String maDL, String maHV, String soDienThoai, Date ngayDat, String trangThai, String moTa, Date ngayTra) {
         this.maDL = maDL;
         this.maHV = maHV;
         this.soDienThoai = soDienThoai;
@@ -25,7 +25,7 @@ public class DatDV {
         this.trangThai = trangThai;
         this.moTa = moTa;
         this.ngayTra = ngayTra;
-        this.soLuong = soLuong;
+       
     }
 
     public String getMaDL() {
@@ -84,15 +84,8 @@ public class DatDV {
         this.ngayTra = ngayTra;
     }
 
-    public int getSoLuong() {
-        return soLuong;
-    }
-
-    public void setSoLuong(int soLuong) {
-        this.soLuong = soLuong;
-    }
+   
 
      
-    
-    
+      
 }

@@ -7,19 +7,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class HoaDonDAO implements DaoMain<HoaDon, String> {
-        
+
     @Override
     public void insert(HoaDon entity) {
-        String sql = "INSERT INTO HoaDon(MaHoaDon,MaNV,NgayLap,TongTien,MaHV,MaPhieuGiamGia,trangthai,MaPTTT.MaDL) VALUES(?,?,?,?,?,?,?,?,?)";
-        JdbcHelper.executeUpdate(sql,entity.getMaHoaDon(),entity.getMaNV(),entity.getNgayLap(),entity.getTongTien(),entity.getMaHV(),entity.getMaPhieuGiamGia(),entity.getTrangThai(),entity.getMaDL());
+        String sql = "INSERT INTO HoaDon(MaHoaDon, MaNV, Ngaylap, TongTien, MaHV, MaPhieuGiamGia, trangthai, MaDL) VALUES(?,?,?,?,?,?,?,?)";
+        JdbcHelper.executeUpdate(sql,
+                entity.getMaHoaDon(),
+                entity.getMaNV(),
+                entity.getNgayLap(),
+                entity.getTongTien(),
+                entity.getMaHV(),
+                entity.getMaPhieuGiamGia(),
+                entity.getTrangThai(),
+                entity.getMaDL());
     }
 
     @Override
     public void update(HoaDon entity) {
-        String sql = "UPDATE HoaDon SET MaNV=?,Ngay_lap=?,Tong_Tien=?,MaHV=?,Ma_PhieuGiamGia=?,trangthai=?,MaPTTT=?,MaDL=? WHERE Ma_Hoa_Don=?";
-        JdbcHelper.executeUpdate(sql,entity.getMaNV(),entity.getNgayLap(),entity.getTongTien(),entity.getMaHV(),entity.getMaPhieuGiamGia(),entity.getTrangThai(),entity.getMaDL(),entity.getMaHoaDon());
+        String sql = "UPDATE HoaDon SET MaNV=?,Ngaylap=?,TongTien=?,MaHV=?,MaPhieuGiamGia=?,trangthai=?,MaDL=? WHERE MaHoaDon=?";
+        JdbcHelper.executeUpdate(sql,
+                entity.getMaNV(),
+                entity.getNgayLap(),
+                entity.getTongTien(),
+                entity.getMaHV(),
+                entity.getMaPhieuGiamGia(),
+                entity.getTrangThai(),
+                entity.getMaDL(),
+                entity.getMaHoaDon());
     }
 
     @Override
@@ -34,9 +49,15 @@ public class HoaDonDAO implements DaoMain<HoaDon, String> {
         return selectBySql(sql);
     }
 
+    public HoaDon selectByMaDL(String key) {
+        String sql = "SELECT * FROM HOADON WHERE MADL = ?";
+        List<HoaDon> list = selectBySql(sql, key);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+
     @Override
     public HoaDon selectById(String key) {
-        String sql = "SELECT * FROM HoaDon WHERE MaHoaDon";
+        String sql = "SELECT * FROM HoaDon WHERE MaHoaDon = ?";
         List<HoaDon> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -67,13 +88,13 @@ public class HoaDonDAO implements DaoMain<HoaDon, String> {
         HoaDon model = new HoaDon();
         model.setMaHoaDon(rs.getString("MaHoaDon"));
         model.setMaNV(rs.getString("MaNV"));
-        model.setNgayLap(rs.getDate("NgayLap"));
+        model.setNgayLap(rs.getDate("Ngaylap"));
         model.setTongTien(rs.getFloat("TongTien"));
         model.setMaHV(rs.getString("MaHV"));
         model.setMaPhieuGiamGia(rs.getString("MaPhieuGiamGia"));
-        model.setTrangThai(rs.getString("TrangThai"));       
+        model.setTrangThai(rs.getString("trangthai"));
         model.setMaDL(rs.getString("MaDL"));
         return model;
     }
-    
+
 }

@@ -75,7 +75,7 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
     private SanPham readFromResultSet(ResultSet rs) throws SQLException {
         SanPham model = new SanPham();
         model.setMaSP(rs.getString("MaSP"));
-        model.setGiaTien(rs.getDouble("Giatien"));
+        model.setGiaTien(rs.getInt("Giatien"));
         model.setTenSP(rs.getString("Tensp"));    
         model.setDonVi(rs.getString("donvi"));
         model.setPhanTram(rs.getFloat("phantram"));

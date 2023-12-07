@@ -3,7 +3,7 @@ package com.app.Entitys;
 
 public class SanPham {
     private String maSP;
-    private Double giaTien;
+    private Integer giaTien;
     private String tenSP;
     private String donVi;
     private Float phanTram;
@@ -14,7 +14,7 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(String maSP, Double giaTien, String tenSP, String donVi, Float phanTram, String maLoaiSP, String maNhaCC, String trangThai) {
+    public SanPham(String maSP, Integer giaTien, String tenSP, String donVi, Float phanTram, String maLoaiSP, String maNhaCC, String trangThai) {
         this.maSP = maSP;
         this.giaTien = giaTien;
         this.tenSP = tenSP;
@@ -33,11 +33,11 @@ public class SanPham {
         this.maSP = maSP;
     }
 
-    public Double getGiaTien() {
+    public Integer getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(Double giaTien) {
+    public void setGiaTien(Integer giaTien) {
         this.giaTien = giaTien;
     }
 
@@ -88,11 +88,5 @@ public class SanPham {
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
-
-   
-
-
-    
-    
 
 }

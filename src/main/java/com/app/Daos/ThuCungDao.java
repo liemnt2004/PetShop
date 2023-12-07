@@ -1,4 +1,4 @@
-  package com.app.Daos;
+package com.app.Daos;
 
 import com.app.Entitys.ThuCung;
 import com.app.utils.JdbcHelper;
@@ -62,13 +62,26 @@ public class ThuCungDao implements DaoMain<ThuCung, String> {
         return list.size() > 0 ? list.get(0) : null;
     }
 
+    public List<ThuCung> selectByMaHV(String key) {
+        String sql = "select * from thucung where mahv = ?";
+        List<ThuCung> list = selectBySql(sql, key);
+        return list;
+    }
+    
+    public List<ThuCung> selectAllNOTHOIVIEN() {
+        String sql = "SELECT * FROM ThuCung WHERE MaHV IS NULL";
+        List<ThuCung> list = selectBySql(sql);
+        return list;
+    }
+    
+
     @Override
     public List<ThuCung> selectBySql(String sql, Object... args) {
         List<ThuCung> list = new ArrayList<>();
         try {
             ResultSet rs = JdbcHelper.executeQuery(sql, args);
-            while(rs.next()){
-                ThuCung entity=new ThuCung();
+            while (rs.next()) {
+                ThuCung entity = new ThuCung();
                 entity.setMaThuCung(rs.getString("MaTC"));
                 entity.setMoTa(rs.getString("MoTa"));
                 entity.setGiaTien(rs.getInt("GiaTien"));
@@ -86,9 +99,6 @@ public class ThuCungDao implements DaoMain<ThuCung, String> {
             throw new RuntimeException();
         }
         return list;
-}
+    }
 
-  
- 
-  
 }

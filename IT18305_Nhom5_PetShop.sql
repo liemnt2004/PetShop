@@ -19,6 +19,7 @@ CREATE TABLE DatDV
 (
     MaDL CHAR(10) PRIMARY KEY,
     MaHV CHAR(10),
+    SoDienThoai CHAR(20),
     NgayDat DATETIME,
     TrangThai NVARCHAR(20),
     Mota NVARCHAR(255),
@@ -143,7 +144,7 @@ CREATE TABLE LoaiSanPham
 CREATE TABLE SanPham
 (
     MaSP CHAR(10) PRIMARY KEY,
-    GiaTien MONEY,
+    GiaTien INT,
     TenSP NVARCHAR(255),
     DonVi NVARCHAR(20) DEFAULT 'Cái',
     PhanTram FLOAT DEFAULT 0.1,
@@ -297,18 +298,18 @@ VALUES
     ('DV03', N'Dịch vụ giữ thuê', N'Lần', 90);
 
 INSERT INTO DatDV
-    (MaDL, MaHV, NgayDat, TrangThai, Mota, SoLuong)
+    (MaDL, MaHV,SoDienThoai, NgayDat, TrangThai, Mota, SoLuong)
 VALUES
-    ('DL01', 'HV01', GETDATE(), N'Đã nhận', '', 1),
-    ('DL02', 'HV02', GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 2', 3),
-    ('DL03', 'HV03', GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 3', 2),
-    ('DL04', 'HV04', GETDATE(), N'Hoàn thành', N'Đặt dịch vụ 4', 1),
-    ('DL05', 'HV05', GETDATE(), N'Đã nhận', N'Đặt dịch vụ 5', 4),
-    ('DL06', 'HV06', GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 6', 2),
-    ('DL07', 'HV07', GETDATE(), N'Đã nhận', N'Đặt dịch vụ 7', 3),
-    ('DL08', 'HV08', GETDATE(), N'Hoàn thành', N'Đặt dịch vụ 8', 1),
-    ('DL09', 'HV09', GETDATE(), N'Đã nhận', N'Đặt dịch vụ 9', 2),
-    ('DL10', 'HV10', GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 10', 3);
+    ('DL01', 'HV01',09234556787, GETDATE(), N'Đã nhận', '', 1),
+    ('DL02', 'HV02',76682813717, GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 2', 3),
+    ('DL03', 'HV03',67182137173, GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 3', 2),
+    ('DL04', 'HV04',09371371374, GETDATE(), N'Hoàn thành', N'Đặt dịch vụ 4', 1),
+    ('DL05', 'HV05',01371127137, GETDATE(), N'Đã nhận', N'Đặt dịch vụ 5', 4),
+    ('DL06', 'HV06',01837127173, GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 6', 2),
+    ('DL07', 'HV07',018371281737, GETDATE(), N'Đã nhận', N'Đặt dịch vụ 7', 3),
+    ('DL08', 'HV08',018172816461, GETDATE(), N'Hoàn thành', N'Đặt dịch vụ 8', 1),
+    ('DL09', 'HV09',0183128137171, GETDATE(), N'Đã nhận', N'Đặt dịch vụ 9', 2),
+    ('DL10', 'HV10',01381727173731, GETDATE(), N'Chờ xác nhận', N'Đặt dịch vụ 10', 3);
 
 
 
@@ -607,6 +608,7 @@ Values
 
 
 
+
 -- lấy ra thông tin của kho
 CREATE PROCEDURE dbo.ThongSoKho
 AS
@@ -722,5 +724,7 @@ BEGIN
     );
 END;
 
-SELECT * FROM TaiKhoan
+SELECT * FROM DatDV
 
+
+SELECT * FROM ThuCung WHERE MaHV IS NULL
