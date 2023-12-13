@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HoiVienDao implements DaoMain<HoiVien, String> {
 
@@ -54,6 +56,12 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
         List<HoiVien> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
+    
+   
+    public List<HoiVien> selectAllHV() {
+        String sql = "SELECT * FROM HoiVien WHERE Mahv != 'HV00'";
+        return selectBySql(sql);
+    }
 
     @Override
     public List<HoiVien> selectBySql(String sql, Object... args) {
@@ -85,6 +93,36 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
     public List<HoiVien> selectByKeyword(String keyword) throws SQLException {
         String sql = "SELECT * FROM HoiVien WHERE TenKhachHang LIKE ?";
         return selectBySql(sql, "%" + keyword + "%");
+    }
+    
+    public Integer TichDiem(String mahv){
+        String sql = "SELECT TichDiem FROM HoiVien WHERE MaHV = ?";
+        int diem = 0;
+        try {
+            ResultSet rs = JdbcHelper.executeQuery(sql,mahv);
+            while (rs.next()) {                
+                diem = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoiVienDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return diem;
+        
+     }
+    
+    public String selectBySDT(String key) {
+        String sdt = "";
+        try {
+            String sql = "SELECT HoiVien.SDT FROM HoiVien WHERE MaHV = (?)";
+            ResultSet rs = JdbcHelper.executeQuery(sql, key);
+            
+            while (rs.next()) {                
+                sdt = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HoiVienDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return sdt != "" ? sdt : "Null";
     }
 
     private HoiVien readFromResultSet(ResultSet rs) throws SQLException {

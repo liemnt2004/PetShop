@@ -11,7 +11,7 @@ public class LoaiVatDao implements DaoMain<LoaiVat, String> {
 
     @Override
     public void insert(LoaiVat entity) {
-        String sql = "INSERT INTO LoaiVat (Maloai, Tenloai) VALUES(?, ?)";
+        String sql = "INSERT INTO LoaiVat (MaLoai, TenLoai) VALUES(?, ?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaLoai(),
                 entity.getTenLoai());
@@ -19,15 +19,15 @@ public class LoaiVatDao implements DaoMain<LoaiVat, String> {
 
     @Override
     public void update(LoaiVat entity) {
-        String sql = "UPDATE INTO LoaiVat (Maloai, Tenloai) VALUES(?, ?)";
+        String sql = "UPDATE LoaiVat SET TenLoai=? WHERE MaLoai=?";
         JdbcHelper.executeUpdate(sql,
-                entity.getMaLoai(),
-                entity.getTenLoai());
+                entity.getTenLoai(),
+                entity.getMaLoai());
     }
 
     @Override
     public void delete(String Maloai) {
-        String sql = "DELETE FROM Maloai WHERE Maloai=?";
+        String sql = "DELETE FROM LoaiVat WHERE MaLoai=?";
         JdbcHelper.executeUpdate(sql, Maloai);
     }
 
@@ -68,9 +68,11 @@ public class LoaiVatDao implements DaoMain<LoaiVat, String> {
 
     private LoaiVat readFromResultSet(ResultSet rs) throws SQLException {
         LoaiVat entity = new LoaiVat();
-        entity.setMaLoai(rs.getString("Maloai"));
-        entity.setTenLoai(rs.getString("Tenloai"));
+        entity.setMaLoai(rs.getString("MaLoai"));
+        entity.setTenLoai(rs.getString("TenLoai"));
         return entity;
     }
+
+
 
 }

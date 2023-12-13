@@ -16,102 +16,105 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
 
     public ThemMoiLoaiJVatDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.mainJFrame = (mainJFrame) parent;
         initComponents();
         setLocationRelativeTo(null);
         loadThemMoiThuCung();
+        txtMaLoaiVat.setEnabled(false);
+        txtMaLoaiVat.setText("D" + (dataList.size() + 1));
     }
 
-    void loadThemMoiThuCung() {
+     void loadThemMoiThuCung(){
         DefaultTableModel model = (DefaultTableModel) tblThemMoiLoaiVat.getModel();
         model.setRowCount(0);
         try {
             List<LoaiVat> list = lvdao.selectAll();
-            for (LoaiVat lv : list) {
-
-                Object[] row = {
-                    lv.getMaLoai(),
-                    lv.getTenLoai()
-                };
-                model.addRow(row);
-            }
+                for(LoaiVat lv :list){
+                    
+                    Object[] row = {
+                        
+                        lv.getMaLoai(),
+                        lv.getTenLoai()
+                    };
+                    model.addRow(row);
+                }
         } catch (Exception e) {
-            MsgBox.AlertFall(this, "Lỗi");
+            MsgBox.AlertFall(this,"Lỗi");
         }
     }
-
-    void edit() {
+    
+    void edit(){
         try {
             String key = (String) tblThemMoiLoaiVat.getValueAt(this.index, 0);
             LoaiVat model = lvdao.selectById(key);
-            if (model != null) {
+            if(model != null){
                 this.setModel(model);
                 //this.setStatus(false);
-
+                
             }
-
-        } catch (Exception e) {
+        
+        }catch (Exception e) {
             MsgBox.AlertFall(this, "Lỗi truy vấn dữ liệu!");
         }
     }
-
-    void insert() {
-        if (KiemTraDuLieu()) {
+    
+    void  insert(){
+        if(KiemTraDuLieu()){
             LoaiVat model = getModel();
-            try {
-                if (model != null) {
-                    if (lvdao.selectById(model.getMaLoai()) != null) {
-                        MsgBox.AlertFall(this, "Mã loài đã tồn tại");
-                        return;
-
-                    }
-                    lvdao.insert(model);
-                    this.loadThemMoiThuCung();
-                    this.clear();
-                    mainJFrame.fillComboBoxLoaiVat();
-                    MsgBox.AlertSuccess(this, "Thêm mới thành công");
+        try{
+            if(model != null){
+                if(lvdao.selectById( model.getMaLoai())!= null){
+                    MsgBox.AlertFall(this,"Mã loài đã tồn tại");
+                    return;
+                    
                 }
-            } catch (Exception e) {
-                MsgBox.AlertFall(this, "Thất bại");
+            lvdao.insert(model);
+            this.loadThemMoiThuCung();
+            this.clear();
+            mainJFrame.fillComboBoxLoaiVat();
+            MsgBox.AlertSuccess(this,"Thêm mới thành công");
             }
+        } catch (Exception e) {
+            MsgBox.AlertFall(this,"Thất bại");
         }
     }
-
-    void delete() {
-        if (KiemTraDuLieu()) {
-            if (MsgBox.confirm(this, "Có thiệt sự là muốn xóa hông?")) {
-                String MaLoai = txtMaLoaiVat.getText();
-                try {
-                    lvdao.delete(MaLoai);
-                    this.loadThemMoiThuCung();
-                    mainJFrame.fillComboBoxLoaiVat();
-                    MsgBox.AlertSuccess(this, "Xóa thành công nè");
-                } catch (Exception e) {
-                    MsgBox.AlertFall(this, "Lỗi truy vấn!");
-                }
-            }
-        }
     }
-
-    void update() {
-        if (KiemTraDuLieu()) {
-            LoaiVat model = getModel();
+    void  delete(){
+        if(KiemTraDuLieu()){
+            if(MsgBox.confirm(this,"Có thiệt sự là muốn xóa hông?")){
+            String MaLoai = txtMaLoaiVat.getText();
             try {
-                lvdao.update(model);
+                lvdao.delete(MaLoai);
                 this.loadThemMoiThuCung();
                 mainJFrame.fillComboBoxLoaiVat();
-                MsgBox.AlertSuccess(this, "Cập nhật thành công");
+                MsgBox.AlertSuccess(this,"Xóa thành công nè");
             } catch (Exception e) {
-                MsgBox.AlertFall(this, "Cật nhật thất bại");
+                MsgBox.AlertFall(this,"Lỗi truy vấn!");
             }
         }
+        }
     }
-
-    void clear() {
+    
+    void update(){
+        if(KiemTraDuLieu()){
+         LoaiVat model = getModel();
+        try {
+            lvdao.update(model);
+            this.loadThemMoiThuCung();
+            mainJFrame.fillComboBoxLoaiVat();
+            MsgBox.AlertSuccess(this,"Cập nhật thành công");
+        } catch (Exception e) {
+            MsgBox.AlertFall(this,"Cật nhật thất bại");
+        }   
+        }
+    }
+    
+    void clear(){
         txtMaLoaiVat.setText("");
         txtTenLoaiVat.setText("");
         txtTimKiem.setText("");
     }
-
+    
     void first() {
         this.index = 0;
         this.edit();
@@ -142,19 +145,19 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
             this.edit();
         }
     }
-
-    void setModel(LoaiVat model) {
+    
+    void setModel(LoaiVat model){
         txtMaLoaiVat.setText(model.getMaLoai());
         txtTenLoaiVat.setText(model.getTenLoai());
     }
-
-    LoaiVat getModel() {
+    
+    LoaiVat getModel(){
         LoaiVat model = new LoaiVat();
         model.setMaLoai(txtMaLoaiVat.getText());
         model.setTenLoai(txtTenLoaiVat.getText());
         return model;
     }
-
+    
     void searchAndFill(String keyword) {
         // Xóa tất cả các dòng hiện tại trong bảng
         DefaultTableModel model = (DefaultTableModel) tblThemMoiLoaiVat.getModel();
@@ -168,12 +171,11 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
             }
         }
     }
-
-    private Boolean KiemTraDuLieu() {
+    private Boolean KiemTraDuLieu(){
         String rs1 = Validate.nothingText1(txtMaLoaiVat);
         String rs2 = Validate.nothingText1(txtTenLoaiVat);
-        if (rs1 != null || rs2 != null) {
-            MsgBox.AlertFall(this, "Dữ liệu còn trống!");
+        if( rs1!=null || rs2!=null){
+            MsgBox.AlertFall(this,"Dữ liệu còn trống!");
             return false;
         }
         return true;
@@ -560,13 +562,16 @@ public class ThemMoiLoaiJVatDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTenLoaiVatActionPerformed
 
     private void tblThemMoiLoaiVatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThemMoiLoaiVatMouseClicked
-        // TODO add your handling code here:
+        txtMaLoaiVat.setText(null);
+        txtMaLoaiVat.setEnabled(true);
         if (evt.getClickCount() == 2) {
             this.index = tblThemMoiLoaiVat.rowAtPoint(evt.getPoint());
             if (index >= 0) {
                 this.edit();
             }
         }
+
+
     }//GEN-LAST:event_tblThemMoiLoaiVatMouseClicked
 
     private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed

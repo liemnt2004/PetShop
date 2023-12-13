@@ -61,9 +61,7 @@ public class TonKhoDao implements DaoMain<TonKho, Integer> {
         }
         return tonKho;
     }
-    
-    
-     
+
     public TonKho selectBySanPham(String key) {
         TonKho tonKho = null;
         String query = "SELECT * FROM tonkho WHERE masp = ?";
@@ -76,7 +74,7 @@ public class TonKhoDao implements DaoMain<TonKho, Integer> {
         }
         return tonKho;
     }
-    
+
     public List<Object[]> getThongSoKho() {
         List<Object[]> list = new ArrayList<>();
         try {
@@ -105,14 +103,19 @@ public class TonKhoDao implements DaoMain<TonKho, Integer> {
         return list;
 
     }
-    
-       public void updateSoLuong(TonKho entity) {
+
+    public void updateSoLuong(TonKho entity) {
         String query = "UPDATE tonkho SET soluong = ? WHERE masp = ?";
         JdbcHelper.executeUpdate(query,
                 entity.getSoluong(),
                 entity.getMasp());
     }
     
+    public void updateSoLuongSanPham(Integer soluong , String masp){
+        String sql = "UPDATE tonkho SET soluong = soluong - ? WHERE masp = ?";
+        JdbcHelper.executeUpdate(sql, soluong,masp);
+    }
+
     public TonKho selectByIdSanPham(String key) {
         TonKho tonKho = null;
         String query = "SELECT * FROM tonkho WHERE masp = ?";

@@ -45,6 +45,8 @@ public class LoaiSanPhamDao implements DaoMain<LoaiSanPham, String> {
         String sql="SELECT * FROM LoaiSanPham WHERE TenLoai LIKE ?";
         return selectBySql(sql, "%"+keyword+"%");
     }
+        
+    
 
     @Override
     public List<LoaiSanPham> selectBySql(String sql, Object... args) {

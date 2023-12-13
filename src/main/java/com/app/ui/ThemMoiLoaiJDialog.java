@@ -12,16 +12,18 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
 
     int index = 0;
     LoaiSanPhamDao loaiSPDao = new LoaiSanPhamDao();
-
+    List<LoaiSanPham> listData = new LoaiSanPhamDao().selectAll();
     public ThemMoiLoaiJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         taiLoaiSP();
+        txtMaLoaiSanPham.setEnabled(false);
+        txtMaLoaiSanPham.setText("Loai"+(listData.size()+1));
     }
 
     private boolean kiemTraSP() {
-        if (Validate.nothingText(txtMaLoaiSanPham, txtTenLoaiSanPham) != null) {
+        if (Validate.nothingText(txtMaLoaiSanPham, txtTenLoaiSanPham)) {
             MsgBox.AlertFall(this, "Vui lòng nhập đầy đủ thông tin sản phẩm");
             return false;
         }
@@ -30,8 +32,12 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
 
     ;
     void xoaDuLieu() {
+        index = -1;
         txtMaLoaiSanPham.setText("");
         txtTenLoaiSanPham.setText("");
+        txtMaLoaiSanPham.setEnabled(false);
+        txtMaLoaiSanPham.setText("Loai"+(listData.size()+1));
+        tblLoaiSanPham.clearSelection();
     }
 
     void them() {
@@ -117,32 +123,45 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
     }
 
     void dauTienSanPham() {
+        txtMaLoaiSanPham.setEnabled(true);
         this.index = 0;
+        tblLoaiSanPham.changeSelection(index, index, false, false);
         this.edit();
     }
 
     private void cuoiCungSamPham() {
+        txtMaLoaiSanPham.setEnabled(true);
         this.index = tblLoaiSanPham.getRowCount() - 1;
+        tblLoaiSanPham.changeSelection(index, index, false, false);
         this.edit();
+
     }
 
     void TruocSanPham() {
+        txtMaLoaiSanPham.setEnabled(true);
         this.index--;
         if (this.index >= 0) {
+            tblLoaiSanPham.changeSelection(index, index, false, false);
             this.edit();
         } else if (this.index < 0) {
             this.index = tblLoaiSanPham.getRowCount() - 1;
+            tblLoaiSanPham.changeSelection(index, index, false, false);
             this.edit();
         }
     }
 
     private void SauSanPham() {
+        txtMaLoaiSanPham.setEnabled(true);
         this.index++;
-        System.out.println(this.index);
-        if (this.index <= tblLoaiSanPham.getRowCount() - 1) {
+
+        if (this.index < tblLoaiSanPham.getRowCount()) {
+            tblLoaiSanPham.setRowSelectionInterval(index, index);
+            tblLoaiSanPham.scrollRectToVisible(tblLoaiSanPham.getCellRect(index, 0, true));
             this.edit();
-        } else if (this.index > tblLoaiSanPham.getRowCount() - 1) {
+        } else if (this.index >= tblLoaiSanPham.getRowCount()) {
             this.index = 0;
+            tblLoaiSanPham.setRowSelectionInterval(index, index);
+            tblLoaiSanPham.scrollRectToVisible(tblLoaiSanPham.getCellRect(index, 0, true));
             this.edit();
         }
     }
@@ -350,17 +369,17 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
 
         tblLoaiSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã Loại Sản Phẩm", "Tên Loại"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -383,6 +402,11 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
         });
 
         btnTimKiem.setText("Tìm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         jButton6.setBackground(new java.awt.Color(0, 51, 51));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
@@ -522,11 +546,20 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_txtTenLoaiSanPhamActionPerformed
 
     private void tblLoaiSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblLoaiSanPhamMouseClicked
+        txtMaLoaiSanPham.setText(null);
         if (evt.getClickCount() == 2) {
             this.index = tblLoaiSanPham.rowAtPoint(evt.getPoint());
             if (this.index >= 0) {
                 this.edit();
             }
+        }
+              
+        if(index != -1){
+            txtMaLoaiSanPham.setEnabled(true);
+            
+        }else{
+            txtMaLoaiSanPham.setEnabled(false);
+            txtMaLoaiSanPham.setText("Loai"+(listData.size()+1));
         }
     }//GEN-LAST:event_tblLoaiSanPhamMouseClicked
 
@@ -549,6 +582,10 @@ public class ThemMoiLoaiJDialog extends javax.swing.JDialog {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         cuoiCungSamPham();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        taiLoaiSP();
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**
      * @param args the command line arguments

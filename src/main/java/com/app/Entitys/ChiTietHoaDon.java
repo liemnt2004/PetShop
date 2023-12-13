@@ -4,17 +4,15 @@ package com.app.Entitys;
 public class ChiTietHoaDon {
     private String MaHang;
     private Integer SoLuong;
-    private Integer GiaTien;
-    private Integer TongTien;
+    private String MaHD;
 
     public ChiTietHoaDon() {
     }
 
-    public ChiTietHoaDon(String MaHang, Integer SoLuong, Integer GiaTien, Integer TongTien) {
+    public ChiTietHoaDon(String MaHang, Integer SoLuong, String MaHD) {
         this.MaHang = MaHang;
         this.SoLuong = SoLuong;
-        this.GiaTien = GiaTien;
-        this.TongTien = TongTien;
+        this.MaHD = MaHD;
     }
 
     public String getMaHang() {
@@ -33,23 +31,17 @@ public class ChiTietHoaDon {
         this.SoLuong = SoLuong;
     }
 
-    public Integer getGiaTien() {
-        return GiaTien;
+    public String getMaHD() {
+        return MaHD;
     }
 
-    public void setGiaTien(Integer GiaTien) {
-        this.GiaTien = GiaTien;
-    }
-
-    public Integer getTongTien() {
-        return TongTien;
-    }
-
-    public void setTongTien(Integer TongTien) {
-        this.TongTien = TongTien;
+    public void setMaHD(String MaHD) {
+        this.MaHD = MaHD;
     }
 
    
-    
+
+
+ 
     
 }

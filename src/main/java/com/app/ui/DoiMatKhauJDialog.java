@@ -1,33 +1,47 @@
 package com.app.ui;
 
-import com.app.Daos.NhanVienDao;
 import com.app.Daos.TaiKhoanDao;
 import com.app.utils.Auth;
 import com.app.utils.*;
 
 public class DoiMatKhauJDialog extends javax.swing.JDialog {
 
+    boolean flag = false;
+    boolean flag1 = false;
+    boolean flag2 = false;
     TaiKhoanDao dao = new TaiKhoanDao();
 
     public DoiMatKhauJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        lblHienThiMKHienTai.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\momk.png"));
+        lblHienThiMKMoi.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\momk.png"));
+        lblHienThiMKXacNhan.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\momk.png"));
+
     }
 
-    public void DoiMatKhau() {
-        String MatKhauHienTai = new String(txtMatKhauHienTai.getText());
-        String MatKhauMoi = new String(txtMatKhauMoi.getText());
-        String XacNhanMatKhau = new String(txtXacNhanMatKhau.getText());
-        if (!MatKhauHienTai.equals(Auth.user.getMatKhau())) {
-
-        } else if (!MatKhauMoi.equals(XacNhanMatKhau)) {
-            MsgBox.AlertFall(this, "Đổi Thất Bại");
+    private void doiMatKhau() {
+        String manv = Auth.user.getTaiKhoan();
+        String matKhau = txtMatKhauHienTai.getText();
+        String matKhauMoi = txtMatKhauMoi.getText();
+        String matKhauMoi2 = txtXacNhanMatKhau.getText();
+        if (matKhau.equals("") || matKhauMoi.equals("") || matKhauMoi2.equals("")) {
+            MsgBox.AlertFall(this, "Vui lòng nhập đầy đủ!!");
+        } else if (!PassHashing.verifyPassword(matKhau, Auth.user.getMatKhau())) {
+            MsgBox.AlertFall(this, "Sai mật khẩu");
+        } else if (!matKhauMoi.equals(matKhauMoi2)) {
+            MsgBox.AlertFall(this, "Mật khẩu mới chưa khớp");
         } else {
-            Auth.user.setMatKhau(MatKhauMoi);
-            dao.update(Auth.user);
-            MsgBox.AlertSuccess(this, "Thành Công");
+            try {
+                Auth.user.setMatKhau(PassHashing.hashPassword(matKhauMoi));
+                dao.update(Auth.user);
+                MsgBox.AlertSuccess(this, "Đổi mật khẩu thành công");
+
+            } catch (Exception e) {
+                MsgBox.AlertFall(this, "Có lỗi xảy ra vui long quay lại sau!!!");
+            }
+
         }
     }
 
@@ -44,13 +58,16 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtMatKhauHienTai = new javax.swing.JTextField();
-        txtMatKhauMoi = new javax.swing.JTextField();
-        txtXacNhanMatKhau = new javax.swing.JTextField();
         btnXacNhan = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
         lblHinhDaiDienMeo = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        txtMatKhauHienTai = new javax.swing.JPasswordField();
+        txtMatKhauMoi = new javax.swing.JPasswordField();
+        txtXacNhanMatKhau = new javax.swing.JPasswordField();
+        lblHienThiMKMoi = new javax.swing.JLabel();
+        lblHienThiMKXacNhan = new javax.swing.JLabel();
+        lblHienThiMKHienTai = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,24 +78,6 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         jLabel2.setText("Nhập mật khẩu mới");
 
         jLabel3.setText("Xác nhận mật khẩu ");
-
-        txtMatKhauHienTai.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatKhauHienTaiActionPerformed(evt);
-            }
-        });
-
-        txtMatKhauMoi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatKhauMoiActionPerformed(evt);
-            }
-        });
-
-        txtXacNhanMatKhau.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtXacNhanMatKhauActionPerformed(evt);
-            }
-        });
 
         btnXacNhan.setBackground(new java.awt.Color(0, 51, 51));
         btnXacNhan.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,6 +102,30 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("ĐỔI MẬT KHẨU");
 
+        txtMatKhauHienTai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtMatKhauMoi.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtXacNhanMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        lblHienThiMKMoi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHienThiMKMoiMouseClicked(evt);
+            }
+        });
+
+        lblHienThiMKXacNhan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHienThiMKXacNhanMouseClicked(evt);
+            }
+        });
+
+        lblHienThiMKHienTai.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHienThiMKHienTaiMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,22 +133,8 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(txtMatKhauHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtXacNhanMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
                         .addComponent(btnXacNhan)
@@ -137,8 +146,21 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(lblHinhDaiDienMeo)))))
-                .addContainerGap(31, Short.MAX_VALUE))
+                                .addComponent(lblHinhDaiDienMeo))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(txtMatKhauHienTai)
+                            .addComponent(txtXacNhanMatKhau))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblHienThiMKMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHienThiMKXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblHienThiMKHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,17 +171,23 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
                 .addComponent(jLabel4)
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatKhauHienTai, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblHienThiMKHienTai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMatKhauHienTai, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtMatKhauMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblHienThiMKMoi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtMatKhauMoi))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtXacNhanMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblHienThiMKXacNhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtXacNhanMatKhau))
+                .addGap(58, 58, 58)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,25 +210,54 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMatKhauHienTaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauHienTaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatKhauHienTaiActionPerformed
-
-    private void txtMatKhauMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauMoiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatKhauMoiActionPerformed
-
-    private void txtXacNhanMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXacNhanMatKhauActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtXacNhanMatKhauActionPerformed
-
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
-        DoiMatKhau();
+        doiMatKhau();
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_btnHuyActionPerformed
+
+    private void lblHienThiMKHienTaiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHienThiMKHienTaiMouseClicked
+        // TODO add your handling code here:
+        flag = !flag;
+        if (flag) {
+            txtMatKhauHienTai.setEchoChar((char) 0);
+            lblHienThiMKHienTai.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\tatmk.png"));
+
+        } else {
+            txtMatKhauHienTai.setEchoChar('*');
+            lblHienThiMKHienTai.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\momk.png"));
+        }
+    }//GEN-LAST:event_lblHienThiMKHienTaiMouseClicked
+
+    private void lblHienThiMKMoiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHienThiMKMoiMouseClicked
+        // TODO add your handling code here:
+        flag1 = !flag1;
+        if (flag1) {
+            txtMatKhauMoi.setEchoChar((char) 0);
+            lblHienThiMKMoi.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\tatmk.png"));
+
+        } else {
+            txtMatKhauMoi.setEchoChar('*');
+            lblHienThiMKMoi.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\momk.png"));
+        }
+
+    }//GEN-LAST:event_lblHienThiMKMoiMouseClicked
+
+    private void lblHienThiMKXacNhanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHienThiMKXacNhanMouseClicked
+        // TODO add your handling code here:
+        flag2 = !flag2;
+        if (flag2) {
+            txtXacNhanMatKhau.setEchoChar((char) 0);
+            lblHienThiMKXacNhan.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\tatmk.png"));
+
+        } else {
+            txtXacNhanMatKhau.setEchoChar('*');
+            lblHienThiMKXacNhan.setIcon(XImage.insertIcon(24, 24, "..\\PetShop\\src\\main\\java\\com\\app\\img\\momk.png"));
+        }
+    }//GEN-LAST:event_lblHienThiMKXacNhanMouseClicked
 
     /**
      * @param args the command line arguments
@@ -252,9 +309,12 @@ public class DoiMatKhauJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblHienThiMKHienTai;
+    private javax.swing.JLabel lblHienThiMKMoi;
+    private javax.swing.JLabel lblHienThiMKXacNhan;
     private javax.swing.JLabel lblHinhDaiDienMeo;
-    private javax.swing.JTextField txtMatKhauHienTai;
-    private javax.swing.JTextField txtMatKhauMoi;
-    private javax.swing.JTextField txtXacNhanMatKhau;
+    private javax.swing.JPasswordField txtMatKhauHienTai;
+    private javax.swing.JPasswordField txtMatKhauMoi;
+    private javax.swing.JPasswordField txtXacNhanMatKhau;
     // End of variables declaration//GEN-END:variables
 }

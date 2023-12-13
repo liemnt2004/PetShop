@@ -6,20 +6,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class SanPhamDAO implements DaoMain<SanPham, String> {
 
     @Override
     public void insert(SanPham entity) {
         String sql = "INSERT INTO SanPham (MaSP, Giatien, Tensp, donvi, phantram, maloaisp, trangthai, manhacc) VALUES (?,?,?,?,?,?,?,?)";
-        JdbcHelper.executeUpdate(sql,entity.getMaSP(),entity.getGiaTien(),entity.getTenSP(),entity.getDonVi(),entity.getPhanTram(),entity.getMaLoaiSP(), entity.getTrangThai(), entity.getMaNhaCC());
-                }
+        JdbcHelper.executeUpdate(sql, entity.getMaSP(), entity.getGiaTien(), entity.getTenSP(), entity.getDonVi(), entity.getPhanTram(), entity.getMaLoaiSP(), entity.getTrangThai(), entity.getMaNhaCC());
+    }
 
     @Override
     public void update(SanPham entity) {
-        String sql = "UPDATE SanPham SET Giatien=?, Tensp=?,donvi=?,phantram=?,maloaisp=?, trangthai=?,MaNhaCC=? WHERE MaSP=?"; 
-        JdbcHelper.executeUpdate(sql,entity.getGiaTien(),entity.getTenSP(),entity.getDonVi(),entity.getPhanTram(),entity.getMaLoaiSP(),entity.getMaSP(), entity.getMaNhaCC());
+        String sql = "UPDATE SanPham SET Giatien=?, Tensp=?, donvi=?, phantram=?, maloaisp=?, trangthai=? WHERE MaSP=?";
+        JdbcHelper.executeUpdate(sql, entity.getGiaTien(), entity.getTenSP(), entity.getDonVi(), entity.getPhanTram(), entity.getMaLoaiSP(), entity.getTrangThai(), entity.getMaSP());
     }
 
     @Override
@@ -40,14 +41,36 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
         List<SanPham> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
-    public List<SanPham> selectByKeyWord(String keyword) throws SQLException{
-        String sql="SELECT * FROM SANPHAM WHERE TenSP LIKE ?";
-        return selectBySql(sql, "%"+keyword+"%");
+
+    public List<SanPham> selectByKeyWord(String keyword) {
+        String sql = "SELECT * FROM SANPHAM WHERE TenSP LIKE ?";
+        return selectBySql(sql, "%" + keyword + "%");
     }
-    public List<SanPham> selectByCombobox(String combobox) throws SQLException{
-        String sql="SELECT * FROM SANPHAM WHERE TrangThai LIKE ?";
-        return selectBySql(sql, "%"+combobox+"%");
+
+    public void insertChiTietSanPham(String mahd, Integer SoLuong, String masp) {
+        String sql = "INSERT INTO ChiTietHoaDon VALUES(?,?,?)";
+        JdbcHelper.executeUpdate(sql, mahd, masp, SoLuong);
     }
+
+    public List<SanPham> selectByCombobox(String combobox) {
+        String sql = "SELECT * FROM SANPHAM WHERE TrangThai LIKE ?";
+        return selectBySql(sql, "%" + combobox + "%");
+    }
+
+    public String selectNameSP(String masp) {
+        String name = "";
+        String sql = "SELECT TenSP FROM SanPham WHERE MaSP = ?";
+        try {
+            ResultSet rs = JdbcHelper.executeQuery(sql, masp);
+            while (rs.next()) {
+                name = rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SanPhamDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return name;
+    }
+
     @Override
     public List<SanPham> selectBySql(String sql, Object... args) {
         List<SanPham> list = new ArrayList<>();
@@ -70,13 +93,11 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
         return list;
     }
 
-    
-
     private SanPham readFromResultSet(ResultSet rs) throws SQLException {
         SanPham model = new SanPham();
         model.setMaSP(rs.getString("MaSP"));
         model.setGiaTien(rs.getInt("Giatien"));
-        model.setTenSP(rs.getString("Tensp"));    
+        model.setTenSP(rs.getString("Tensp"));
         model.setDonVi(rs.getString("donvi"));
         model.setPhanTram(rs.getFloat("phantram"));
         model.setMaLoaiSP(rs.getString("maloaisp"));
@@ -84,5 +105,5 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
         model.setMaNhaCC(rs.getString("MaNhaCC"));
         return model;
     }
-    
+
 }

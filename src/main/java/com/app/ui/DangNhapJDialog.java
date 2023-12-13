@@ -6,19 +6,25 @@ import com.app.utils.Validate;
 import com.app.utils.MsgBox;
 import com.app.Daos.TaiKhoanDao;
 import com.app.Entitys.TaiKhoan;
-
-
-
+import com.app.utils.PassHashing;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class DangNhapJDialog extends javax.swing.JDialog {
 
     TaiKhoanDao dao = new TaiKhoanDao();
 
-   
+    String path = "..\\PetShop\\src\\main\\java\\com\\app\\utils\\RememberCredentials.txt";
+
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
+        checkFile();
         lblHinhLogo.setIcon(XImage.insertIcon(370, 460, "..\\PetShop\\src\\main\\java\\com\\app\\img\\logo.png"));
         lblIconDangNhap.setIcon(XImage.insertIcon(70, 80, "..\\PetShop\\src\\main\\java\\com\\app\\img\\nguoidung_meo6.png"));
     }
@@ -32,17 +38,52 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             MsgBox.AlertFall(this, notThing);
         } else if (!manv.equals(nv.getTaiKhoan())) {
             MsgBox.AlertFall(this, "Sai tên đăng nhập!");
-        } else if (!matKhau.equals(nv.getMatKhau())) {
+        } else if (!PassHashing.verifyPassword(matKhau, nv.getMatKhau())) {
             MsgBox.AlertFall(this, "Sai mật khẩu");
 
-        } //            else if (!Validate.verifyPassword(matKhau, nv.getMatKhau())) {
-        //                Validate.alert(this, "Sai mật khẩu");
-        //            }
-        else {
+        } else {
             Auth.user = nv;
             DangNhapJDialog.this.dispose();
         }
+        if (rdoNhoMatKhau.isSelected()) {
+            saveFile(manv, matKhau);
+        } else {
+            File file = new File(path);
+            file.delete();
 
+        }
+
+    }
+
+    private void checkFile() {
+        try {
+            FileInputStream fis = new FileInputStream(path);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            String savedUsername = (String) ois.readObject();
+            String savedPassword = (String) ois.readObject();
+            ois.close();
+
+            if (savedUsername != null && savedPassword != null) {
+                txtTaiKhoan.setText(savedUsername);
+                txtMatKhau.setText(savedPassword);
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            File file = new File(path);
+        }
+
+    }
+
+    public void saveFile(String tk, String mk) {
+        try {
+            FileOutputStream fos = new FileOutputStream(path);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(tk);
+            oos.writeObject(mk);
+            oos.close();
+        } catch (Exception e) {
+            System.out.println("Lỗi nhớ");
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -61,6 +102,8 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         btnDangNhap = new javax.swing.JButton();
         lblIconDangNhap = new javax.swing.JLabel();
         txtMatKhau = new javax.swing.JPasswordField();
+        rdoNhoMatKhau = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblHinhLogo = new javax.swing.JLabel();
 
@@ -74,6 +117,16 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         jLabel2.setText("Đăng Nhập");
 
         txtTaiKhoan.setToolTipText("Tài Khoản");
+        txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTaiKhoanActionPerformed(evt);
+            }
+        });
+        txtTaiKhoan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtTaiKhoanKeyReleased(evt);
+            }
+        });
 
         btnDangNhap.setBackground(new java.awt.Color(0, 51, 102));
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,6 +139,26 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         });
 
         txtMatKhau.setToolTipText("Mật Khẩu");
+        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMatKhauActionPerformed(evt);
+            }
+        });
+        txtMatKhau.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtMatKhauKeyReleased(evt);
+            }
+        });
+
+        rdoNhoMatKhau.setText("Nhớ mật khẩu?");
+
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Quên mật khẩu?");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -94,19 +167,23 @@ public class DangNhapJDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(151, 151, 151)
+                        .addComponent(lblIconDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(48, 48, 48)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(79, 79, 79)
                                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtMatKhau)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(lblIconDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel2)))
+                            .addComponent(txtMatKhau)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(rdoNhoMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1)))))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -120,7 +197,11 @@ public class DangNhapJDialog extends javax.swing.JDialog {
                 .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdoNhoMatKhau)
+                    .addComponent(jLabel1))
+                .addGap(24, 24, 24)
                 .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(59, Short.MAX_VALUE))
         );
@@ -180,7 +261,37 @@ public class DangNhapJDialog extends javax.swing.JDialog {
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
         dangNhap();
+
     }//GEN-LAST:event_btnDangNhapActionPerformed
+
+    private void txtTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaiKhoanActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtTaiKhoanActionPerformed
+
+    private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMatKhauActionPerformed
+
+    private void txtTaiKhoanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTaiKhoanKeyReleased
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            txtTaiKhoan.requestFocus();
+        }
+    }//GEN-LAST:event_txtTaiKhoanKeyReleased
+
+    private void txtMatKhauKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMatKhauKeyReleased
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            dangNhap();
+        }
+    }//GEN-LAST:event_txtMatKhauKeyReleased
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+//        new QuenMatKhauJDialog(null, true).setVisible(true);
+
+        new DoiJF().setVisible(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -226,12 +337,14 @@ public class DangNhapJDialog extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangNhap;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblHinhLogo;
     private javax.swing.JLabel lblIconDangNhap;
+    private javax.swing.JRadioButton rdoNhoMatKhau;
     private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables

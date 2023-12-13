@@ -57,7 +57,7 @@ public class PhieuGiamGia {
 
     @Override
     public String toString() {
-        return this.maPhieuGiamGia +" Ngày Hết Hạn " +this.dateEnd;
+        return this.maPhieuGiamGia +" Ngày Hết Hạn " +this.dateEnd + "Phần Trâm Giảm Giá" + this.getPhanTramGiamGia();
     }
 
     

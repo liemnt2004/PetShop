@@ -6,8 +6,10 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelLegend.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\HoiVienDao.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\HoiVienJDialog.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\PassHashing.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\HoaDon.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ThuCung.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\PDF.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\TonKhoDao.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiLoaiJVatDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\GiongDao.java
@@ -18,9 +20,11 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\b
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\GraphicsUtilities.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\NhaCungCapJDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelPieChart.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\PDFPRINTF.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\DangNhapJDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\XDate.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ThongKe.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\QuenMatKhau.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiGiongDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\PhieuNhapHangDao.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\MsgBox.java
@@ -35,7 +39,6 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\I
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ChiTietDatLich.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ChiTietHoaDon.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\HoaDonDAO.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\DangNhapJFrame.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiLoaiJDialog.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\HoiVien.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\PhieuGiamGia.java
@@ -61,8 +64,11 @@ C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\Sa
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\NhaCungCapDao.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\VaiTro.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\DaoMain.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\DoiJF.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\NhaCungCap.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ShadowRenderer.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\QuenMatKhauDAO.java
+C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\Mail.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\SplinePoint.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\DichVu.java
 C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\LoaiVatDao.java

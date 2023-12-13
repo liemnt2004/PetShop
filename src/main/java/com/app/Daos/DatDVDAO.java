@@ -7,12 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatDVDAO implements DaoMain<DatDV, String> {
 
     @Override
     public void insert(DatDV entity) {
-        String sql = "INSERT INTO DatDV(MaDL, MaHV, sdt, NgayDat, TrangThai, mota, NgayTra) VALUES(?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO DatDV(MaDL, MaHV, SoDienThoai, NgayDat, TrangThai, mota, NgayTra) VALUES(?,?,?,?,?,?,?)";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaDL(),
                 entity.getMaHV(),
@@ -26,7 +28,7 @@ public class DatDVDAO implements DaoMain<DatDV, String> {
 
     @Override
     public void update(DatDV entity) {
-        String sql = "UPDATE DatDV SET MaHV=?, sdt=?, NgayDat=?, TrangThai=?,mota=?,NgayTra=? WHERE MaDL=?";
+        String sql = "UPDATE DatDV SET MaHV=?, SoDienThoai=?, NgayDat=?, TrangThai=?,mota=?,NgayTra=? WHERE MaDL=?";
         JdbcHelper.executeUpdate(sql,
                 entity.getMaHV(),
                 entity.getSoDienThoai(),
@@ -73,6 +75,8 @@ public class DatDVDAO implements DaoMain<DatDV, String> {
         List<DatDV> lst = selectBySql(sql);
         return lst;
     }
+    
+   
 
     public List selectByMaDL() {
         String sql = "SELECT * FROM chitietdl WHERE madl = ?";
@@ -84,6 +88,16 @@ public class DatDVDAO implements DaoMain<DatDV, String> {
         String sql = "SELECT * FROM chitietdl WHERE madl = ?";
         List<ChiTietDatLich> list = selectBySql1(sql, key);
         return list;
+    }
+    
+    
+    
+
+    public void insertDichDuTriTiet(String madatlich, String madv) {
+
+        String sql = "INSERT INTO ChiTietDL VALUES(?,?)";
+        JdbcHelper.executeUpdate(sql, madatlich, madv);
+
     }
 
     @Override

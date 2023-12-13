@@ -67,13 +67,25 @@ public class ThuCungDao implements DaoMain<ThuCung, String> {
         List<ThuCung> list = selectBySql(sql, key);
         return list;
     }
-    
+
     public List<ThuCung> selectAllNOTHOIVIEN() {
         String sql = "SELECT * FROM ThuCung WHERE MaHV IS NULL";
         List<ThuCung> list = selectBySql(sql);
         return list;
     }
-    
+
+    public void insertChiTietThuCung(String mahd, String matc) {
+        String sql = "INSERT INTO ChiTietHoaDon_TC VALUES(?,?)";
+        JdbcHelper.executeUpdate(sql, mahd, matc);
+    }
+
+    public void UpdateChuThuCung(String mahv, String matc) {
+
+        String sql = "UPDATE ThuCung SET MaHV = ? WHERE MaTC = ?";
+
+        JdbcHelper.executeUpdate(sql, mahv, matc);
+
+    }
 
     @Override
     public List<ThuCung> selectBySql(String sql, Object... args) {

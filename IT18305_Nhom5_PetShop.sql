@@ -43,7 +43,6 @@ CREATE TABLE ChiTietDL
     ChiTietDLID INT IDENTITY(1,1) PRIMARY KEY,
     MaDL CHAR(10),
     MaDv CHAR(10),
-    SoLuong INT,
     FOREIGN KEY (MaDL) REFERENCES DatDV(MaDL) ON DELETE CASCADE  ON UPDATE CASCADE,
     FOREIGN KEY (MaDv) REFERENCES DichVu(MaDv) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -105,8 +104,8 @@ CREATE TABLE NhanVien
     HoTen NVARCHAR(255),
     GioiTinh NVARCHAR(10),
     NgaySinh DATE,
-    SDT NVARCHAR(20),
-    Email NVARCHAR(255),
+    SDT NVARCHAR(20) unique,
+    Email NVARCHAR(255) unique,
     TrangThai NVARCHAR(20),
     Hinh NVARCHAR(MAX),
     MaVT CHAR(10),
@@ -117,10 +116,18 @@ CREATE TABLE NhanVien
 --11 Bảng TaiKhoan
 CREATE TABLE TaiKhoan
 (
-    TaiKhoan NVARCHAR(50) PRIMARY KEY,
-    MatKhau NVARCHAR(50),
+    TaiKhoan NVARCHAR(255) PRIMARY KEY,
+    MatKhau NVARCHAR(255),
     MaNV CHAR(10),
     FOREIGN KEY (MaNV) REFERENCES NhanVien(MaNV) ON UPDATE CASCADE
+);
+
+CREATE TABLE QuenMatKhau(
+	STT INT IDENTITY(1,1) PRIMARY KEY,
+    TaiKhoan NVARCHAR(255),
+    MaXacNhan NVARCHAR(10),
+    ThoiGian datetime,
+    FOREIGN KEY (TaiKhoan) REFERENCES TaiKhoan(TaiKhoan) ON UPDATE CASCADE
 );
 
 
@@ -236,7 +243,6 @@ CREATE TABLE ChiTietHoaDon_TC
     ID INT IDENTITY(1,1) PRIMARY KEY,
     MaHoaDon CHAR(10),
     MaTC CHAR(10),
-    SoLuong INT,
     FOREIGN KEY (MaHoaDon) REFERENCES HoaDon(MaHoaDon) ON DELETE NO ACTION ON UPDATE NO ACTION,
     FOREIGN KEY (MaTC) REFERENCES ThuCung(MaTC) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -262,13 +268,10 @@ CREATE TABLE ChiTietCaLam
 
 
 
--- Dữ liệu mẫu
---INSERT INTO HoiVien
-
-
 INSERT INTO HoiVien
     (MaHV, TenKhachHang, GioiTinh, Email, SDT, TichDiem, CCCD)
 VALUES
+    ('HV00','Vô Danh','Nam','email@gmail.com','00000000',0,'00000000000'),
     ('HV01', N'Nguyễn Tấn Hiếu', N'Nam', 'hieunt@gmail.com', N'0927594734', 100, '0927594731'),
     ('HV02', N'Nguyễn Hữu Trí', N'Nam', 'trinh@gmail.com', N'0946984711', 50, '0946984712'),
     ('HV03', N'Võ Quốc Hưng', N'Nam', 'qhung@gmail.com', N'0368588531', 50, '074504009006'),
@@ -316,28 +319,28 @@ VALUES
 
 -- Dữ liệu mẫu cho bảng ChiTietDL
 INSERT INTO ChiTietDL
-    (MaDL, MaDv, SoLuong)
+    (MaDL, MaDv)
 VALUES
-    ('DL01', 'DV01', 2),
-    ('DL02', 'DV02', 1),
-    ('DL03', 'DV03', 3),
-    ('DL04', 'DV03', 2),
-    ('DL05', 'DV02', 1),
-    ('DL06', 'DV02', 4),
-    ('DL07', 'DV02', 3),
-    ('DL08', 'DV02', 1),
-    ('DL09', 'DV02', 2),
-    ('DL10', 'DV01', 3),
-    ('DL01', 'DV01', 1),
-    ('DL02', 'DV02', 2),
-    ('DL08', 'DV01', 3),
-    ('DL03', 'DV01', 1),
-    ('DL02', 'DV03', 2),
-    ('DL10', 'DV01', 3),
-    ('DL03', 'DV03', 1),
-    ('DL04', 'DV01', 2),
-    ('DL04', 'DV03', 3),
-    ('DL07', 'DV02', 5);
+    ('DL01', 'DV01'),
+    ('DL02', 'DV02'),
+    ('DL03', 'DV03'),
+    ('DL04', 'DV03'),
+    ('DL05', 'DV02'),
+    ('DL06', 'DV02'),
+    ('DL07', 'DV02'),
+    ('DL08', 'DV02'),
+    ('DL09', 'DV02'),
+    ('DL10', 'DV01'),
+    ('DL01', 'DV01'),
+    ('DL02', 'DV02'),
+    ('DL08', 'DV01'),
+    ('DL03', 'DV01'),
+    ('DL02', 'DV03'),
+    ('DL10', 'DV01'),
+    ('DL03', 'DV03'),
+    ('DL04', 'DV01'),
+    ('DL04', 'DV03'),
+    ('DL07', 'DV02');
 
 INSERT INTO LoaiVat
 VALUES
@@ -416,7 +419,7 @@ VALUES
 -- Thêm dữ liệu cho bảng NhanVien
 INSERT INTO NhanVien
 VALUES
-    ('NV01', N'Lê Quốc Huy', N'Nam', '1954-12-3', N'0889456201', 'cuonglh@gmail.com', N'Đang làm', 'logo_menu.jpg', 1),
+    ('NV01', N'Lê Quốc Huy', N'Nam', '1954-12-3', N'0889456201', 'mylinh.khanhhung@gmail.com', N'Đang làm', 'logo_menu.jpg', 1),
     ('NV02', N'Đỗ Văn Minh', N'Nữ', '1983-8-19', N'0968095685', 'minhdv@gmail.com', N'Đã nghỉ', 'logo_menu.jpg', 0),
     ('NV03', N'Võ Hoài Hưng', N'Nam', '2004-8-19', N'0956872574', 'hhung@gmail.com', N'Đang làm', 'logo_menu.jpg', 0),
     ('NV04', N'Châu Tinh Trì', N'Nam', '1985-4-29', N'0964687963', 'tinhtri12@gmail.com', N'Đang làm', 'logo_menu.jpg', 0);
@@ -425,8 +428,8 @@ VALUES
 -- Thêm dữ liệu tài khoản
 INSERT INTO TaiKhoan
 VALUES
-    ('0889456201', '1', 'NV01'),
-    ('0968095685', '2', 'NV02');
+    ('mylinh.khanhhung@gmail.com', '$2a$12$TGgFs8/L59fckjA6pAap7.wx39KbZ8GBdKSI/1BCTZVNWdiThSq.S', 'NV01'),
+    ('minhdv@gmail.com', '2', 'NV02');
 
 
 -- Thêm dữ liệu nhà cung cấp
@@ -526,6 +529,7 @@ VALUES
 -- Thêm dữ liệu phiếu giảm 
 INSERT INTO PhieuGiamGia
 VALUES
+    ('DISCOUNT',0.0,GETDATE(),GETDATE()),
     ('DISCOUNT1', 1.2, '2023-11-3', '2023-11-29'),
     ('DISCOUNT2', 1.1, '2023-12-1', '2023-12-27'),
     ('DISCOUNT3', 1.5, '2023-10-15', '2023-11-10'),
@@ -581,16 +585,16 @@ VALUES
 -- Thêm dữ liệu cho bảng ChiTietHoaDon_TC
 INSERT INTO ChiTietHoaDon_TC
 VALUES
-    ('HD01', 'TC01', 1),
-    ('HD02', 'TC02', 1),
-    ('HD03', 'TC03', 1),
-    ('HD04', 'TC04', 1),
-    ('HD05', 'TC05', 1),
-    ('HD10', 'TC06', 1),
-    ('HD12', 'TC07', 1),
-    ('HD13', 'TC08', 1),
-    ('HD14', 'TC09', 1),
-    ('HD15', 'TC10', 1);
+    ('HD01', 'TC01'),
+    ('HD02', 'TC02'),
+    ('HD03', 'TC03'),
+    ('HD04', 'TC04'),
+    ('HD05', 'TC05'),
+    ('HD10', 'TC06'),
+    ('HD12', 'TC07'),
+    ('HD13', 'TC08'),
+    ('HD14', 'TC09'),
+    ('HD15', 'TC10');
 
 
 
@@ -607,6 +611,17 @@ Values
     ('CL02', 'NV02', '2022/02/06');
 
 
+INSERT INTO QUENMATKHAU(TAIKHOAN,MAXACNHAN,THOIGIAN) VALUES('mylinh.khanhhung@gmail.com','937553',GETDATE());
+INSERT INTO QUENMATKHAU(TAIKHOAN,MAXACNHAN,THOIGIAN) VALUES('mylinh.khanhhung@gmail.com','937555',GETDATE());
+INSERT INTO QUENMATKHAU(TAIKHOAN,MAXACNHAN,THOIGIAN) VALUES('mylinh.khanhhung@gmail.com','937554',GETDATE());
+INSERT INTO QUENMATKHAU(TAIKHOAN,MAXACNHAN,THOIGIAN) VALUES('mylinh.khanhhung@gmail.com','937556',GETDATE());
+INSERT INTO QUENMATKHAU(TAIKHOAN,MAXACNHAN,THOIGIAN) VALUES('mylinh.khanhhung@gmail.com','937557',GETDATE());
+INSERT INTO QUENMATKHAU(TAIKHOAN,MAXACNHAN,THOIGIAN) VALUES('mylinh.khanhhung@gmail.com','937559',GETDATE());
+go
+
+
+
+SELECT * FROM TaiKhoan
 
 
 -- lấy ra thông tin của kho
@@ -724,7 +739,6 @@ BEGIN
     );
 END;
 
-SELECT * FROM DatDV
+SELECT TichDiem FROM HoiVien WHERE MaHV = 
 
 
-SELECT * FROM ThuCung WHERE MaHV IS NULL

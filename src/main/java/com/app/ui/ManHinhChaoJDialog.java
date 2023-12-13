@@ -5,10 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
-/**
- *
- * @author MY LINH
- */
+
 public class ManHinhChaoJDialog extends javax.swing.JDialog {
 
     
@@ -21,7 +18,7 @@ public class ManHinhChaoJDialog extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         pgbChao.setStringPainted(true);
         lblIconRun.setIcon(XImage.insertIcon(30, 30, "..\\PetShop\\src\\main\\java\\com\\app\\img\\meo1.png"));
-        new Timer(50, new ActionListener() {
+        new Timer(20, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int value = pgbChao.getValue();
@@ -58,6 +55,7 @@ public class ManHinhChaoJDialog extends javax.swing.JDialog {
         lblIconRun = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 51, 51));
 
