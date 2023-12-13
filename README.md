@@ -21,8 +21,12 @@ Cửa hàng dịch vụ thú cưng chúng tôi cung cấp các dịch vụ chăm
     - JFame Panel - Giao diện
 - ### Phụ trợ
     - NetBeans - Layout
+      ![NeatBeans](https://149611589.v2.pressablecdn.com/wp-content/uploads/2019/04/Screen-Shot-2019-04-25-at-6.10.54-PM.png)
     - JAVA - ngôn ngữ lập trình
+      ![Java](https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png)
     - SQL Sever - Cơ sơ dữ liệu
+      
+      ![SQL](https://cdn-icons-png.flaticon.com/512/5968/5968364.png)
 ## Thành viên
 - ### Nguyễn Thanh Liêm | Full-Stack
     - Gmail:
