@@ -20,6 +20,7 @@ Cửa hàng dịch vụ thú cưng chúng tôi cung cấp các dịch vụ chăm
 - ### Giao diện người dùng
     - JFame Panel - Giao diện
 - ### Phụ trợ
+    - NetBeans - Layout
     - JAVA - ngôn ngữ lập trình
     - SQL Sever - Cơ sơ dữ liệu
 ## Thành viên
