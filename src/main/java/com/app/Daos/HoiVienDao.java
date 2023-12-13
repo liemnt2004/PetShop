@@ -46,7 +46,7 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
 
     @Override
     public List<HoiVien> selectAll() {
-        String sql = "SELECT * FROM HoiVien";
+        String sql = "SELECT * FROM HoiVien WHERE MAHV != 'HV00'";
         return selectBySql(sql);
     }
 
@@ -61,6 +61,11 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
     public List<HoiVien> selectAllHV() {
         String sql = "SELECT * FROM HoiVien WHERE Mahv != 'HV00'";
         return selectBySql(sql);
+    }
+    
+    public void updateTichDiem(Integer tichdiem,String mahv){
+        String sql = "UPDATE HoiVien SET TichDiem = ? WHERE MaHV = ?";
+        JdbcHelper.executeUpdate(sql, tichdiem,mahv);
     }
 
     @Override
@@ -91,7 +96,7 @@ public class HoiVienDao implements DaoMain<HoiVien, String> {
     }
 
     public List<HoiVien> selectByKeyword(String keyword) throws SQLException {
-        String sql = "SELECT * FROM HoiVien WHERE TenKhachHang LIKE ?";
+        String sql = "SELECT * FROM HoiVien WHERE TenKhachHang LIKE ? AND MAHV != 'HV00'";
         return selectBySql(sql, "%" + keyword + "%");
     }
     

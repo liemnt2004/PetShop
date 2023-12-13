@@ -1,5 +1,6 @@
 package com.app.utils;
 
+import java.util.Date;
 import javax.swing.JTextField;
 import org.apache.commons.validator.routines.DateValidator;
 import org.apache.commons.validator.routines.DoubleValidator;
@@ -34,6 +35,18 @@ public class Validate {
     public static boolean validateDouble(String doubleStr) {
         DoubleValidator validator = DoubleValidator.getInstance();
         return validator.isValid(doubleStr) && Double.parseDouble(doubleStr) > 0;
+    }
+    
+     public static boolean isOver18(Date dob) {
+        Date currentDate = new Date();
+
+        // Sử dụng millisecond để tính tuổi
+        long millisecondsPerYear = 1000L * 60 * 60 * 24 * 365;
+        long ageInMilliseconds = currentDate.getTime() - dob.getTime();
+
+        int age = (int) (ageInMilliseconds / millisecondsPerYear);
+
+        return age >= 18;
     }
 
     public static Boolean nothingText(JTextField... list) {

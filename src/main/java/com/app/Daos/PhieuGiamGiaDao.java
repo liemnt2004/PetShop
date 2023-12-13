@@ -59,7 +59,7 @@ public class PhieuGiamGiaDao implements DaoMain<PhieuGiamGia, String>{
     }
     
     public PhieuGiamGia selectById(String key) {
-        String sql = "SELECT * FROM PhieuGiamGia WHERE Ma_PhieuGiamGia=?";
+        String sql = "SELECT * FROM PhieuGiamGia WHERE MaPhieuGiamGia=?";
         List<PhieuGiamGia> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }

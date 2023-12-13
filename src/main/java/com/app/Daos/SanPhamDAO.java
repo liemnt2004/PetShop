@@ -54,7 +54,7 @@ public class SanPhamDAO implements DaoMain<SanPham, String> {
 
     public List<SanPham> selectByCombobox(String combobox) {
         String sql = "SELECT * FROM SANPHAM WHERE TrangThai LIKE ?";
-        return selectBySql(sql, "%" + combobox + "%");
+        return selectBySql(sql, "%" + combobox.trim() + "%");
     }
 
     public String selectNameSP(String masp) {

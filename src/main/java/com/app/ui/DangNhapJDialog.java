@@ -15,13 +15,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 public class DangNhapJDialog extends javax.swing.JDialog {
-
+    
     TaiKhoanDao dao = new TaiKhoanDao();
 
     String path = "..\\PetShop\\src\\main\\java\\com\\app\\utils\\RememberCredentials.txt";
 
     public DangNhapJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        Auth.user = null;
         initComponents();
         setLocationRelativeTo(null);
         checkFile();
@@ -290,7 +291,7 @@ public class DangNhapJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
 //        new QuenMatKhauJDialog(null, true).setVisible(true);
 
-        new DoiJF().setVisible(true);
+        new QuenMatKhauJDialog(null, true).setVisible(true);
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

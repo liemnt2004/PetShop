@@ -739,6 +739,5 @@ BEGIN
     );
 END;
 
-SELECT TichDiem FROM HoiVien WHERE MaHV = 
-
+SELECT * FROM tonkho
 
