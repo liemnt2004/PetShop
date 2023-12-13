@@ -41,7 +41,11 @@ public class TaiKhoanDao implements DaoMain<TaiKhoan, String>  {
         String sql = "SELECT * FROM TaiKhoan";
         return selectBySql(sql);
     }
-
+  public TaiKhoan selectByTK(String key) {
+        String sql = "SELECT MaNV FROM TaiKhoan WHERE TaiKhoan =?";
+        List<TaiKhoan> list = selectBySql(sql, key);
+        return list.size() > 0 ? list.get(0) : null;
+    }
     
     public TaiKhoan selectById(String key) {
         String sql = "SELECT * FROM TaiKhoan WHERE TaiKhoan =?";

@@ -6,9 +6,10 @@ import com.app.Daos.NhanVienDao;
 import com.app.Daos.TaiKhoanDao;
 import com.app.Entitys.NhanVien;
 import com.app.Entitys.TaiKhoan;
+import com.app.utils.PassHashing;
+
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-
 
 public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
 
@@ -29,6 +30,7 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
         initKhongTaiKhoan();
         taiDuLieuTaiKhoan();
         hienThiThongTinLenForm(daoTaiKhoan.selectByMaNhanVien(maNV));
+        txtTaiKhoan.setEnabled(false);
 
     }
 
@@ -58,7 +60,7 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
                     i + 1,
                     tk.getMaNhanVien(),
                     tk.getTaiKhoan(),
-                    tk.getMatKhau(),
+                    "**********",
                     daoNhanVien.selectById(tk.getMaNhanVien()).isMaVaitro() ? "Quản lí" : "Nhân viên",
                     daoNhanVien.selectById(tk.getMaNhanVien()).getTrangThai()
                 };
@@ -117,9 +119,9 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
     private void ThemTaiKhoan() {
         for (int row : tblDanhSachNhanVienKhongCoTaiKhoan.getSelectedRows()) {
             TaiKhoan tk = new TaiKhoan();
-            tk.setMatKhau("");
             tk.setMaNhanVien((String) tblDanhSachNhanVienKhongCoTaiKhoan.getValueAt(row, 1));
-            tk.setTaiKhoan(daoNhanVien.selectById((String) tblDanhSachNhanVienKhongCoTaiKhoan.getValueAt(row, 1)).getSoDienThoai());
+            tk.setTaiKhoan(daoNhanVien.selectById((String) tblDanhSachNhanVienKhongCoTaiKhoan.getValueAt(row, 1)).getEmail());
+            tk.setMatKhau(PassHashing.hashPassword(PassHashing.generateRandomPassword()));
             daoTaiKhoan.insert(tk);
         }
     }
@@ -142,14 +144,28 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
         }
     }
 
+    private boolean checkForm() {
+        if (txtMatKhau.getText().equals("")) {
+            MsgBox.AlertFall(this, "Mật khẩu không được để trống!");
+            return false;
+        }
+        if (!PassHashing.isValidPassword(txtMatKhau.getText())) {
+            MsgBox.AlertFall(this, "Vui lòng nhập mật khẩu có ít nhất một số, một kí tự hoa, một kí tự thường!!");
+            return false;
+        }
+        return true;
+    }
+
     private void capNhatTaiKhoan() {
         try {
-            TaiKhoan tk = daoTaiKhoan.selectById(txtTaiKhoan.getText());
-            tk.setMatKhau(txtMatKhau.getText());
-            daoTaiKhoan.update(tk);
-            this.taiDuLieuTaiKhoan();
-            lamMoi();
-            MsgBox.AlertSuccess(this, "Cập nhật thành công");
+            if (checkForm()) {
+                TaiKhoan tk = daoTaiKhoan.selectById(txtTaiKhoan.getText());
+                tk.setMatKhau(PassHashing.hashPassword(txtMatKhau.getText()));
+                daoTaiKhoan.update(tk);
+                this.taiDuLieuTaiKhoan();
+                lamMoi();
+                MsgBox.AlertSuccess(this, "Cập nhật thành công");
+            }
         } catch (Exception e) {
             MsgBox.AlertFall(this, e.getMessage());
 
@@ -272,6 +288,12 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
         });
 
         txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtMatKhau.setMaximumSize(new java.awt.Dimension(64, 26));
+        txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMatKhauMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -296,8 +318,8 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
                                         .addComponent(jLabel3))
                                     .addGap(22, 22, 22)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
-                                        .addComponent(txtMatKhau))))
+                                        .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(lblTenNhanVien, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(34, 34, 34)
@@ -385,6 +407,11 @@ public class ThongTinTaiKhoanJDialog extends javax.swing.JDialog {
         taiDuLieuTaiKhoan();
 
     }//GEN-LAST:event_tblDanhSachNhanVienKhongCoTaiKhoanMouseClicked
+
+    private void txtMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMouseClicked
+        // TODO add your handling code here:
+          txtMatKhau.setText("");
+    }//GEN-LAST:event_txtMatKhauMouseClicked
 
     /**
      * @param args the command line arguments

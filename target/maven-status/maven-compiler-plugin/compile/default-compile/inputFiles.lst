@@ -1,78 +1,82 @@
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ImageSlide.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\BlankPlotChatRender.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiChuongJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\CaLam.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\PhieuNhapHang.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelLegend.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\HoiVienDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\HoiVienJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\HoaDon.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ThuCung.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\TonKhoDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiLoaiJVatDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\GiongDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ChiTietSuKienJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\DichVuDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\TaiKhoan.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\SeriesSize.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\GraphicsUtilities.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelPieChart.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\DangNhapJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\XDate.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ThongKe.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiGiongDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\PhieuNhapHangDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\MsgBox.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\TaiKhoanDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\PhieuGiamGiaDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ChiTietCaLamJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\DatDV.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\SanPham.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\ChuongDAO.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\ChiTietCaLam.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ImageSplit.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\HoaDonDAO.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\DangNhapJFrame.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThemMoiLoaiJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\HoiVien.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\PhieuGiamGia.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ColorPanel.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Chuong.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\NhanVien.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\PanelGradient.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\PieChart.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ModelChart.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\Spline.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\XImage.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\LoaiSanPham.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\Validate.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\JdbcHelper.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\LoaiSanPhamDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\CaLamDAO.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\PanelShadow.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\VaiTroDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\NhanVienDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ThongTinTaiKhoanJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\TonKho.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\SanPhamDAO.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\NhaCungCapDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\VaiTro.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\DaoMain.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\NhaCungCap.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\ShadowRenderer.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\SplinePoint.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\DichVu.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\LoaiVatDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\LegendItem.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\LoaiVat.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\DoiMatKhauJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\CurveLineChart.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Giong.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\DatDVDAO.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\utils\Auth.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\BlankPlotChart.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\ManHinhChaoJDialog.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Entitys\Log.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\ui\mainJFrame.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Daos\ThuCungDao.java
-C:\Users\My Xen\Documents\NetBeansProjects\PetShop\src\main\java\com\app\Other\blankchart\NiceScale.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\QuenMatKhau.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\DaoMain.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\HoiVien.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\PhieuNhapHangDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\blankchart\NiceScale.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\ThuCungDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\LoaiSanPham.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\GiongDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\TonKhoDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\DatDV.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\DichVu.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\PanelShadow.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ThemMoiLoaiJVatDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ImageSlide.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\CaLamDAO.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\ChuongDAO.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\PhieuGiamGiaDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\DoiJF.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\Auth.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\LoaiSanPhamDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\SplinePoint.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ImageSplit.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\XDate.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\XImage.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\blankchart\BlankPlotChart.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\mainJFrame.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\ThongKe.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\PassHashing.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\PanelGradient.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\DoiMatKhauJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\LoaiVatDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\DatDVDAO.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\NhanVien.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\MsgBox.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\VaiTro.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ManHinhChaoJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\ThuCung.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ChiTietSuKienJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\LoaiVat.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\TonKho.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\JdbcHelper.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\CurveLineChart.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ThemMoiGiongDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ModelChart.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\PieChart.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\blankchart\SeriesSize.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ThemMoiChuongJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\QuenMatKhauDAO.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\TaiKhoanDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\Validate.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\HoaDonDAO.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\Giong.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ThongTinTaiKhoanJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\blankchart\BlankPlotChatRender.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ModelPieChart.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\HoiVienDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\PhieuGiamGia.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ShadowRenderer.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\Log.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\DangNhapJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\Chuong.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\NhaCungCap.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\ChiTietCaLam.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ThemMoiLoaiJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\CaLam.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\VaiTroDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\SanPham.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\Spline.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\TaiKhoan.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\LegendItem.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\PhieuNhapHang.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\SanPhamDAO.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ModelLegend.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Entitys\HoaDon.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\ColorPanel.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\utils\Mail.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\NhaCungCapDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\ChiTietCaLamJDialog.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\DichVuDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Other\GraphicsUtilities.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\Daos\NhanVienDao.java
+D:\FPTPOLYTP\DuAn\PetShop\src\main\java\com\app\ui\HoiVienJDialog.java

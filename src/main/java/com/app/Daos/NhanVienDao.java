@@ -65,6 +65,11 @@ public class NhanVienDao implements DaoMain<NhanVien, String> {
         List<NhanVien> list = selectBySql(sql, key);
         return list.size() > 0 ? list.get(0) : null;
     }
+    public NhanVien selectByTK(String key) {
+        String sql = "SELECT * FROM NhanVien WHERE manv = (SELECT MaNV FROM TaiKhoan WHERE TaiKhoan = ?)";
+        List<NhanVien> list = selectBySql(sql, key);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 
     @Override
     public List<NhanVien> selectBySql(String sql, Object... args) {
